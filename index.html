@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Manual de reparación · Pequeños electrodomésticos</title>
+<meta name="description" content="Figuras interactivas en corte de diez pequeños electrodomésticos, con flujo de corriente, componentes y fallas típicas según Palmore y Andre.">
+<link rel="icon" href="img/icono.svg" type="image/svg+xml">
+<style>
+:root{--bg:#f2f2ef;--card:#fbfbf9;--ink:#1c1c1a;--muted:#6b6b66;--line:#dcdcd5;--accent:#c2410c;--earth:#2b8a3e;--blue:#1971c2;--shadow:0 1px 0 rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.06);color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#0b0b0b;--card:#141414;--ink:#ededea;--muted:#9a9a94;--line:#2a2a28;--accent:#fb923c;--earth:#6be0a0;--blue:#4dabf7;--shadow:0 1px 0 rgba(255,255,255,.03);color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.mono{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+.wrap{width:min(1180px,100%);margin:0 auto;padding:0 max(16px,env(safe-area-inset-left,0px))}
+header.top{padding:56px 0 28px;border-bottom:1px solid var(--line)}
+.kicker{font:600 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 14px}
+h1{font-size:clamp(28px,4.2vw,44px);line-height:1.08;letter-spacing:-.02em;margin:0 0 14px;text-wrap:balance;max-width:22ch}
+.lead{font-size:17px;color:var(--muted);max-width:62ch;margin:0}
+.lead b{color:var(--ink);font-weight:600}
+.layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:40px;padding:32px 0 64px}
+aside.toc{position:sticky;top:20px;align-self:start}
+aside.toc h2,.howto h2,.safe h2{font:600 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+aside.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+aside.toc a{display:flex;gap:10px;align-items:center;padding:6px 8px;border-radius:6px;color:var(--ink);text-decoration:none;font-size:14px}
+aside.toc a:hover{background:var(--card)}
+aside.toc .n{flex:none;display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;font:600 11px/1 ui-monospace,Menlo,monospace;box-shadow:inset 0 0 0 1px var(--line);color:var(--muted)}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 22px}
+.chip{font:500 13px/1 ui-sans-serif,system-ui,sans-serif;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 12px;border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.search{margin-left:auto;font:inherit;font-size:14px;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 12px;min-width:220px}
+.chip:focus-visible,.search:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.grp{margin:0 0 36px}
+.grp-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;margin:0 0 14px}
+.grp-head h2{font-size:20px;margin:0;letter-spacing:-.01em}
+.grp-head p{margin:0;color:var(--muted);font-size:14px}
+.grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.card a{display:flex;flex-direction:column;height:100%;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;color:inherit;text-decoration:none;box-shadow:var(--shadow);transition:transform .15s,border-color .15s}
+.card a:hover{transform:translateY(-2px);border-color:var(--accent)}
+.thumb{background:#fafaf8;border-bottom:1px solid var(--line);aspect-ratio:16/11;overflow:hidden}
+@media (prefers-color-scheme:dark){.thumb{background:#f2f2ef}}
+.thumb img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:4px;flex:1}
+.fig{margin:0;font:600 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.card h3{margin:2px 0 0;font-size:17px;line-height:1.25}
+.model{margin:0;font-size:13px;color:var(--muted)}
+.desc{margin:6px 0 0;font-size:14px}
+.meta{margin:auto 0 0;padding-top:10px;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:12px;color:var(--muted)}
+.tag{font:600 11px/1.2 ui-monospace,Menlo,monospace;padding:4px 7px;border-radius:4px;border:1px solid currentColor}
+.tag-i{color:var(--earth)}.tag-ii{color:var(--blue)}
+.howto{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin:0 0 30px}
+.howto ol{margin:0;padding-left:20px;display:grid;gap:6px;max-width:80ch}
+.howto b{font-weight:600}
+.pw{display:inline-block;font:700 10.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.05em;color:#fff;padding:3px 6px;border-radius:4px;vertical-align:1px}
+.pw-off{background:#2b8a3e}.pw-on{background:#c92a2a}
+.safe{border-left:3px solid var(--accent);padding:4px 0 4px 16px;margin:8px 0 30px;max-width:80ch}
+.safe ol{margin:0;padding-left:20px;display:grid;gap:4px}
+.safe p{margin:10px 0 0;font-size:14px;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:22px 0 40px;font-size:13px;color:var(--muted)}
+footer p{margin:0 0 6px;max-width:90ch}
+.empty{display:none;color:var(--muted)}
+@media (max-width:860px){.layout{grid-template-columns:1fr}aside.toc{position:static}aside.toc ol{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}.search{margin-left:0;flex:1}}
+@media (prefers-reduced-motion:reduce){.card a{transition:none}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+<p class="kicker">Reparatón · Manual de reparación</p>
+<h1>Pequeños electrodomésticos, por dentro</h1>
+<p class="lead">Diez figuras interactivas <b>en corte</b>: cómo funciona cada aparato, por dónde pasa la corriente, qué piezas tiene y cómo se diagnostican sus <b>fallas típicas</b> según el libro de Palmore y Andre.</p>
+</div></header>
+<div class="wrap layout">
+<aside class="toc" aria-label="Índice"><h2>Índice</h2><ol><li><a href="hervidor.html"><span class="n">1</span>Hervidor eléctrico</a></li><li><a href="plancha.html"><span class="n">2</span>Plancha a vapor</a></li><li><a href="batidora.html"><span class="n">3</span>Batidora de mano</a></li><li><a href="tostadora.html"><span class="n">4</span>Tostadora vertical</a></li><li><a href="licuadora.html"><span class="n">5</span>Licuadora / trituradora</a></li><li><a href="secador.html"><span class="n">6</span>Secador de pelo</a></li><li><a href="batidora5.html"><span class="n">7</span>Batidora convencional de 5 velocidades</a></li><li><a href="planchapelo.html"><span class="n">8</span>Plancha de pelo</a></li><li><a href="cafetera.html"><span class="n">9</span>Cafetera de goteo</a></li><li><a href="aspiradora.html"><span class="n">10</span>Aspiradora de carro sin bolsa</a></li></ol></aside>
+<main>
+<section class="howto" aria-label="Cómo usar"><h2>Cómo usar cada figura</h2><ol>
+<li><b>Haz funcionar el aparato:</b> haz clic sobre la figura (o usa la barra espaciadora). El reloj de la simulación corre acelerado.</li>
+<li><b>Vista:</b> elige <b>En corte</b> para ver el interior y el flujo de corriente, o <b>Completo</b> para ver el aparato entero.</li>
+<li><b>Fallas típicas:</b> en el panel derecho, elige una queja; la figura marca la pieza y simula el síntoma. Abajo están los puntos a comprobar del libro, con sección y página.</li>
+<li><b>Mediciones:</b> cada una indica dónde van las puntas, la lectura normal y si se hace <span class="pw pw-off">DESENCHUFADO</span> o <span class="pw pw-on">ENCHUFADO</span>. Las que se hacen desenchufado detienen la simulación.</li>
+<li><b>Componentes:</b> pasa el cursor sobre un componente, en la figura o en la lista bajo ella, para ver qué es y qué hace.</li>
+</ol></section>
+<div class="tools" role="group" aria-label="Filtrar">
+<button type="button" class="chip" data-f="all" aria-pressed="true">Todos</button>
+<button type="button" class="chip" data-f="calor" aria-pressed="false">Calor</button>
+<button type="button" class="chip" data-f="motor" aria-pressed="false">Motor</button>
+<button type="button" class="chip" data-f="mixto" aria-pressed="false">Motor y calor</button>
+<input class="search" type="search" placeholder="Buscar aparato o pieza…" aria-label="Buscar">
+</div>
+<section class="grp" data-group="calor" aria-labelledby="h-calor"><div class="grp-head"><h2 id="h-calor">Aparatos de calor</h2><p>Resistencias, termostatos y fusibles.</p></div><ul class="grid"><li class="card" data-group="calor" data-search="hervidor eléctrico jarra de vidrio con base 360°, 1850 w resistencia blindada bajo la placa, termostatos de vapor y de hervor en seco, fusible térmico y base de contacto.">
+<a href="hervidor.html">
+<div class="thumb"><img src="img/hervidor.webp" alt="Figura en corte: Hervidor eléctrico" loading="lazy" width="640" height="500"></div>
+<div class="body"><p class="fig">Fig 1</p><h3>Hervidor eléctrico</h3><p class="model">Jarra de vidrio con base 360°, 1850 W</p><p class="desc">Resistencia blindada bajo la placa, termostatos de vapor y de hervor en seco, fusible térmico y base de contacto.</p>
+<p class="meta"><span class="tag tag-i" title="Clase I: partes metálicas unidas a tierra">Clase I · enchufe tipo L con tierra</span><span class="refs">Libro: Teteras §10-9 · fusible §11-4</span></p></div>
+</a></li><li class="card" data-group="calor" data-search="plancha a vapor plancha de vapor, 2000 w resistencia en la suela, termostato con selector, fusible antitérmico, depósito y válvula de vapor.">
+<a href="plancha.html">
+<div class="thumb"><img src="img/plancha.webp" alt="Figura en corte: Plancha a vapor" loading="lazy" width="640" height="500"></div>
+<div class="body"><p class="fig">Fig 2</p><h3>Plancha a vapor</h3><p class="model">Plancha de vapor, 2000 W</p><p class="desc">Resistencia en la suela, termostato con selector, fusible antitérmico, depósito y válvula de vapor.</p>
+<p class="meta"><span class="tag tag-i" title="Clase I: partes metálicas unidas a tierra">Clase I · enchufe tipo L con tierra</span><span class="refs">Libro: §11-2 a §11-6</span></p></div>
+</a></li><li class="card" data-group="calor" data-search="tostadora vertical dos ranuras, 900 w resistencias de nicromo sobre mica, carro con pestillo y solenoide, bimetal con mando de color.">
+<a href="tostadora.html">
+<div class="thumb"><img src="img/tostadora.webp" alt="Figura en corte: Tostadora vertical" loading="lazy" width="640" height="500"></div>
+<div class="body"><p class="fig">Fig 4</p><h3>Tostadora vertical</h3><p class="model">Dos ranuras, 900 W</p><p class="desc">Resistencias de nicromo sobre mica, carro con pestillo y solenoide, bimetal con mando de color.</p>
+<p class="meta"><span class="tag tag-i" title="Clase I: partes metálicas unidas a tierra">Clase I · enchufe tipo L con tierra</span><span class="refs">Libro: §12-3 a §12-5</span></p></div>
+</a></li><li class="card" data-group="calor" data-search="plancha de pelo dos placas con resistencia, ≈200 °c placas flotantes, resistencias, mando de temperatura, fusible, testigo de neón y rótula del cable.">
+<a href="planchapelo.html">
+<div class="thumb"><img src="img/planchapelo.webp" alt="Figura en corte: Plancha de pelo" loading="lazy" width="640" height="500"></div>
+<div class="body"><p class="fig">Fig 8</p><h3>Plancha de pelo</h3><p class="model">Dos placas con resistencia, ≈200 °C</p><p class="desc">Placas flotantes, resistencias, mando de temperatura, fusible, testigo de neón y rótula del cable.</p>
+<p class="meta"><span class="tag tag-ii" title="Clase II: doble aislamiento">Clase II · doble aislamiento</span><span class="refs">Libro: Marcadoras y rizadoras §14-3</span></p></div>
+</a></li><li class="card" data-group="calor" data-search="cafetera de goteo tipo oster 12 tazas o russell hobbs, 1000 w depósito, válvula de retención, tubo calefactor, repartidor, espita antigoteo y placa calientaplatos.">
+<a href="cafetera.html">
+<div class="thumb"><img src="img/cafetera.webp" alt="Figura en corte: Cafetera de goteo" loading="lazy" width="640" height="500"></div>
+<div class="body"><p class="fig">Fig 9</p><h3>Cafetera de goteo</h3><p class="model">Tipo Oster 12 tazas o Russell Hobbs, 1000 W</p><p class="desc">Depósito, válvula de retención, tubo calefactor, repartidor, espita antigoteo y placa calientaplatos.</p>
+<p class="meta"><span class="tag tag-i" title="Clase I: partes metálicas unidas a tierra">Clase I · enchufe tipo L con tierra</span><span class="refs">Libro: §15-3, §15-4 y §15-7</span></p></div>
+</a></li></ul></section><section class="grp" data-group="motor" aria-labelledby="h-motor"><div class="grp-head"><h2 id="h-motor">Aparatos con motor</h2><p>Motores universales, escobillas, colectores y transmisiones.</p></div><ul class="grid"><li class="card" data-group="motor" data-search="batidora de mano tres velocidades motor universal con escobillas y colector, sinfín y engranaje del batidor, selector con tomas del campo.">
+<a href="batidora.html">
+<div class="thumb"><img src="img/batidora.webp" alt="Figura en corte: Batidora de mano" loading="lazy" width="640" height="500"></div>
+<div class="body"><p class="fig">Fig 3</p><h3>Batidora de mano</h3><p class="model">Tres velocidades</p><p class="desc">Motor universal con escobillas y colector, sinfín y engranaje del batidor, selector con tomas del campo.</p>
+<p class="meta"><span class="tag tag-ii" title="Clase II: doble aislamiento">Clase II · doble aislamiento</span><span class="refs">Libro: §5-1 a §5-4 · §2-5, §2-6</span></p></div>
+</a></li><li class="card" data-group="motor" data-search="licuadora / trituradora motor vertical, velocidad baja con diodo motor universal vertical, pulsadores con diodo, acoplamiento, casquillo y cuchillas.">
+<a href="licuadora.html">
+<div class="thumb"><img src="img/licuadora.webp" alt="Figura en corte: Licuadora / trituradora" loading="lazy" width="640" height="500"></div>
+<div class="body"><p class="fig">Fig 5</p><h3>Licuadora / trituradora</h3><p class="model">Motor vertical, velocidad baja con diodo</p><p class="desc">Motor universal vertical, pulsadores con diodo, acoplamiento, casquillo y cuchillas.</p>
+<p class="meta"><span class="tag tag-ii" title="Clase II: doble aislamiento">Clase II · doble aislamiento</span><span class="refs">Libro: §5-5 y §5-4</span></p></div>
+</a></li><li class="card" data-group="motor" data-search="batidora convencional de 5 velocidades tipo oster fpsthm101, 200 w como la anterior, con selector de cinco posiciones y cinco tomas del devanado de campo.">
+<a href="batidora5.html">
+<div class="thumb"><img src="img/batidora5.webp" alt="Figura en corte: Batidora convencional de 5 velocidades" loading="lazy" width="640" height="500"></div>
+<div class="body"><p class="fig">Fig 7</p><h3>Batidora convencional de 5 velocidades</h3><p class="model">Tipo Oster FPSTHM101, 200 W</p><p class="desc">Como la anterior, con selector de cinco posiciones y cinco tomas del devanado de campo.</p>
+<p class="meta"><span class="tag tag-ii" title="Clase II: doble aislamiento">Clase II · doble aislamiento</span><span class="refs">Libro: §5-1 a §5-4 · §2-5, §2-6</span></p></div>
+</a></li><li class="card" data-group="motor" data-search="aspiradora de carro sin bolsa tipo rowenta compact power xxl motor con ventilador, protector térmico, ciclón y filtros, carrete del cable con anillos y resorte.">
+<a href="aspiradora.html">
+<div class="thumb"><img src="img/aspiradora.webp" alt="Figura en corte: Aspiradora de carro sin bolsa" loading="lazy" width="640" height="500"></div>
+<div class="body"><p class="fig">Fig 10</p><h3>Aspiradora de carro sin bolsa</h3><p class="model">Tipo Rowenta Compact Power XXL</p><p class="desc">Motor con ventilador, protector térmico, ciclón y filtros, carrete del cable con anillos y resorte.</p>
+<p class="meta"><span class="tag tag-ii" title="Clase II: doble aislamiento">Clase II · doble aislamiento</span><span class="refs">Libro: §4-1, §4-2 y §4-6</span></p></div>
+</a></li></ul></section><section class="grp" data-group="mixto" aria-labelledby="h-mixto"><div class="grp-head"><h2 id="h-mixto">Motor y calor</h2><p>Ventilador y resistencias en el mismo aparato.</p></div><ul class="grid"><li class="card" data-group="mixto" data-search="secador de pelo dos niveles de calor, 1200 w motor de polo sombreado e impulsor, resistencias sobre mica, termostato y fusible.">
+<a href="secador.html">
+<div class="thumb"><img src="img/secador.webp" alt="Figura en corte: Secador de pelo" loading="lazy" width="640" height="500"></div>
+<div class="body"><p class="fig">Fig 6</p><h3>Secador de pelo</h3><p class="model">Dos niveles de calor, 1200 W</p><p class="desc">Motor de polo sombreado e impulsor, resistencias sobre mica, termostato y fusible.</p>
+<p class="meta"><span class="tag tag-ii" title="Clase II: doble aislamiento">Clase II · doble aislamiento</span><span class="refs">Libro: §14-1 y §14-2</span></p></div>
+</a></li></ul></section>
+<p class="empty" id="empty">No hay aparatos que coincidan con la búsqueda.</p>
+<section class="safe" aria-label="Seguridad"><h2>Antes de reparar</h2><ol>
+<li>Trabajar desenchufado: con el ohmímetro el aparato siempre va desconectado de la red.</li>
+<li>No suponer que un circuito está abierto por la posición del interruptor: comprobarlo con un instrumento que funcione.</li>
+<li>No anular nunca un dispositivo de seguridad ni la conexión a tierra.</li>
+<li>Usar repuestos correctos; no empalmar resistencias.</li>
+<li>Tras rearmar, comprobar que no hay fallas a masa antes de devolver el aparato.</li>
+</ol><p><b>Falla a masa:</b> contacto indebido entre una parte con tensión y una parte metálica que se puede tocar. «Eliminar la masa» es encontrar ese contacto y repararlo; nunca quitar la tierra.</p></section>
+</main>
+</div>
+<footer><div class="wrap">
+<p>Diagnóstico basado en Palmore, P. y Andre, N. E., «Reparación de pequeños electrodomésticos», Editorial Reverté. Las cifras son de referencia; para cada aparato manda el manual de asistencia del fabricante. Los valores en ohmios y potencias son de los modelos dibujados.</p>
+<p>Material de apoyo para Reparatón. Enchufes según la norma chilena: tipo L (fase, tierra, neutro) en los aparatos con partes metálicas y de dos patillas en los de doble aislamiento.</p>
+</div></footer>
+<script>
+(() => {
+  const chips = [...document.querySelectorAll(".chip")], q = document.querySelector(".search"), groups = [...document.querySelectorAll(".grp")], empty = document.getElementById("empty");
+  let f = "all";
+  function apply() {
+    const t = q.value.trim().toLowerCase(); let shown = 0;
+    groups.forEach((g) => { let n = 0; g.querySelectorAll(".card").forEach((c) => { const ok = (f === "all" || c.dataset.group === f) && (!t || c.dataset.search.includes(t)); c.hidden = !ok; if (ok) n++; }); g.hidden = n === 0; shown += n; });
+    empty.style.display = shown ? "none" : "block";
+  }
+  chips.forEach((c) => c.addEventListener("click", () => { f = c.dataset.f; chips.forEach((x) => x.setAttribute("aria-pressed", x === c ? "true" : "false")); apply(); }));
+  q.addEventListener("input", apply);
+})();
+</script>
+</body>
+</html>
