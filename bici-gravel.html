@@ -1,0 +1,1103 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bicicleta gravel · Manual de reparación</title>
+<meta name="description" content="Para tierra y ripio: entre la de ruta y la de montaña, con frenos de disco y sin cámara.">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNyIgZmlsbD0iI2MyNDEwYyIvPjxwYXRoIGQ9Ik05IDIybDYtNm0yLTJsNi02TTEyIDhsMyAzLTQgNC0zLTN6bTggMTJsMyAzLTMgMy0zLTN6IiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+">
+<style>
+.mr-nav{position:sticky;top:0;z-index:50;display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;padding:10px max(16px,env(safe-area-inset-left,0px));background:var(--page,#f2f2ef);border-bottom:1px solid rgba(127,127,127,.25);font:500 13px/1.2 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+.mr-nav a{color:inherit;text-decoration:none}
+.mr-home{font-weight:600}
+.mr-home:hover,.mr-pn a:hover{text-decoration:underline}
+.mr-pick{display:flex;align-items:center;gap:6px;color:rgba(127,127,127,1)}
+.mr-pick select{font:inherit;color:inherit;background:transparent;border:1px solid rgba(127,127,127,.4);border-radius:6px;padding:5px 8px;max-width:72vw}
+.mr-pn{margin-left:auto;display:flex;gap:4px}
+.mr-pn a{display:inline-grid;place-items:center;width:30px;height:30px;border:1px solid rgba(127,127,127,.4);border-radius:6px;font-size:18px}
+body{margin:0;color:#222}
+@media (prefers-color-scheme: dark){body{color:#e8e8e8}}
+.kt-main{top:calc(env(safe-area-inset-top,0px) + 58px)!important;height:calc(100vh - 70px)!important}
+.kt-side{top:calc(env(safe-area-inset-top,0px) + 58px)!important;max-height:calc(100vh - 70px)!important}
+@media (max-width:980px){.kt-main{height:auto!important}.kt-side{max-height:none!important}.mr-nav{position:static}.mr-pick span{display:none}.mr-pick select{max-width:58vw}}
+</style>
+</head>
+<body>
+<nav class="mr-nav" aria-label="Manual de reparación"><a class="mr-home" href="./">← Manual de reparación</a><label class="mr-pick"><span>Ir a</span><select onchange="location.href=this.value"><option value="hervidor.html">Fig 1 · Hervidor eléctrico</option><option value="plancha.html">Fig 2 · Plancha a vapor</option><option value="batidora.html">Fig 3 · Batidora de mano</option><option value="tostadora.html">Fig 4 · Tostadora vertical</option><option value="licuadora.html">Fig 5 · Licuadora / trituradora</option><option value="secador.html">Fig 6 · Secador de pelo</option><option value="batidora5.html">Fig 7 · Batidora convencional de 5 velocidades</option><option value="planchapelo.html">Fig 8 · Plancha de pelo</option><option value="cafetera.html">Fig 9 · Cafetera de goteo</option><option value="aspiradora.html">Fig 10 · Aspiradora de carro sin bolsa</option><option value="bici-paseo.html">Fig 11 · Bicicleta de paseo / urbana</option><option value="bici-mtb.html">Fig 12 · Mountain bike</option><option value="bici-gravel.html" selected>Fig 13 · Bicicleta gravel</option><option value="bici-ruta.html">Fig 14 · Bicicleta de ruta / pistera</option><option value="bici-fixie.html">Fig 15 · Fixie urbana</option><option value="bici-singlespeed.html">Fig 16 · Single speed</option></select></label><span class="mr-pn"><a href="bici-mtb.html" title="Anterior: Mountain bike">‹</a><a href="bici-ruta.html" title="Siguiente: Bicicleta de ruta / pistera">›</a></span></nav>
+
+
+<style>
+:root{--page:#f2f2ef}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--page:#15171a;color-scheme:dark}}
+:root[data-theme="dark"]{--page:#15171a;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--page);font:14px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.kt-wrap{background:var(--anatomy-page);color:var(--anatomy-text);padding-block:40px 72px;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.iso-page{width:min(1280px,100%);margin:0 auto}
+
+.iso{
+  --anatomy-page:#0b0b0b;--anatomy-card:#131313;--anatomy-text:#a3a3a3;--anatomy-strong:#e6e6e6;--anatomy-muted:#6e6e6e;
+  --anatomy-paper:#131313;--anatomy-face:#1b1b1b;--anatomy-top:#1c1c1c;
+  --anatomy-shade-0:#0f0f0f;--anatomy-shade-1:#121212;--anatomy-shade-2:#151515;--anatomy-shade-3:#181818;
+  --anatomy-lit-top:#262626;--anatomy-lit-shade:#1d1d1d;
+  --anatomy-hi:#d4d4d4;--anatomy-mid:#6a6a6a;--anatomy-lo:#3e3e3e;--anatomy-faint:#2a2a2a;--anatomy-lit:#ffffff;
+  --anatomy-halo:#050505;--anatomy-halo-opacity:.9;--anatomy-dot:#e6e6e6;
+  --anatomy-red:#ff6b6b;--anatomy-green:#6be0a0;--anatomy-blue:#6b9bff;
+  --anatomy-weight:.6px;--anatomy-ease:cubic-bezier(.32,.72,0,1);
+  --anatomy-mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --anatomy-lift:inset 0 1px 0 0 #ffffff0a,inset 0 0 0 1px #ffffff06,0 0 0 1px #00000026,0 1px 1px -.5px #00000014,0 3px 3px -1.5px #00000014,0 6px 6px -3px #00000014,0 12px 12px -6px #00000014;
+}
+.iso[data-theme="light"]{
+  --anatomy-page:#f2f2ef;--anatomy-card:#fbfbfa;--anatomy-text:#57575a;--anatomy-strong:#18181a;--anatomy-muted:#8c8c90;
+  --anatomy-paper:#fbfbfa;--anatomy-face:#ffffff;--anatomy-top:#ffffff;
+  --anatomy-shade-0:#dcdcd9;--anatomy-shade-1:#e5e5e2;--anatomy-shade-2:#ededea;--anatomy-shade-3:#f4f4f1;
+  --anatomy-lit-top:#ffffff;--anatomy-lit-shade:#eeeeeb;
+  --anatomy-hi:#26262a;--anatomy-mid:#8a8a8f;--anatomy-lo:#b4b4b8;--anatomy-faint:#d4d4d6;--anatomy-lit:#000000;
+  --anatomy-halo:#8a8a80;--anatomy-halo-opacity:.32;--anatomy-dot:#3a3a3e;
+  --anatomy-red:#e5484d;--anatomy-green:#30a46c;--anatomy-blue:#3e63dd;
+  --anatomy-lift:inset 0 1px 0 0 #ffffff,0 0 0 1px #0000000f,0 1px 1px -.5px #0000000a,0 3px 3px -1.5px #0000000a,0 6px 6px -3px #0000000a,0 12px 12px -6px #0000000a;
+}
+.iso-svg{display:block;width:100%;height:auto;overflow:visible}
+.iso-svg path,.iso-svg circle{vector-effect:non-scaling-stroke}
+.iso-fill{fill:var(--anatomy-paper);stroke:none}
+.iso-solid[data-lit]>.iso-fill{fill:var(--anatomy-face)}
+.iso-shade,.iso-top{stroke:none}
+.iso-shade[data-shade="0"]{fill:var(--anatomy-shade-0)}
+.iso-shade[data-shade="1"]{fill:var(--anatomy-shade-1)}
+.iso-shade[data-shade="2"]{fill:var(--anatomy-shade-2)}
+.iso-shade[data-shade="3"]{fill:var(--anatomy-shade-3)}
+.iso-top{fill:var(--anatomy-top)}
+.iso-solid[data-lit]>.iso-top{fill:var(--anatomy-lit-top)}
+.iso-solid[data-lit]>.iso-shade{fill:var(--anatomy-lit-shade)}
+.iso-solid[data-seamless]>.iso-shade,.iso-solid[data-seamless]>.iso-top{stroke-width:.4;stroke-linejoin:round}
+.iso-solid[data-seamless]>.iso-shade[data-shade="0"]{stroke:var(--anatomy-shade-0)}
+.iso-solid[data-seamless]>.iso-shade[data-shade="1"]{stroke:var(--anatomy-shade-1)}
+.iso-solid[data-seamless]>.iso-shade[data-shade="2"]{stroke:var(--anatomy-shade-2)}
+.iso-solid[data-seamless]>.iso-shade[data-shade="3"]{stroke:var(--anatomy-shade-3)}
+.iso-solid[data-seamless]>.iso-top{stroke:var(--anatomy-top)}
+.iso-solid[data-seamless][data-lit]>.iso-top{stroke:var(--anatomy-lit-top)}
+.iso-solid[data-seamless][data-lit]>.iso-shade{stroke:var(--anatomy-lit-shade)}
+.iso-solid[data-lit]>.iso-edge{stroke:var(--anatomy-lit)}
+.iso-halo{fill:var(--anatomy-halo);stroke:none;filter:blur(9px);opacity:var(--anatomy-halo-opacity);transform:translateY(3px)}
+.iso-line{fill:none;stroke:var(--anatomy-lo);stroke-width:var(--anatomy-weight);stroke-linecap:round;stroke-linejoin:round}
+.iso-line[data-tone="hi"]{stroke:var(--anatomy-hi)}
+.iso-line[data-tone="mid"]{stroke:var(--anatomy-mid)}
+.iso-line[data-tone="lo"]{stroke:var(--anatomy-lo)}
+.iso-line[data-tone="faint"]{stroke:var(--anatomy-faint)}
+.iso-line[data-tone="lit"]{stroke:var(--anatomy-lit)}
+.iso-line[data-tone="red"]{stroke:var(--anatomy-red)}
+.iso-line[data-tone="green"]{stroke:var(--anatomy-green)}
+.iso-line[data-tone="blue"]{stroke:var(--anatomy-blue)}
+.iso-line[data-dotted]{stroke-dasharray:.01 3.5;stroke-width:1}
+.iso-line[data-dashed]{stroke-dasharray:3 3}
+.iso-line[data-flow]{stroke-dasharray:2 6}
+.iso-wire-end{fill:var(--anatomy-paper);stroke:var(--anatomy-lo);stroke-width:var(--anatomy-weight)}
+.iso-wire[data-tone="hi"] .iso-wire-end{stroke:var(--anatomy-hi)}
+.iso-wire[data-tone="mid"] .iso-wire-end{stroke:var(--anatomy-mid)}
+.iso-wire[data-tone="faint"] .iso-wire-end{stroke:var(--anatomy-faint)}
+.iso-wire[data-tone="lit"] .iso-wire-end{stroke:var(--anatomy-lit)}
+.iso-dots circle{fill:var(--anatomy-dot);stroke:none;opacity:.32}
+.iso-dots[data-tone="hi"] circle{opacity:.85}
+.iso-dots[data-tone="mid"] circle{opacity:.45}
+.iso-dots[data-tone="lo"] circle{opacity:.22}
+.iso-dots[data-tone="faint"] circle{opacity:.12}
+.iso-face-text{fill:var(--anatomy-mid);font-family:var(--anatomy-mono);letter-spacing:.04em}
+.iso-face-text[data-tone="hi"]{fill:var(--anatomy-hi)}
+.iso-face-text[data-tone="lo"]{fill:var(--anatomy-lo)}
+.iso-face-text[data-tone="faint"]{fill:var(--anatomy-faint)}
+.tb-body{fill:var(--anatomy-shade-2);stroke:none}
+.tb-shine{fill:var(--anatomy-top);stroke:none}
+.tb-shade{fill:var(--anatomy-shade-0);stroke:none}
+.tb-ring{fill:none;stroke:var(--anatomy-lo);stroke-width:.45;stroke-linecap:butt;stroke-linejoin:round}
+.tb-ring[data-tone="mid"]{stroke:var(--anatomy-mid)}
+.tb-ring[data-tone="faint"]{stroke:var(--anatomy-faint)}
+.tb-ring[data-tone="hi"]{stroke:var(--anatomy-hi)}
+@keyframes iso-flow{to{stroke-dashoffset:-32}}
+@keyframes iso-pulse{0%,100%{opacity:.18}12%{opacity:1}40%{opacity:.18}}
+.iso-line[data-flow]{animation:iso-flow 1600ms linear infinite}
+.iso-dots circle[data-pulse]{animation:iso-pulse 1600ms steps(1,end) infinite;animation-delay:var(--pulse-at,0ms)}
+.iso-figure{margin:32px 0 36px}
+.iso-plate{position:relative;padding:52px 24px;border-radius:0;background:var(--anatomy-card);box-shadow:0 0 0 1px var(--anatomy-mid);--anatomy-paper:var(--anatomy-card)}
+.iso-plate-corners{position:absolute;inset:18px 20px;pointer-events:none}
+.iso-plate-corner{position:absolute;color:var(--anatomy-muted);font-family:var(--anatomy-mono);font-size:10.5px;line-height:1;letter-spacing:.04em;white-space:nowrap}
+.iso-plate-corner[data-corner="fig"]{top:0;left:0;color:var(--anatomy-text)}
+.iso-plate-corner[data-corner="title"]{top:0;right:0;text-transform:uppercase;letter-spacing:.1em}
+.iso-plate-corner[data-corner="hint"]{bottom:0;left:0;text-transform:uppercase;letter-spacing:.1em}
+.iso-plate-corner[data-corner="readout"]{right:0;bottom:0;color:var(--anatomy-text);font-variant-numeric:tabular-nums}
+.iso-plate .iso-svg{margin:0 auto}
+.iso-legend{display:grid;gap:8px;margin-top:12px;color:var(--anatomy-muted);font-size:13px;line-height:1.55}
+.iso-keys{display:flex;flex-wrap:wrap;gap:6px 18px}
+.iso-key{display:inline-flex;align-items:center;gap:7px}
+.iso-swatch{width:16px;height:10px;flex:none;overflow:visible}
+.iso-swatch path{fill:none;stroke:var(--anatomy-hi);stroke-width:1;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round}
+.iso-swatch[data-mark="raised"] path,.iso-swatch[data-mark="flat"] path{stroke:var(--anatomy-mid)}
+.iso-swatch[data-mark="lit"] path{stroke:var(--anatomy-lit)}
+.iso-swatch[data-mark="dim"] path{stroke:var(--anatomy-lo)}
+.iso-swatch[data-mark="dotted"] path{stroke-dasharray:.01 3;stroke-width:1.4}
+.iso-swatch[data-mark="dashed"] path{stroke-dasharray:3 2.5}
+.iso-swatch[data-mark="red"] path{stroke:var(--anatomy-red)}
+.iso-swatch[data-mark="green"] path{stroke:var(--anatomy-green)}
+.iso-swatch[data-mark="blue"] path{stroke:var(--anatomy-blue)}
+.iso-swatch-crease{stroke:var(--anatomy-lo)!important}
+@media (max-width:560px){.iso-plate{padding:48px 12px 70px}.iso-plate-corner[data-corner="hint"]{bottom:18px}}
+@media (prefers-reduced-motion:reduce){.iso-line[data-flow],.iso-dots circle[data-pulse]{animation:none}}
+
+.iso-stage{position:relative}
+.cp-layer .cp{cursor:help}
+.cp-hit{fill:transparent;stroke:none}
+.cp-pin{fill:var(--anatomy-card);stroke:var(--anatomy-strong);stroke-width:1px;vector-effect:non-scaling-stroke;opacity:0;transition:opacity .15s}
+.cp-num{fill:var(--anatomy-strong);font:700 8.6px/1 var(--anatomy-mono);text-anchor:middle;opacity:0;transition:opacity .15s;pointer-events:none}
+.cp-ping{fill:none;stroke:var(--cp-accent);stroke-width:1.2px;vector-effect:non-scaling-stroke;opacity:0;transform-box:fill-box;transform-origin:center}
+.iso-stage[data-cp-all] .cp-pin,.iso-stage[data-cp-all] .cp-num{opacity:.92}
+.cp[data-on] .cp-pin{opacity:1;fill:var(--cp-accent);stroke:var(--cp-accent)}
+.cp[data-on] .cp-num{opacity:1;fill:var(--cp-on-accent)}
+.cp[data-on] .cp-ping{opacity:1;animation:cp-ping 1.6s ease-out infinite}
+@keyframes cp-ping{0%{transform:scale(1);opacity:.9}100%{transform:scale(2.6);opacity:0}}
+@media (prefers-reduced-motion:reduce){.cp[data-on] .cp-ping{animation:none;opacity:.6;transform:scale(1.6)}}
+.iso{--cp-accent:#1971c2;--cp-on-accent:#ffffff}
+.iso[data-theme="dark"]{--cp-accent:#4dabf7;--cp-on-accent:#0b0b0b}
+.iso .iso-plate{padding-bottom:138px}
+.cp-slot{position:absolute;left:20px;bottom:42px;width:min(620px,calc(100% - 40px));height:88px;box-sizing:border-box;padding:10px 12px;border:1px dashed var(--anatomy-faint);border-radius:6px;font-size:12.5px;line-height:1.45;color:var(--anatomy-muted);display:flex;align-items:center;pointer-events:none}
+.iso-plate:has(.iso-stage[data-view="sch"]) .cp-slot,.iso-plate:has(.iso-stage[data-view="sch"]) .cp-tip{display:none}
+.cp-tip{position:absolute;z-index:3;left:20px;bottom:42px;width:min(620px,calc(100% - 40px));height:88px;box-sizing:border-box;overflow:auto;padding:9px 12px;border-radius:6px;background:var(--anatomy-card);color:var(--anatomy-text);box-shadow:0 0 0 1px var(--cp-accent);font-size:13px;line-height:1.45;pointer-events:auto;cursor:default}
+.cp-tip[hidden]{display:none}
+@media (max-width:980px){.cp>.cp-pin,.cp>.cp-num,.cp>.cp-hit{transform:scale(1.55)}.iso .iso-plate{padding-bottom:116px}.cp-slot,.cp-tip{left:12px;bottom:34px;width:calc(100% - 24px);height:76px;font-size:12px;padding:7px 10px}}
+.cp-tip strong{display:block;color:var(--anatomy-strong);font-size:14px;margin-bottom:3px}
+.cp-tip .cp-tn{display:inline-grid;place-items:center;min-width:20px;height:20px;border-radius:50%;background:var(--cp-accent);color:var(--cp-on-accent);font:700 11px/1 var(--anatomy-mono);letter-spacing:.06em;margin-right:6px}
+.cp-list{margin-top:26px;display:grid;gap:12px}
+.cp-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
+.cp-head h2{font:600 11px/1 var(--anatomy-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--anatomy-muted);margin:0}
+.cp-toggle{font:500 12px/1 var(--anatomy-mono);color:var(--anatomy-text);background:transparent;border:1px solid var(--anatomy-lo);padding:7px 10px;border-radius:6px;cursor:pointer}
+.cp-toggle[aria-pressed="true"]{border-color:var(--cp-accent);color:var(--cp-accent)}
+.cp-chips{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:6px}
+.cp-chips button{width:100%;display:flex;align-items:center;gap:8px;text-align:left;font:500 13px/1.25 ui-sans-serif,system-ui,sans-serif;color:var(--anatomy-text);background:var(--anatomy-card);border:1px solid var(--anatomy-faint);padding:7px 9px;border-radius:6px;cursor:pointer}
+.cp-chips button:hover,.cp-chips button:focus-visible{border-color:var(--cp-accent);color:var(--anatomy-strong);outline:none}
+.cp-chips button[aria-pressed="true"]{border-color:var(--cp-accent);background:color-mix(in srgb,var(--cp-accent) 10%,var(--anatomy-card));color:var(--anatomy-strong)}
+.cp-n{flex:none;display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;font:600 10.5px/1 var(--anatomy-mono);font-variant-numeric:tabular-nums;color:var(--anatomy-strong);box-shadow:inset 0 0 0 1px var(--anatomy-mid)}
+.cp-chips button[aria-pressed="true"] .cp-n{background:var(--cp-accent);color:var(--cp-on-accent);box-shadow:none}
+.cp-group{margin:4px 0 0;font:600 10.5px/1.2 var(--anatomy-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--anatomy-muted)}
+.cp-hint{margin:0;font-size:12.5px;color:var(--anatomy-muted)}
+@media (min-width:981px){.cp-list{gap:16px}.cp-chips{grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px 12px}.cp-chips button{padding:10px 12px;gap:10px;line-height:1.35}.cp-group{margin-top:10px}}
+
+.vw-bar{display:flex;align-items:center;gap:6px;margin:0 0 10px}
+.vw-lab{font:600 11px/1 var(--anatomy-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--anatomy-muted);margin-right:4px}
+.vw-btn{font:500 12px/1 var(--anatomy-mono);color:var(--anatomy-text);background:var(--anatomy-card);border:1px solid var(--anatomy-lo);padding:7px 11px;border-radius:999px;cursor:pointer}
+.vw-btn[aria-pressed="true"]{background:var(--anatomy-strong);color:var(--anatomy-card);border-color:var(--anatomy-strong)}
+.vw-btn:focus-visible{outline:2px solid var(--anatomy-red);outline-offset:2px}
+.kt-cover{display:none}
+.kt-glassfront .iso-fill,.kt-glassfront .iso-shade,.kt-glassfront .iso-top{fill:var(--cut-glass,#dfe8ee)!important;opacity:.3}
+.iso-stage[data-view="full"] .kt-cover{display:inline}
+.iso-stage[data-view="full"] .fl{opacity:0!important}
+.iso-stage[data-view="full"] .kt-hidefull,.iso-stage[data-view="full"] .kt-earthwire,.iso-stage[data-view="full"] .kt-earthtag{display:none}
+.iso-stage[data-view="full"] .fx > :not(.kt-mark):not(.kt-mark2){display:none}
+.kt-faults{margin-top:26px;display:grid;gap:14px}
+.kt-faults h2,.kt-notes h2,.dx-safety h2{font:600 11px/1 var(--anatomy-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--anatomy-muted);margin:0}
+.bk-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
+.bk-ok,.bk-chips button{font:500 13px/1.2 ui-sans-serif,system-ui,sans-serif;color:var(--anatomy-text);background:var(--anatomy-card);border:1px solid var(--anatomy-faint);padding:7px 10px;border-radius:6px;cursor:pointer;text-align:left}
+.bk-ok{font-family:var(--anatomy-mono);font-size:12px;border-color:var(--anatomy-lo);border-radius:999px}
+.bk-chips{display:flex;flex-wrap:wrap;gap:6px}
+.bk-ok:hover,.bk-chips button:hover{border-color:var(--anatomy-mid);color:var(--anatomy-strong)}
+.bk-ok[aria-pressed="true"],.bk-chips button[aria-pressed="true"]{background:var(--anatomy-strong);color:var(--anatomy-card);border-color:var(--anatomy-strong)}
+.bk-ok:focus-visible,.bk-chips button:focus-visible,.bk-t:focus-visible,.bk-mt:focus-visible{outline:2px solid var(--anatomy-red);outline-offset:2px}
+.kt-fault-card{background:var(--anatomy-card);box-shadow:0 0 0 1px var(--anatomy-lo);padding:18px 20px;display:grid;gap:12px}
+.bk-card-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 14px}
+.kt-fault-card h3{margin:0;font-size:16px;color:var(--anatomy-strong);text-wrap:balance}
+.bk-ref{font:600 11.5px/1.3 var(--anatomy-mono);color:var(--anatomy-muted);background:var(--anatomy-page);padding:4px 7px;border-radius:4px}
+.kt-fault-card dl{margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 22px}
+.kt-fault-card dl>div{min-width:0}
+.bk-wide{grid-column:1/-1}
+.kt-fault-card dt{font:600 10.5px/1 var(--anatomy-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--anatomy-red);margin-bottom:6px}
+.kt-fault-card dd{margin:0;color:var(--anatomy-text);font-size:13.5px;line-height:1.55}
+.bk-points{margin:0;padding-left:18px;display:grid;gap:3px}
+.bk-tests{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.bk-t{font:500 12px/1.2 var(--anatomy-mono);color:var(--anatomy-text);background:var(--anatomy-page);border:1px solid var(--anatomy-lo);padding:6px 9px;border-radius:6px;cursor:pointer}
+.bk-t[aria-pressed="true"]{border-color:#d6336c;color:var(--anatomy-strong)}
+.bk-reading{margin:0;font-size:13px;color:var(--anatomy-text)}
+.bk-reading b{color:var(--anatomy-strong)}
+.bk-method{display:grid;gap:8px}
+.bk-method h3{margin:0;font:600 11px/1 var(--anatomy-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--anatomy-muted)}
+.bk-method ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.bk-mt{display:grid;gap:2px;width:100%;text-align:left;background:transparent;border:1px solid transparent;border-radius:6px;padding:5px 7px;cursor:pointer;color:var(--anatomy-text);font:13px/1.45 ui-sans-serif,system-ui,sans-serif}
+.bk-mt:hover,.bk-mt[aria-pressed="true"]{border-color:#d6336c;background:var(--anatomy-card)}
+.bk-mt b{color:var(--anatomy-strong);font-weight:600}
+.bk-mt em{font-style:normal;font:11px/1.3 var(--anatomy-mono);color:var(--anatomy-muted)}
+.bk-mt-detail{margin:6px 0 4px 7px;padding:10px 12px;border-left:3px solid #d6336c;background:var(--anatomy-card);border-radius:0 6px 6px 0;font-size:13px;line-height:1.5;color:var(--anatomy-text)}
+.bk-mt-detail[hidden]{display:none}
+.bk-r-line{display:block;margin-top:6px}
+.bk-r-line b{color:var(--anatomy-strong);font-weight:600}
+.bk-r-help{color:var(--anatomy-text)}
+.kt-notes{margin-top:28px}
+.kt-notes ol{margin:14px 0 0;padding-left:20px;display:grid;gap:10px;max-width:68ch}
+.kt-notes strong{color:var(--anatomy-strong);font-weight:600}
+.dx-safety{margin-top:28px;display:grid;gap:10px}
+.dx-safety ol{margin:0;padding-left:20px;display:grid;gap:4px;max-width:68ch;color:var(--anatomy-text)}
+.dx-src,.kt-src{margin:12px 0 0;font-size:12px;color:var(--anatomy-muted);max-width:75ch}
+.iso-stage{cursor:pointer;outline:none;border-radius:6px}
+.iso-stage:focus-visible{box-shadow:0 0 0 2px var(--anatomy-mid)}
+@media (max-width:560px){.kt-fault-card dl{grid-template-columns:1fr}}
+.kt-layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(320px,1fr);gap:24px;align-items:start}
+.kt-main{min-width:0}
+.kt-side{min-width:0;position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);max-height:calc(100vh - 24px);overflow:auto;padding-right:2px}
+.kt-side .kt-faults{margin-top:0}
+.kt-main{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);height:calc(100vh - 24px);display:flex;flex-direction:column;min-height:0}
+.kt-figwrap{flex:none}
+.kt-info{flex:1 1 auto;min-height:180px;overflow-y:auto;margin-top:12px;padding:0 10px 16px 0;border-top:1px solid var(--anatomy-faint);scrollbar-gutter:stable}
+.kt-info:focus-visible{outline:2px solid var(--anatomy-mid);outline-offset:2px}
+.kt-info > .cp-list{margin-top:18px}
+.kt-info > .fl-bar{margin-top:10px}
+.kt-info{scrollbar-width:auto;scrollbar-color:var(--anatomy-mid) transparent}
+.kt-info::-webkit-scrollbar{width:10px}.kt-info::-webkit-scrollbar-thumb{background:var(--anatomy-lo);border-radius:6px}.kt-info::-webkit-scrollbar-thumb:hover{background:var(--anatomy-mid)}
+.kt-side .kt-fault-card dl{grid-template-columns:1fr}
+.kt-side .kt-fault-card{padding:16px}
+@media (max-width:980px){.kt-layout{grid-template-columns:1fr}.kt-side{position:static;max-height:none;overflow:visible}.kt-main{position:static;height:auto}.kt-info{overflow:visible;min-height:0}}
+@media (max-width:980px){
+.kt-layout{display:flex;flex-direction:column;gap:18px}
+.kt-main{display:contents}
+.kt-figwrap{order:1;position:sticky;top:0;z-index:20;background:var(--anatomy-page);padding:8px 0 10px;margin:0 -2px;box-shadow:0 10px 14px -14px rgba(0,0,0,.45)}
+.kt-figwrap .vw-bar{margin:0 0 6px}
+.kt-figwrap .iso-stage svg{max-height:44vh}
+.kt-figwrap .iso-plate-corner{white-space:normal;font-size:10px;line-height:1.3}
+.kt-figwrap .iso-plate-corners{gap:4px 10px}
+.kt-figwrap .iso-plate-corner[data-corner="hint"]{display:none}
+.kt-side{order:2}
+.kt-info{order:3;border-top:0;margin-top:0;padding:0}
+.kt-info > .iso-legend{margin:0 0 6px}
+}
+/* dark theme: lifted greys so the drawing, its edges and the text keep their contrast */
+.iso.iso[data-theme="dark"]{
+  --anatomy-page:#15171a;--anatomy-card:#1c1f23;--anatomy-text:#d2d4d8;--anatomy-strong:#f6f7f8;--anatomy-muted:#a3a7ad;
+  --anatomy-paper:#262a2f;--anatomy-face:#30353b;--anatomy-top:#3a4047;
+  --anatomy-shade-0:#22262b;--anatomy-shade-1:#282c32;--anatomy-shade-2:#2e333a;--anatomy-shade-3:#353a42;
+  --anatomy-lit-top:#4a525c;--anatomy-lit-shade:#3c434c;
+  --anatomy-hi:#eef0f2;--anatomy-mid:#9aa0a8;--anatomy-lo:#6c727a;--anatomy-faint:#454b53;--anatomy-lit:#ffffff;
+  --anatomy-halo:#000000;--anatomy-halo-opacity:.55;--anatomy-dot:#f0f0f0;
+  --anatomy-red:#ff7b7b;--anatomy-green:#74e6a8;--anatomy-blue:#82acff;
+  --anatomy-weight:.75px;
+  --water:#21445e;--water-top:#2a5573;--glass:#2a3036;--window:#2b3036;--screen:#0e1112;
+  --cp-accent:#5cb6ff;--cp-on-accent:#0b0d10;
+  --fl-live:#ff9a4d;--fl-neutral:#74aaff;--fl-pilot:#ffcc4d;
+  --cut-plastic:#4b5058;--cut-metal:#80878f;--cut-alu:#8d959e;--cut-rubber:#2a2c30;--cut-ceramic:#625c51;--cut-glass:#355465;
+  --air:#212a32;--cavity:#1d2126;--cavity2:#23282e;--cutline:#a3a9b1;
+  --carbon:#3a3c41;--mica:#6a6045;--steel:#8f959c;--food:#806d4a;--bread:#a07c4e;--toast:#5e401c;--crust:#aaa38b;--board:#2c2f34;--copper:#c07a4a;
+}
+.iso[data-theme="dark"] .iso-plate{--anatomy-paper:var(--anatomy-card)}
+.iso[data-theme="dark"] .iso-plate-corner{color:var(--anatomy-muted)}
+.iso[data-theme="dark"] .iso-svg text{text-rendering:geometricPrecision}
+
+.bk3-stage{position:relative;aspect-ratio:16/10.5;cursor:grab;outline:none;border-radius:6px;touch-action:none}
+.bk3-stage:focus-visible{box-shadow:0 0 0 2px var(--anatomy-mid)}
+.bk3-stage canvas{display:block;width:100%;height:100%}
+.bk3-fallback{position:absolute;inset:auto 0 45% 0;margin:0;text-align:center;color:var(--anatomy-muted);font-size:13px}
+.bk3-stage[data-ready] .bk3-fallback{display:none}
+.bk3-pins{position:absolute;inset:0;pointer-events:none}
+.bk3-pin{position:absolute;transform:translate(-50%,-50%);pointer-events:auto;min-width:24px;height:24px;padding:0 5px;border-radius:12px;border:1.5px solid var(--anatomy-strong);background:var(--anatomy-card);color:var(--anatomy-strong);font:700 12px/1 var(--anatomy-mono);cursor:pointer;display:grid;place-items:center}
+.bk3-pin[hidden]{display:none}
+.bk3-pin[data-on]{background:var(--cp-accent);border-color:var(--cp-accent);color:var(--cp-on-accent)}
+.bk3-mark{position:absolute;width:46px;height:46px;margin:-23px 0 0 -23px;border:2.5px solid #d6336c;border-radius:50%;transform:scale(var(--pulse,1));pointer-events:none;box-shadow:0 0 0 4px color-mix(in srgb,#d6336c 18%,transparent)}
+.bk3-mark[hidden]{display:none}
+.bk3-bar{flex-wrap:wrap}
+.bk3-exl{display:flex;align-items:center;margin:0 4px}
+.bk3-ex{width:110px;accent-color:var(--anatomy-strong)}
+.bk3-pedal{margin-left:auto}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.bk3-types{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 10px}
+.bk3-types a{font:500 12px/1 var(--anatomy-mono);color:var(--anatomy-text);text-decoration:none;border:1px solid var(--anatomy-lo);padding:7px 11px;border-radius:999px;background:var(--anatomy-card)}
+.bk3-types a:hover{border-color:var(--anatomy-mid);color:var(--anatomy-strong)}
+.bk3-types a[aria-current="page"]{background:var(--anatomy-strong);color:var(--anatomy-card);border-color:var(--anatomy-strong)}
+.bk3-lead{margin:12px 0 0;max-width:68ch;color:var(--anatomy-text)}
+.bk3-intro{margin:0;font-size:13.5px;color:var(--anatomy-text);line-height:1.55}
+.bk3-steps{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.bk3-step{display:flex;gap:10px;width:100%;text-align:left;background:transparent;border:1px solid transparent;border-radius:6px;padding:6px 8px;cursor:pointer;color:var(--anatomy-text);font:13.5px/1.5 ui-sans-serif,system-ui,sans-serif}
+.bk3-step:hover{border-color:var(--anatomy-lo);background:var(--anatomy-page)}
+.bk3-step[aria-current="step"]{border-color:#d6336c;background:var(--anatomy-page);color:var(--anatomy-strong)}
+.bk3-step:focus-visible{outline:2px solid var(--anatomy-red);outline-offset:2px}
+.bk3-n{flex:none;display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;font:700 11px/1 var(--anatomy-mono);box-shadow:inset 0 0 0 1.5px var(--anatomy-mid);color:var(--anatomy-strong);margin-top:1px}
+.bk3-step[aria-current="step"] .bk3-n{background:#d6336c;color:#fff;box-shadow:none}
+.bk3-step.done .bk3-n{background:var(--anatomy-green);color:#0b0d10;box-shadow:none;font-size:0}
+.bk3-step.done .bk3-n::after{content:"✓";font-size:12px}
+.bk3-step.done{color:var(--anatomy-muted)}
+.bk3-t em{display:block;font:normal 11px/1.3 var(--anatomy-mono);color:var(--anatomy-muted);margin-top:2px}
+.bk3-tools{display:flex;flex-wrap:wrap;gap:6px}
+.bk3-tools span{font:500 12px/1.2 var(--anatomy-mono);color:var(--anatomy-text);background:var(--anatomy-page);border:1px solid var(--anatomy-faint);padding:5px 8px;border-radius:6px}
+.bk3-tools-l{margin-top:14px;max-width:80ch}
+.bk3-nav{display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-top:1px solid var(--anatomy-faint);padding-top:12px}
+.bk3-nav button{font:600 13px/1 ui-sans-serif,system-ui,sans-serif;padding:9px 12px;border-radius:6px;cursor:pointer;border:1px solid var(--anatomy-lo);background:var(--anatomy-card);color:var(--anatomy-text)}
+.bk3-next{margin-left:auto;background:var(--anatomy-strong)!important;color:var(--anatomy-card)!important;border-color:var(--anatomy-strong)!important}
+.bk3-nav button:disabled{opacity:.4;cursor:default}
+.bk3-prog{font:600 11.5px/1.3 var(--anatomy-mono);color:var(--anatomy-muted)}
+.bk-mt-detail a{color:var(--anatomy-strong);font-weight:600}
+@media (max-width:980px){.kt-figwrap .bk3-stage{aspect-ratio:auto;height:38vh}.bk3-ex{width:80px}.bk3-pin{min-width:20px;height:20px;font-size:10.5px}}
+
+</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<div class="iso kt-wrap" id="kt-root" data-theme="light">
+<script>(function(){var r=document.getElementById("kt-root");function s(){var t=document.documentElement.getAttribute("data-theme");if(t!=="dark"&&t!=="light")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";r.setAttribute("data-theme",t)}s();matchMedia("(prefers-color-scheme: dark)").addEventListener("change",s);new MutationObserver(s).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]})})();</script>
+<main class="iso-page"><div class="kt-layout"><div class="kt-main"><div class="kt-figwrap"><nav class="bk3-types" aria-label="Tipo de bicicleta"><span class="vw-lab">Tipo</span><a href="bici-paseo.html">Paseo</a><a href="bici-mtb.html">Mountain bike</a><a href="bici-gravel.html" aria-current="page">Gravel</a><a href="bici-ruta.html">Ruta</a><a href="bici-fixie.html">Fixie</a><a href="bici-singlespeed.html">Single speed</a></nav><div class="vw-bar bk3-bar" role="group" aria-label="Vista"><span class="vw-lab">Vista</span><button type="button" class="vw-btn" data-ex="0" aria-pressed="true">Armada</button><button type="button" class="vw-btn" data-ex="1" aria-pressed="false">Despiece</button><label class="bk3-exl"><span class="sr">Separación</span><input class="bk3-ex" type="range" min="0" max="100" value="0" aria-label="Separación del despiece"></label><button type="button" class="vw-btn bk3-pedal" aria-pressed="false">Pedalear</button></div><figure class="iso-figure"><div class="iso-plate"><div class="iso-plate-corners" aria-hidden="true"><span class="iso-plate-corner" data-corner="fig">Fig 13</span><span class="iso-plate-corner" data-corner="title">Bicicleta gravel</span><span class="iso-plate-corner" data-corner="hint">Arrastra: girar · rueda: acercar · clic en una pieza</span><span class="iso-plate-corner" data-corner="readout" data-readout>armada · detenida</span></div><div class="iso-stage bk3-stage" tabindex="0" aria-label="Bicicleta en 3D: arrastra para girar, espacio para pedalear"><canvas></canvas><div class="bk3-pins"></div><p class="bk3-fallback">La figura 3D se carga desde internet (three.js). Si no aparece, revisa la conexión y recarga la página.</p></div></div><figcaption class="iso-legend"><span class="iso-keys"><span class="iso-key"><svg class="iso-swatch" data-mark="lit" viewBox="0 0 16 10" aria-hidden="true"><path d="M2 4.5 8 1.5 14 4.5 14 6 8 9 2 6Z"/><path class="iso-swatch-crease" d="M2 4.5 8 7.5 14 4.5"/></svg>Pieza seleccionada o del paso actual</span><span class="iso-key"><svg class="iso-swatch" data-mark="red" viewBox="0 0 16 10" aria-hidden="true"><path d="M1.5 5h13"/></svg>Piezas que revisa la falla elegida</span></span><span class="iso-caption">Manillar curvo abierto, cubiertas de 40 mm, frenos de disco y 2×11. Arrastra para girarla, usa la rueda del ratón para acercarte y doble clic para volver a la vista inicial. «Despiece» separa las piezas; «Pedalear» hace girar bielas, cadena y ruedas.</span></figcaption></figure></div><div class="kt-info" tabindex="0" role="region" aria-label="Flujo de corriente, componentes, funcionamiento y seguridad"><section class="cp-list" aria-label="Componentes"><div class="cp-head"><h2>Componentes</h2><button type="button" class="cp-toggle" aria-pressed="false">Mostrar números en la figura</button></div><h3 class="cp-group">Cuadro y dirección</h3><ol class="cp-chips"><li><button type="button" data-cp="cuadro" aria-pressed="false"><span class="cp-n">1</span>Cuadro / marco</button></li><li><button type="button" data-cp="horquilla" aria-pressed="false"><span class="cp-n">2</span>Horquilla / tenedor / trinche</button></li><li><button type="button" data-cp="direccion" aria-pressed="false"><span class="cp-n">3</span>Juego de dirección / caja de dirección</button></li><li><button type="button" data-cp="potencia" aria-pressed="false"><span class="cp-n">4</span>Potencia / avance</button></li><li><button type="button" data-cp="manillar_r" aria-pressed="false"><span class="cp-n">5</span>Manillar curvo / de ruta / de carretera</button></li><li><button type="button" data-cp="cinta_m" aria-pressed="false"><span class="cp-n">6</span>Cinta de manillar / encintado</button></li></ol><h3 class="cp-group">Ruedas</h3><ol class="cp-chips"><li><button type="button" data-cp="cubierta" aria-pressed="false"><span class="cp-n">7</span>Cubierta / neumático / goma</button></li><li><button type="button" data-cp="sellante" aria-pressed="false"><span class="cp-n">8</span>Sellante y cinta tubeless / líquido antipinchazos</button></li><li><button type="button" data-cp="valvula" aria-pressed="false"><span class="cp-n">9</span>Válvula Presta / francesa / fina</button></li><li><button type="button" data-cp="llanta" aria-pressed="false"><span class="cp-n">10</span>Llanta / aro / rin</button></li><li><button type="button" data-cp="radios" aria-pressed="false"><span class="cp-n">11</span>Radios / rayos</button></li><li><button type="button" data-cp="bujes" aria-pressed="false"><span class="cp-n">12</span>Bujes / mazas / cubos</button></li><li><button type="button" data-cp="eje" aria-pressed="false"><span class="cp-n">13</span>Ejes pasantes / eje pasante / thru axle</button></li></ol><h3 class="cp-group">Transmisión</h3><ol class="cp-chips"><li><button type="button" data-cp="pedales" aria-pressed="false"><span class="cp-n">14</span>Pedales</button></li><li><button type="button" data-cp="bielas" aria-pressed="false"><span class="cp-n">15</span>Bielas / brazos de pedal</button></li><li><button type="button" data-cp="platos" aria-pressed="false"><span class="cp-n">16</span>Platos / catalinas (2×)</button></li><li><button type="button" data-cp="pedalier" aria-pressed="false"><span class="cp-n">17</span>Eje de pedalier / eje de centro / caja pedalera</button></li><li><button type="button" data-cp="cadena" aria-pressed="false"><span class="cp-n">18</span>Cadena</button></li><li><button type="button" data-cp="pinones" aria-pressed="false"><span class="cp-n">19</span>Piñones / cassette / rueda libre</button></li><li><button type="button" data-cp="cambio_t" aria-pressed="false"><span class="cp-n">20</span>Cambio trasero / desviador / descarrilador trasero</button></li><li><button type="button" data-cp="cambio_d" aria-pressed="false"><span class="cp-n">21</span>Cambio delantero / desviador / descarrilador delantero</button></li></ol><h3 class="cp-group">Frenos</h3><ol class="cp-chips"><li><button type="button" data-cp="mandos_r" aria-pressed="false"><span class="cp-n">22</span>Mandos integrados / manetas de cambio y freno / STI</button></li><li><button type="button" data-cp="latiguillos" aria-pressed="false"><span class="cp-n">23</span>Latiguillos / mangueras de freno / líneas hidráulicas</button></li><li><button type="button" data-cp="pinzas_d" aria-pressed="false"><span class="cp-n">24</span>Pinzas de freno de disco / cálipers</button></li><li><button type="button" data-cp="pastillas" aria-pressed="false"><span class="cp-n">25</span>Pastillas de freno de disco / balatas</button></li><li><button type="button" data-cp="discos" aria-pressed="false"><span class="cp-n">26</span>Discos de freno / rotores</button></li></ol><h3 class="cp-group">Puesto de conducción y seguridad</h3><ol class="cp-chips"><li><button type="button" data-cp="sillin" aria-pressed="false"><span class="cp-n">27</span>Sillín / asiento</button></li><li><button type="button" data-cp="tija" aria-pressed="false"><span class="cp-n">28</span>Tija / poste del sillín</button></li></ol><p class="cp-hint">Pasa el cursor sobre un componente, aquí o en la figura, para ver dónde está y qué hace. Haz clic para resaltarlo y girar la figura hacia él.</p></section><section class="kt-notes" aria-label="Este tipo de bicicleta"><h2>Bicicleta gravel / de grava / todo camino</h2><p class="bk3-lead">Bicicleta para caminos de tierra y ripio: geometría entre la de ruta y la de montaña, manillar curvo más ancho, cubiertas de unos 40 mm sin cámara y frenos de disco (WG).</p></section><section class="kt-notes" aria-label="Cómo funciona"><h2>Cómo funciona</h2><ol><li><strong>El cuadro.</strong> La mayoría de las bicicletas usa un cuadro de doble triángulo: tubo superior, oblicuo y del sillín, más vainas y tirantes desdoblados para dejar sitio a la rueda trasera. El tubo oblicuo es el más cargado (IB).</li><li><strong>Las ruedas.</strong> Los radios trabajan a tracción: casi no aguantan compresión. La llanta queda centrada porque los radios de cada lado tiran con fuerzas iguales; si uno se afloja, se va hacia el otro lado (IB, CM §13).</li><li><strong>El aire.</strong> La cámara a presión amortigua y sostiene: en carretera se infla a unos 9 bar y en montaña a no más de 3 bar, para que la cubierta se adapte al terreno (IB).</li><li><strong>La transmisión.</strong> Pedales, bielas y platos mueven la cadena, que arrastra los piñones. La rueda libre deja avanzar sin pedalear; por eso «carraquea» al dejar de pedalear (IB).</li><li><strong>Los pedales.</strong> El pedal izquierdo tiene rosca inversa: al pedalear, si se agarrota, el giro lo aprieta en lugar de aflojarlo (IB).</li><li><strong>Los frenos.</strong> Las manetas tiran de un cable (o de varillas en bicis antiguas) que aprieta las zapatas contra la llanta (L4).</li></ol></section><section class="kt-notes" aria-label="Mantenimiento periódico"><h2>Mantenimiento periódico</h2><ol><li>Usa aceite para bicicletas, poco denso; el de motor es demasiado espeso (L1).</li><li>Pon solo una o dos gotas y quita el sobrante con un trapo: el exceso junta polvo (L1).</li><li>Con uso diario, engrasa cadena y cojinetes cada dos semanas (L1).</li><li>Engrasa los cables de freno cada dos o tres meses, o cuando los frenos se sientan tiesos (L1).</li><li>Lava con paño o esponja y poca agua; no apuntes la manguera a bujes ni pedalier, y seca bien (CM §5).</li><li>Grasa sólida para tija y potencia; aceite de cadena para la cadena (CM §5).</li><li>Revisa una vez al año el eje de pedalier, y cada 4 o 5 meses los bujes (CM §12, §16).</li></ol></section><section class="kt-notes" aria-label="Herramientas básicas"><h2>Herramientas básicas para llevar</h2><div class="bk3-tools bk3-tools-l"><span>Bomba de inflar</span><span>Kit de parches (parches, adhesivo, tiza, lija)</span><span>Dos o tres palancas</span><span>Llave inglesa</span><span>Destornillador</span><span>Llaves Allen</span><span>Aceite de bicicleta</span><span>Trapo</span><span>Cámara de repuesto con la válvula de tu bomba</span></div></section><section class="dx-safety" aria-label="Seguridad"><h2>Seguridad</h2><ol><li>Antes de cada salida: ruedas infladas y sin nada punzante, frenos que funcionen y ningún ruido extraño (L5).</li><li>Al frenar, usa los dos frenos; empieza un poco antes con el trasero. Solo el delantero, fuerte, puede hacerte volcar (L5).</li><li>De noche: luz blanca adelante, luz roja y reflector rojo atrás (L5).</li><li>Asegura bien el equipaje y sujeta la pierna del pantalón para que no se enganche en la cadena (L5).</li><li>Trabaja con la herramienta correcta: una llave que no ajusta redondea tuercas y cabecillas (CM §4, §13).</li><li>Si no tienes la herramienta específica (extractores, llaves de pedalier o de piñones), es mejor ir al taller (CM).</li></ol></section><p class="kt-src">Fuentes: <b>L1–L5</b> «Mantenimiento de una bicicleta», libros 1 a 5: engrase, pinchazos, la cadena, los frenos, seguridad y reparaciones sencillas (MissionAssist, 2020). <b>CM</b> Óscar López Prat, «Cursillo de mecánica de la bicicleta» (BikeWeb, 2000). <b>IB</b> VV. AA., «La ingeniería de la bicicleta» (Fundación Esteyco, 2010). <b>PT</b> Park Tool, guías de reparación: «Disc Brake Pad Removal &amp; Installation», «Hydraulic Disc Brake Alignment», «Tubeless Tire Removal and Installation», «Dual Pivot Brake Service» y «Rear Derailleur Adjustment» (parktool.com). <b>SB</b> Sheldon Brown, «Fixed Gear Conversions» (sheldonbrown.com). <b>RS</b> Rose Bikes, «Setting up the fork and shock» (rosebikes.com). <b>WG</b> Wikipedia, «Gravel bicycle». Las siglas entre paréntesis en cada texto indican de dónde sale.</p></div></div><aside class="kt-side" aria-label="Fallas típicas"><section class="kt-faults bk" aria-label="Fallas típicas">
+<div class="bk-head"><h2>Fallas típicas</h2><button type="button" class="bk-ok" data-fault="" aria-pressed="true">Sin falla elegida</button></div>
+<div class="bk-chips" role="group" aria-label="Elegir un síntoma"><button type="button" data-fault="tubeless" aria-pressed="false">La rueda sin cámara pierde aire</button><button type="button" data-fault="frenos_d" aria-pressed="false">Los frenos de disco frenan poco o chillan</button><button type="button" data-fault="roce_d" aria-pressed="false">El disco roza la pinza</button><button type="button" data-fault="descentrada" aria-pressed="false">La rueda está descentrada (oscila)</button><button type="button" data-fault="chirria" aria-pressed="false">La cadena chirría o pedalear cuesta</button><button type="button" data-fault="suelta" aria-pressed="false">La cadena se sale</button><button type="button" data-fault="gastada" aria-pressed="false">La cadena salta o patina con fuerza</button><button type="button" data-fault="cambio" aria-pressed="false">Los cambios no entran o hacen ruido</button><button type="button" data-fault="delantero" aria-pressed="false">El cambio delantero roza o no sube</button><button type="button" data-fault="direccion" aria-pressed="false">Juego o golpeteo en la dirección</button><button type="button" data-fault="buje" aria-pressed="false">La rueda tiene juego hacia los lados</button><button type="button" data-fault="pedalier" aria-pressed="false">Crujidos o juego en pedales y bielas</button><button type="button" data-fault="engrase" aria-pressed="false">Óxido y ruidos por falta de engrase</button><button type="button" data-fault="posicion" aria-pressed="false">Molestias en rodillas, espalda o muñecas</button></div>
+<div class="kt-fault-card bk-card" aria-live="polite"></div>
+<div class="bk-method"><h3>Revisión antes de cada salida</h3><ol><li><button type="button" class="bk-mt" data-m="0" aria-pressed="false"><b>Ruedas infladas y sin nada clavado</b><span>Aprieta cada rueda con el pulgar y gírala mirando la cubierta.</span><em>Cubierta / neumático / goma</em></button><div class="bk-mt-detail" hidden><span class="bk-r-line"><b>Cómo revisar:</b> Aprieta cada rueda con el pulgar y gírala mirando la cubierta.</span><span class="bk-r-line"><b>Está bien si:</b> Firme, a la presión del flanco de la cubierta, sin piedras, clavos ni cortes. Como referencia: unos 9 bar en carretera y hasta 3 bar en montaña (IB).</span></div></li><li><button type="button" class="bk-mt" data-m="1" aria-pressed="false"><b>Ejes bien apretados</b><span>Revisa que los ejes pasantes estén apretados.</span><em>Ejes pasantes / eje pasante / thru axle</em></button><div class="bk-mt-detail" hidden><span class="bk-r-line"><b>Cómo revisar:</b> Revisa que los ejes pasantes estén apretados.</span><span class="bk-r-line"><b>Está bien si:</b> La rueda no se mueve de lado.</span><span class="bk-r-line"><b>Si no:</b> <a href="#roce_d" class="bk3-go" data-fault="roce_d">El disco roza la pinza →</a></span></div></li><li><button type="button" class="bk-mt" data-m="2" aria-pressed="false"><b>Los dos frenos funcionan</b><span>Aprieta cada maneta y empuja la bici.</span><em>Mandos integrados / manetas de cambio y freno / STI</em></button><div class="bk-mt-detail" hidden><span class="bk-r-line"><b>Cómo revisar:</b> Aprieta cada maneta y empuja la bici.</span><span class="bk-r-line"><b>Está bien si:</b> La rueda se bloquea antes de que la maneta toque el manillar. Al frenar, usa los dos frenos, primero un poco el trasero (L5).</span></div></li><li><button type="button" class="bk-mt" data-m="3" aria-pressed="false"><b>Pastillas con material</b><span>Mira las pastillas por la ranura de la pinza.</span><em>Pastillas de freno de disco / balatas</em></button><div class="bk-mt-detail" hidden><span class="bk-r-line"><b>Cómo revisar:</b> Mira las pastillas por la ranura de la pinza.</span><span class="bk-r-line"><b>Está bien si:</b> Al menos 1 mm de material en cada pastilla; el disco limpio y sin manchas (PT).</span><span class="bk-r-line"><b>Si no:</b> <a href="#frenos_d" class="bk3-go" data-fault="frenos_d">Los frenos de disco frenan poco o chillan →</a></span></div></li><li><button type="button" class="bk-mt" data-m="4" aria-pressed="false"><b>Cadena limpia, engrasada y tensa</b><span>Mírala y levántala a mitad del tramo con un destornillador.</span><em>Cadena</em></button><div class="bk-mt-detail" hidden><span class="bk-r-line"><b>Cómo revisar:</b> Mírala y levántala a mitad del tramo con un destornillador.</span><span class="bk-r-line"><b>Está bien si:</b> Sin óxido ni barro; sube menos de 2 cm (juego de unos 13 mm).</span><span class="bk-r-line"><b>Si no:</b> <a href="#chirria" class="bk3-go" data-fault="chirria">La cadena chirría o pedalear cuesta →</a></span></div></li><li><button type="button" class="bk-mt" data-m="5" aria-pressed="false"><b>Dirección sin juego</b><span>Frena adelante y mueve la bici adelante y atrás; gira el manillar.</span><em>Juego de dirección / caja de dirección</em></button><div class="bk-mt-detail" hidden><span class="bk-r-line"><b>Cómo revisar:</b> Frena adelante y mueve la bici adelante y atrás; gira el manillar.</span><span class="bk-r-line"><b>Está bien si:</b> Sin golpeteo y con giro suave.</span><span class="bk-r-line"><b>Si no:</b> <a href="#direccion" class="bk3-go" data-fault="direccion">Juego o golpeteo en la dirección →</a></span></div></li><li><button type="button" class="bk-mt" data-m="6" aria-pressed="false"><b>Todo apretado</b><span>Prueba sillín, manillar, potencia, bielas y pedales.</span><em>Potencia / avance</em></button><div class="bk-mt-detail" hidden><span class="bk-r-line"><b>Cómo revisar:</b> Prueba sillín, manillar, potencia, bielas y pedales.</span><span class="bk-r-line"><b>Está bien si:</b> Nada se mueve. Repásalo sobre todo tras las primeras salidas (CM §4).</span><span class="bk-r-line"><b>Si no:</b> <a href="#pedalier" class="bk3-go" data-fault="pedalier">Crujidos o juego en pedales y bielas →</a></span></div></li><li><button type="button" class="bk-mt" data-m="7" aria-pressed="false"><b>Sin ruidos extraños</b><span>Pedalea unos metros y escucha.</span><em>Eje de pedalier / eje de centro / caja pedalera</em></button><div class="bk-mt-detail" hidden><span class="bk-r-line"><b>Cómo revisar:</b> Pedalea unos metros y escucha.</span><span class="bk-r-line"><b>Está bien si:</b> Ningún roce, crujido ni golpeteo: si lo hay, algo está flojo o desajustado (L5).</span></div></li></ol></div>
+</section></aside></div></main>
+</div>
+<script type="module">// Bicycle 3D scene: procedural model, exploded view, picking, highlight, pedalling, step-by-step guide.
+// Expects BIKE = { COMPONENTS, FAULTS, METHOD } defined before this module code.
+import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+const BIKE = {"COMPONENTS":[{"id":"cuadro","group":1,"name":"Cuadro / marco","desc":"Doble triángulo de tubos: superior, oblicuo (el más cargado), del sillín y de dirección, con vainas y tirantes hasta la rueda trasera (IB)."},{"id":"horquilla","group":1,"name":"Horquilla / tenedor / trinche","desc":"Horquilla rígida, de carbono o cromoly, con espacio para cubiertas anchas (WG)."},{"id":"direccion","group":1,"name":"Juego de dirección / caja de dirección","desc":"Dos rodamientos, arriba y abajo del tubo de dirección, que dejan girar la horquilla. Ahead o de rosca (CM §15)."},{"id":"potencia","group":1,"name":"Potencia / avance","desc":"Une el manillar a la horquilla. Su largo e inclinación cambian la postura (CM §3)."},{"id":"manillar_r","group":1,"name":"Manillar curvo / de ruta / de carretera","desc":"Manillar con curvas hacia abajo que permite varias posiciones de las manos. En gravel suele ser más ancho y abierto hacia afuera (WG)."},{"id":"cinta_m","group":1,"name":"Cinta de manillar / encintado","desc":"Cinta acolchada que envuelve el manillar curvo; se cambia cuando está rota o resbalosa."},{"id":"cubierta","group":2,"name":"Cubierta / neumático / goma","desc":"La goma exterior con dibujo. Si está gastada se pincha más y patina en mojado (L5). La presión va marcada en su flanco."},{"id":"sellante","group":2,"name":"Sellante y cinta tubeless / líquido antipinchazos","desc":"Sin cámara: una cinta sella la llanta y un líquido dentro de la cubierta tapa los pinchazos pequeños. Su cantidad viene en la etiqueta de la cubierta (PT)."},{"id":"valvula","group":2,"name":"Válvula Presta / francesa / fina","desc":"Válvula delgada: desenrosca su punta antes de inflar y vuelve a cerrarla después. Necesita un cabezal de bomba para Presta."},{"id":"llanta","group":2,"name":"Llanta / aro / rin","desc":"Aro metálico donde se montan cubierta y cámara; sus flancos son la pista de frenado de los frenos de zapata."},{"id":"radios","group":2,"name":"Radios / rayos","desc":"Unen buje y llanta. Trabajan a tracción: casi no resisten compresión, por eso su tensión mantiene centrada la rueda (IB, CM §13)."},{"id":"bujes","group":2,"name":"Bujes / mazas / cubos","desc":"Centro de cada rueda: eje, rodamientos de bolas, conos y contratuercas. El trasero lleva los piñones (CM §16)."},{"id":"eje","group":2,"name":"Ejes pasantes / eje pasante / thru axle","desc":"Ejes que atraviesan la horquilla o el cuadro y se atornillan: la rueda queda más rígida y el disco siempre en su lugar."},{"id":"pedales","group":3,"name":"Pedales","desc":"El derecho se aprieta en sentido horario; el izquierdo tiene rosca inversa para que pedalear no lo afloje (IB)."},{"id":"bielas","group":3,"name":"Bielas / brazos de pedal","desc":"Brazos que llevan los pedales; suelen medir 170–175 mm (CM §10)."},{"id":"platos","group":3,"name":"Platos / catalinas (2×)","desc":"Ruedas dentadas delanteras, atornilladas a la biela derecha (CM §10)."},{"id":"pedalier","group":3,"name":"Eje de pedalier / eje de centro / caja pedalera","desc":"Eje con rodamientos dentro de la caja del cuadro; une las dos bielas (CM §12)."},{"id":"cadena","group":3,"name":"Cadena","desc":"Eslabones unidos por pasadores; uno se puede abrir. Limpia, engrasada y bien tensa, dura más toda la transmisión (L3, CM §11)."},{"id":"pinones","group":3,"name":"Piñones / cassette / rueda libre","desc":"Ruedas dentadas traseras sobre la rueda libre, que deja avanzar sin pedalear (IB, CM §8)."},{"id":"cambio_t","group":3,"name":"Cambio trasero / desviador / descarrilador trasero","desc":"Mueve la cadena entre los piñones y la mantiene tensa con sus dos roldanas (CM §7)."},{"id":"cambio_d","group":3,"name":"Cambio delantero / desviador / descarrilador delantero","desc":"Desviador que pasa la cadena entre los platos (CM §9)."},{"id":"mandos_r","group":4,"name":"Mandos integrados / manetas de cambio y freno / STI","desc":"La misma maneta frena, y al moverla de lado cambia de marcha. Tienen tensores en los cables (PT)."},{"id":"latiguillos","group":4,"name":"Latiguillos / mangueras de freno / líneas hidráulicas","desc":"Tubos con líquido (aceite mineral o DOT, según la marca, no se mezclan) que llevan la presión de la maneta a la pinza."},{"id":"pinzas_d","group":4,"name":"Pinzas de freno de disco / cálipers","desc":"Van atornilladas a la horquilla y al cuadro; sus pistones aprietan las pastillas contra el disco (PT)."},{"id":"pastillas","group":4,"name":"Pastillas de freno de disco / balatas","desc":"Se cambian cuando les queda menos de 1 mm de material. El aceite o la grasa las arruinan (PT)."},{"id":"discos","group":4,"name":"Discos de freno / rotores","desc":"Discos de acero atornillados a los bujes. No se tocan con los dedos: la grasa de la piel contamina el frenado (PT)."},{"id":"sillin","group":5,"name":"Sillín / asiento","desc":"Se regula en altura, avance e inclinación para pedalear sin forzar rodillas ni espalda (L5, CM §3)."},{"id":"tija","group":5,"name":"Tija / poste del sillín","desc":"Tubo que sostiene el sillín. Debe quedar al menos 5 cm dentro del cuadro (L5)."}],"FAULTS":[{"id":"tubeless","name":"La rueda sin cámara pierde aire","ref":"PT","part":"sellante","sintoma":"La rueda tubeless se desinfla o sale líquido blanco por un agujero o por el borde de la cubierta.","causa":"Un pinchazo más grande de lo que el sellante alcanza a tapar, sellante seco o la cinta de llanta mal sellada.","diag":[["Gira la rueda y busca burbujas o restos de sellante en la cubierta: marcan el agujero.","cubierta"],["Mira el borde de la cubierta y la válvula: si pierde por ahí, la cinta o la válvula no sellan.","valvula"],["Agita la rueda junto al oído: si no se escucha líquido, el sellante se secó.","sellante"]],"repair":[["Pinchazo pequeño: gira la rueda con el agujero hacia abajo para que el sellante lo tape, e infla.","sellante"],["Si no sella, coloca una cámara de repuesto en ruta. Los parches solo sirven en cubiertas UST o con forro de butilo (PT).","cubierta"],["Para reponer sellante: desmonta un borde de la cubierta o saca el obús de la válvula e inyecta la cantidad que indica la etiqueta de la cubierta.","valvula"],["Si el borde no asienta, mójalo con agua jabonosa, infla hasta la presión máxima de la etiqueta y gira y voltea la rueda para repartir el sellante.","llanta"],["Espera a que selle (de inmediato a algunos días) y luego deja la presión de uso.","sellante"]],"tools":["Sellante","Jeringa o inyector","Llave de obús","Bomba de pie o compresor","Cámara de repuesto"]},{"id":"frenos_d","name":"Los frenos de disco frenan poco o chillan","ref":"PT","part":"pastillas","sintoma":"Hay que apretar mucho la maneta, los frenos chillan o la maneta se siente esponjosa.","causa":"Pastillas gastadas o contaminadas con aceite o grasa; si la maneta es esponjosa, aire en el circuito hidráulico.","diag":[["Mira las pastillas por la ranura de la pinza: deben tener al menos 1 mm de material (unas tres tarjetas de visita).","pastillas"],["Si chillan, cuesta frenar y el disco se ve oscuro o manchado, las pastillas están contaminadas: busca la fuga o el lubricante que las alcanzó.","discos"],["Aprieta la maneta varias veces: si se siente blanda o esponjosa y llega al manillar, hay aire en el circuito.","latiguillos"]],"repair":[["Saca la rueda y quita el pasador o clip que sujeta las pastillas; fíjate en cómo van el muelle y las pastillas.","pinzas_d"],["Saca las pastillas y empuja los pistones hacia dentro con una herramienta plana que no raye (por ejemplo, una palanca de neumático).","pinzas_d"],["Coloca las pastillas nuevas con su muelle en la misma posición y vuelve a poner el pasador.","pastillas"],["Monta la rueda y bombea la maneta hasta que las pastillas toquen el disco. Con la rueda fuera, no aprietes la maneta.","mandos_r"],["Si la maneta sigue esponjosa, hay que purgar el freno con el líquido de la marca (aceite mineral o DOT, no se mezclan): mejor en el taller.","latiguillos"]],"tools":["Llaves Allen o Torx","Palanca de neumático o separador de pistones","Pastillas nuevas del modelo de tu freno"]},{"id":"roce_d","name":"El disco roza la pinza","ref":"PT","part":"pinzas_d","sintoma":"Se oye un roce metálico al girar la rueda.","causa":"La rueda no quedó bien asentada, la pinza está descentrada respecto del disco o el disco está doblado.","diag":[["Afloja el eje o el cierre, empuja la bici hacia el suelo para asentar la rueda y vuelve a apretar.","eje"],["Levanta la bici, gira la rueda y mira con una luz detrás de la pinza el espacio entre pastillas y disco.","pinzas_d"],["Mira si el disco está doblado y si sus tornillos o el buje tienen juego.","discos"]],"repair":[["Afloja los dos tornillos que fijan la pinza para que se mueva libre.","pinzas_d"],["Aprieta la maneta para centrar la pinza sobre el disco y, sin soltarla, aprieta los tornillos.","pinzas_d"],["Suelta y gira la rueda; si ya no roza, aprieta los tornillos a 6–8 Nm.","pinzas_d"],["Si sigue rozando, afloja un tornillo y empuja la pinza hacia el lado del roce hasta ver espacio a ambos lados; aprieta.","pinzas_d"],["Un disco muy doblado se endereza con una herramienta especial o se cambia.","discos"]],"tools":["Llaves Allen o Torx","Llave de torque","Una luz para mirar a contraluz"]},{"id":"descentrada","name":"La rueda está descentrada (oscila)","ref":"CM §13 · IB","part":"radios","sintoma":"La llanta se mueve hacia los lados al girar y roza con las zapatas en un punto.","causa":"Radios flojos o con tensiones desiguales, o un golpe. Cada radio tira de la llanta hacia su lado: si uno pierde tensión, la llanta se va hacia el lado contrario.","diag":[["Levanta la rueda y hazla girar; mira la distancia entre la llanta y la zapata, o tensa el freno hasta que roce y escucha dónde.","llanta"],["Aprieta los radios por parejas con los dedos: los flojos ceden más que el resto.","radios"],["Busca radios rotos y cabecillas dañadas.","radios"]],"repair":[["Usa una llave de radios de la medida exacta de la cabecilla, sin juego.","radios"],["Donde la llanta se desvía hacia un lado, aprieta el radio cercano del lado contrario o afloja el de ese lado, de a un cuarto de vuelta.","radios"],["Cuidado con el sentido: mirado desde la llanta, el radio se aprieta girando en sentido antihorario.","radios"],["Asegúrate de girar la cabecilla y no de retorcer el radio.","radios"],["Repite girando la rueda hasta que no roce. Si hay un golpe grande o radios rotos, llévala al taller.","llanta"]],"tools":["Llave de radios de la medida exacta"]},{"id":"chirria","name":"La cadena chirría o pedalear cuesta","ref":"L1 · L3 · CM §5 y §11","part":"cadena","sintoma":"Se oye un chirrido al pedalear y los pedales giran duros.","causa":"Cadena seca, sucia u oxidada. El polvo se pega al aceite sobrante y la desgasta junto con platos y piñones.","diag":[["Gira los pedales hacia atrás y escucha. Mira si los eslabones están secos, oxidados o con barro.","cadena"],["Comprueba que todos los eslabones se doblen libres al pasar por las roldanas del cambio.","cadena"]],"repair":[["Limpia la cadena con desengrasante. Si está muy sucia, ábrela por el eslabón especial, déjala un par de horas en parafina, cepíllala y sécala.","cadena"],["Limpia también piñones y platos, sin mojar los bujes ni el pedalier.","pinones"],["Lubrica con aceite de cadena poco denso: una gota por dentro de cada unión mientras giras los pedales hacia atrás.","cadena"],["Quita el aceite sobrante con un trapo: el sobrante junta polvo.","cadena"],["No uses aceite de motor (es muy denso) ni aceites tipo «3 en 1» o WD-40 en la cadena.","cadena"]],"tools":["Desengrasante o parafina","Cepillo","Trapo","Aceite de cadena"]},{"id":"suelta","name":"La cadena se sale","ref":"L5 · L3 · CM §7 y §9","part":"cadena","sintoma":"La cadena se cae del plato o de los piñones al pedalear o al cambiar.","causa":"Cadena destensada (en bicis sin cambio), topes de los cambios desajustados o guardacadena doblado.","diag":[["Sin cambio trasero: levanta la cadena con un destornillador a mitad del tramo. Si sube más de 2 cm está suelta; el juego correcto es de unos 13 mm.","cadena"],["Con cambio: fíjate si se sale por fuera del piñón pequeño o por dentro del grande. Eso lo corrigen los tornillos de tope del cambio trasero.","cambio_t"],["Si se sale en los platos, revisa los topes del cambio delantero.","cambio_d"],["Si hay guardacadena, mira que no esté doblado y rozando la cadena.","platos"]],"repair":[["Sin cambio: afloja las tuercas de la rueda trasera, tira de ella hacia atrás hasta tensar la cadena, sin pasarte, y apriétalas con seguridad.","eje"],["Con cambio, rueda en el aire y cadena en el piñón pequeño: ajusta el tornillo de tope superior hasta que la roldana quede bajo ese piñón.","cambio_t"],["En el piñón grande, ajusta el tornillo de tope inferior del mismo modo.","cambio_t"],["Si la roldana superior toca los piñones, aprieta el tornillo que apoya contra el cuadro.","cambio_t"],["Prueba todas las marchas girando los pedales a mano.","pedales"]],"tools":["Llave fija","Destornillador"]},{"id":"gastada","name":"La cadena salta o patina con fuerza","ref":"L3 · CM §8 y §11","part":"cadena","sintoma":"Al pedalear fuerte, la cadena salta sobre los dientes o los pedales se van de golpe.","causa":"Cadena estirada por el uso o con un eslabón rígido; piñones y platos gastados.","diag":[["Con la cadena sobre el plato, tira de un eslabón hacia afuera: si se separa y deja ver los dientes, está gastada.","cadena"],["Compárala con una cadena nueva del mismo número de eslabones: si es 2 o 3 eslabones más larga, hay que cambiarla.","cadena"],["Mira los dientes de piñones y platos: si están afilados o mordidos, también están gastados.","pinones"]],"repair":[["Abre la cadena por el eslabón rápido o con un tronchacadenas. Si tiene pasador maestro, usa siempre ese.","cadena"],["Con plato y piñón pequeños, pasa la cadena nueva por el cambio; júntala hasta que la roldana superior quede a medio centímetro y quita los eslabones sobrantes.","cambio_t"],["Comprueba que alcance en plato grande con piñón grande, una combinación que no se debe usar al rodar.","platos"],["Al cambiar la cadena, cambia también los piñones y el plato más usado.","pinones"],["Compra una cadena compatible con las velocidades de tu bici (8, 9…).","cadena"]],"tools":["Tronchacadenas","Eslabón rápido","Extractor de piñones y látigo (si se cambian los piñones)"]},{"id":"cambio","name":"Los cambios no entran o hacen ruido","ref":"CM §7 · L5","part":"cambio_t","sintoma":"La cadena no sube o no baja de piñón, o hace ruido rozando el piñón vecino.","causa":"Cable destensado o estirado (lo más común), suciedad en las roldanas o patilla del cambio doblada.","diag":[["Pon el segundo piñón más pequeño y mira si la cadena queda centrada o roza con el siguiente.","cambio_t"],["Revisa el cable y la funda: sin óxido ni hilos rotos.","mandos_r"],["Mira desde atrás si el cambio cuelga vertical. Si la patilla está doblada, llévala al taller.","cambio_t"]],"repair":[["En el segundo piñón, gira el tensor del cable, en el cambio o en el mando, tensando hasta que la cadena roce con el tercer piñón.","mandos_r"],["Luego afloja un poco el tensor, hasta que deje de sonar.","mandos_r"],["Prueba todas las marchas pedaleando suave y repite si hace falta.","cambio_t"],["Si el cable está muy suelto: con la cadena en el piñón pequeño, afloja el tornillo prisionero, tensa el cable con la mano y vuelve a apretar.","cambio_t"],["Limpia las roldanas y engrasa los ejes de pivote del cambio.","cambio_t"]],"tools":["Ninguna para el tensor","Llave Allen de 5 mm para el prisionero"]},{"id":"delantero","name":"El cambio delantero roza o no sube","ref":"CM §9","part":"cambio_d","sintoma":"La cadena roza la caja del desviador o no pasa al plato grande.","causa":"Desviador torcido o a mala altura, cable flojo o topes desajustados.","diag":[["Mira desde arriba: la caja del desviador debe quedar paralela al plato grande.","cambio_d"],["Mira la altura: la caja va cerca del plato grande, pero sin tocarlo.","cambio_d"],["Revisa el cable y que vaya bien por sus guías.","mandos_r"]],"repair":[["Afloja el tornillo de la abrazadera, corrige el ángulo y la altura, y apriétalo.","cambio_d"],["Con plato pequeño y piñón grande, ajusta el tornillo de tope interior hasta que la caja casi toque la cadena, sin rozarla.","cambio_d"],["Tensa el cable y aprieta el prisionero. Con plato grande y piñón pequeño, ajusta el tope exterior.","cambio_d"],["Con plato y piñón medianos, centra la caja con el tensor del cable.","mandos_r"]],"tools":["Destornillador","Llave Allen"]},{"id":"direccion","name":"Juego o golpeteo en la dirección","ref":"CM §15","part":"direccion","sintoma":"Al frenar adelante se nota un golpeteo, o el manillar gira duro.","causa":"Dirección floja (con juego) o demasiado apretada.","diag":[["Aprieta el freno delantero y mueve la bici adelante y atrás: si notas un golpeteo en la dirección, tiene juego.","direccion"],["Gira el manillar a ambos lados: debe moverse suave, sin puntos duros.","manillar_r"]],"repair":[["Dirección ahead: afloja los tornillos de la potencia y aprieta poco a poco el tornillo de la tapa superior hasta quitar el juego, sin endurecerla.","potencia"],["Alinea el manillar con la rueda y vuelve a apretar los tornillos de la potencia.","potencia"],["Dirección de rosca: afloja la contratuerca, ajusta la tuerca inferior hasta quitar el juego y bloquéala con la contratuerca, con dos llaves planas de 32, 36 o 40 mm.","direccion"],["Comprueba de nuevo frenando adelante y girando el manillar.","direccion"]],"tools":["Llaves Allen (ahead)","Dos llaves planas de 32, 36 o 40 mm (rosca)"]},{"id":"buje","name":"La rueda tiene juego hacia los lados","ref":"L5 · CM §16","part":"bujes","sintoma":"La rueda se mueve de lado a lado aunque el cierre esté apretado, o gira áspera.","causa":"Los conos del buje se aflojaron, o las bolas están secas o gastadas.","diag":[["Sujeta la bici y mueve la llanta hacia los lados: no debe tener juego.","llanta"],["Hazla girar: debe girar libre, sin roces ni ruido áspero.","bujes"]],"repair":[["Saca la rueda. Del lado contrario a los piñones, afloja la contratuerca con una llave de conos y otra fija.","bujes"],["Atornilla el cono hasta el tope y aflójalo un cuarto de vuelta.","bujes"],["Sujeta el cono y aprieta la contratuerca contra él.","bujes"],["Si queda duro, separa un poco el cono; si queda con juego, acércalo. Repite hasta que gire libre y sin juego.","bujes"],["Cada 4 o 5 meses conviene limpiar y engrasar las bolas; no apuntes la manguera a los bujes al lavar la bici.","bujes"]],"tools":["Llave de conos (13–17 mm)","Llave fija"]},{"id":"pedalier","name":"Crujidos o juego en pedales y bielas","ref":"CM §10 y §12 · IB","part":"pedalier","sintoma":"Un crujido en cada pedalada, o los pedales se mueven hacia los lados.","causa":"Pedal o biela flojos, o eje de pedalier gastado.","diag":[["Toma una biela y muévela hacia los lados: si hay juego, puede ser la biela o el eje.","bielas"],["Revisa que los pedales estén apretados y giren libres.","pedales"],["Aprieta el tornillo de la biela. Si el juego sigue, es el eje de pedalier.","pedalier"]],"repair":[["Aprieta los pedales: el derecho se aprieta en sentido horario; el izquierdo tiene rosca inversa y se aprieta en sentido antihorario.","pedales"],["Aprieta el tornillo de cada biela (Allen de 8 mm o llave de tubo de 14 mm).","bielas"],["El eje de pedalier y las bielas se desmontan con extractor y herramientas específicas: si no las tienes, mejor en el taller.","pedalier"],["Pon unas gotas de aceite en el agujero de los pedales y del pedalier, si lo tienen.","pedalier"]],"tools":["Llave de pedales","Llave Allen de 8 mm o de tubo de 14 mm","Extractor de bielas (taller)"]},{"id":"engrase","name":"Óxido y ruidos por falta de engrase","ref":"L1 · CM §5","part":"cadena","sintoma":"Piezas con moho, frenos que se sienten tiesos, ruedas o pedales que rechinan.","causa":"El agua oxida el metal donde no hay aceite. Pero el exceso de aceite también daña: junta polvo.","diag":[["Busca moho (color de óxido) en la cadena y en los pivotes de los frenos.","cadena"],["Gira ruedas y pedales: si rechinan, revisa sus agujeros de engrase.","bujes"]],"repair":[["Bujes: si tienen un clip de resorte, gíralo, pon dos o tres gotas en el agujero y vuelve a cerrarlo.","bujes"],["Cadena: una gota por unión mientras giras los pedales, y quita el sobrante.","cadena"],["Dirección, pedales y pedalier: unas gotas donde giran o en sus agujeros de engrase.","direccion"],["Con uso diario, engrasa cadena y cojinetes cada dos semanas. Seca la bici si se moja.","cadena"]],"tools":["Aceite para bicicletas poco denso","Trapo"]},{"id":"posicion","name":"Molestias en rodillas, espalda o muñecas","ref":"L5 · CM §3","part":"sillin","sintoma":"Duelen las rodillas o la espalda al pedalear, o se cansan las muñecas.","causa":"Sillín a mala altura o en mal avance, manillar muy bajo o manetas mal inclinadas.","diag":[["Sentado, con el talón sobre el pedal en su punto más bajo, la pierna debe quedar estirada.","sillin"],["Al pedalear normal, la pierna nunca debe llegar a estirarse del todo.","tija"],["Apoya el codo en la punta del sillín: los dedos deben tocar el centro del manillar.","sillin"],["El manillar debe quedar más o menos a la altura del sillín.","manillar_r"],["Al agarrar las manetas, la muñeca debe quedar recta.","mandos_r"]],"repair":[["Afloja la abrazadera de la tija, sube o baja el sillín y apriétala firme. Deja al menos 5 cm de tija dentro del cuadro.","tija"],["Marca la altura en la tija para poder volver a ella.","tija"],["Para el avance, afloja el tornillo del carro del sillín y deslízalo.","sillin"],["Inclina las manetas para que la muñeca quede en línea con el brazo.","mandos_r"],["Quien está aprendiendo: sillín más bajo, para apoyar los dos pies en el suelo.","sillin"]],"tools":["Llave Allen","Llave fija"]}],"METHOD":[["Ruedas infladas y sin nada clavado","cubierta","Aprieta cada rueda con el pulgar y gírala mirando la cubierta.","Firme, a la presión del flanco de la cubierta, sin piedras, clavos ni cortes. Como referencia: unos 9 bar en carretera y hasta 3 bar en montaña (IB).",null],["Ejes bien apretados","eje","Revisa que los ejes pasantes estén apretados.","La rueda no se mueve de lado.","roce_d"],["Los dos frenos funcionan","mandos_r","Aprieta cada maneta y empuja la bici.","La rueda se bloquea antes de que la maneta toque el manillar. Al frenar, usa los dos frenos, primero un poco el trasero (L5).",null],["Pastillas con material","pastillas","Mira las pastillas por la ranura de la pinza.","Al menos 1 mm de material en cada pastilla; el disco limpio y sin manchas (PT).","frenos_d"],["Cadena limpia, engrasada y tensa","cadena","Mírala y levántala a mitad del tramo con un destornillador.","Sin óxido ni barro; sube menos de 2 cm (juego de unos 13 mm).","chirria"],["Dirección sin juego","direccion","Frena adelante y mueve la bici adelante y atrás; gira el manillar.","Sin golpeteo y con giro suave.","direccion"],["Todo apretado","potencia","Prueba sillín, manillar, potencia, bielas y pedales.","Nada se mueve. Repásalo sobre todo tras las primeras salidas (CM §4).","pedalier"],["Sin ruidos extraños","pedalier","Pedalea unos metros y escucha.","Ningún roce, crujido ni golpeteo: si lo hay, algo está flojo o desajustado (L5).",null]],"CFG":{"wb":103,"R":31.1,"tr":2,"drop":7,"cs":43,"st":50,"sa":73.5,"ha":71.5,"fork":40,"ht":16,"sh":72,"bar":"drop","barW":23,"flare":4,"brakes":["disc","disc"],"rings":[9.5,6.5],"cogs":[6.9,6.1,5.3,4.7,4.3,3.9,3.5,3.2,2.9,2.6,2.3],"rd":true,"fd":true,"thru":true,"tubeless":true,"frame":[7306575,9675372],"saddle":0.9,"extras":[]}};
+
+const root = document.getElementById("kt-root") || document.documentElement;
+const stage = document.querySelector(".bk3-stage");
+const canvas = stage.querySelector("canvas");
+const pinsBox = stage.querySelector(".bk3-pins");
+const readout = document.querySelector("[data-readout]");
+const still = matchMedia("(prefers-reduced-motion: reduce)");
+const COMP = BIKE.COMPONENTS, FAULTS = BIKE.FAULTS, METHOD = BIKE.METHOD;
+const compById = Object.fromEntries(COMP.map((c, i) => [c.id, { ...c, n: i + 1 }]));
+
+// ---------------------------------------------------------------- renderer, camera, lights
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(Math.min(2, devicePixelRatio || 1));
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(30, 1.6, 1, 2000);
+const HOME = { pos: new THREE.Vector3(140, 98, 215), target: new THREE.Vector3(52, 50, 0) };
+camera.position.copy(HOME.pos);
+const controls = new OrbitControls(camera, canvas);
+controls.target.copy(HOME.target);
+controls.enableDamping = true; controls.dampingFactor = 0.09;
+controls.minDistance = 60; controls.maxDistance = 520; controls.enablePan = true;
+controls.update();
+const hemi = new THREE.HemisphereLight(0xffffff, 0x8a8f96, 1.15);
+scene.add(hemi);
+const sun = new THREE.DirectionalLight(0xffffff, 1.5); sun.position.set(120, 220, 160); scene.add(sun);
+const fill = new THREE.DirectionalLight(0xffffff, 0.55); fill.position.set(-160, 60, -140); scene.add(fill);
+
+// ---------------------------------------------------------------- palette (follows the page theme)
+const PAL = {
+  light: { frame: 0x3f6d8e, metal: 0xc4c8cd, dark: 0x34383d, rubber: 0x2c2f33, tube: 0x8c3b33, saddle: 0x3b3d41, pad: 0x26282b, cable: 0x5d6168, tape: 0xd9c38a, lamp: 0xf2f2ee, red: 0xc92a2a, gold: 0xb08d57, edge: 0x1f2328, accent: 0xd6336c, ground: 0xe4e4df },
+  dark: { frame: 0x5b8db3, metal: 0xc8ccd2, dark: 0x5a5f66, rubber: 0x50555c, tube: 0xb3554a, saddle: 0x60646a, pad: 0x4a4e54, cable: 0x8a8f96, tape: 0xe3cf98, lamp: 0xf4f4f0, red: 0xff6b6b, gold: 0xd4b07a, edge: 0x0b0d10, accent: 0xff5c8a, ground: 0x262a2f },
+};
+let theme = root.getAttribute("data-theme") === "dark" ? "dark" : "light";
+const mats = [];
+function mat(role, opts = {}) {
+  const m = new THREE.MeshStandardMaterial({ color: PAL[theme][role], roughness: opts.rough ?? 0.6, metalness: opts.metal ?? 0.15, flatShading: !!opts.flat });
+  m.userData.role = role; mats.push(m); return m;
+}
+
+// ---------------------------------------------------------------- geometry helpers (units: cm; x forward, y up, z to the drive side)
+const V = (x, y, z = 0) => new THREE.Vector3(x, y, z);
+const UP = V(0, 1, 0);
+const parts = {};        // cid -> [THREE.Group]
+const allMeshes = [];
+const edgeMat = new THREE.LineBasicMaterial({ color: PAL[theme].edge, transparent: true, opacity: 0.35 });
+function part(cid, off, pivotAt = null) {
+  const g = new THREE.Group(); g.userData = { cid, off: off.clone() };
+  let host = g;
+  if (pivotAt) { const p = new THREE.Group(); p.position.copy(pivotAt); g.add(p); const inner = new THREE.Group(); inner.position.copy(pivotAt).multiplyScalar(-1); p.add(inner); g.userData.pivot = p; host = inner; }
+  g.userData.host = host;
+  scene.add(g); (parts[cid] = parts[cid] || []).push(g);
+  return g;
+}
+function add(g, geom, material, { edges = true, at = null } = {}) {
+  const m = new THREE.Mesh(geom, material.clone());
+  m.material.userData.role = material.userData.role; mats.push(m.material);
+  if (at) m.position.copy(at);
+  m.userData.cid = g.userData.cid;
+  g.userData.host.add(m); allMeshes.push(m);
+  if (edges) { const e = new THREE.LineSegments(new THREE.EdgesGeometry(geom, 28), edgeMat); e.userData.edge = true; m.add(e); }
+  return m;
+}
+function rod(g, a, b, r, material, o = {}) {
+  const d = b.clone().sub(a), len = d.length();
+  const geom = new THREE.CylinderGeometry(o.r2 ?? r, r, len, o.seg ?? 18, 1, !!o.open);
+  const m = add(g, geom, material, o);
+  m.position.copy(a).add(b).multiplyScalar(0.5);
+  m.quaternion.setFromUnitVectors(UP, d.normalize());
+  return m;
+}
+function disc(g, c, r, t, material, o = {}) { // axis along z
+  const geom = new THREE.CylinderGeometry(r, r, t, o.seg ?? 48, 1, false);
+  const m = add(g, geom, material, o); m.position.copy(c); m.rotation.x = Math.PI / 2; return m;
+}
+function ring(g, c, R, r, material, o = {}) { // torus in the xy plane, centred on c
+  const geom = new THREE.TorusGeometry(R, r, o.rs ?? 12, o.ts ?? 120);
+  const m = add(g, geom, material, o); m.position.copy(c); if (o.sz) m.scale.z = o.sz; return m;
+}
+function box(g, c, sx, sy, sz, material, o = {}) {
+  const m = add(g, new THREE.BoxGeometry(sx, sy, sz), material, o); m.position.copy(c); if (o.rz) m.rotation.z = o.rz; if (o.ry) m.rotation.y = o.ry; return m;
+}
+function sprocket(g, c, r, teeth, t, material) { // toothed ring in the xy plane at c, thickness t along z
+  const sh = new THREE.Shape(), n = teeth * 2;
+  for (let i = 0; i <= n; i++) { const a = (i / n) * Math.PI * 2, rr = i % 2 ? r : r - 0.55; const x = Math.cos(a) * rr, y = Math.sin(a) * rr; i ? sh.lineTo(x, y) : sh.moveTo(x, y); }
+  const hole = new THREE.Path(); hole.absarc(0, 0, Math.max(1.2, r - (r > 6 ? 2.2 : 1.6)), 0, Math.PI * 2, true); sh.holes.push(hole);
+  const m = add(g, new THREE.ExtrudeGeometry(sh, { depth: t, bevelEnabled: false, curveSegments: 6 }), material, { edges: false });
+  m.position.set(c.x, c.y, c.z - t / 2); return m;
+}
+function cable(g, pts, r, material) {
+  const curve = new THREE.CatmullRomCurve3(pts);
+  return add(g, new THREE.TubeGeometry(curve, 64, r, 8, false), material, { edges: false });
+}
+
+// ---------------------------------------------------------------- the bicycle, built from the type's parameters (BIKE.CFG)
+const K = BIKE.CFG;
+const HAS = new Set(COMP.map((c) => c.id));
+const D = Math.PI / 180;
+const lerp = (a, b, t) => a.clone().lerp(b, t);
+const add2 = (a, v, k = 1) => a.clone().addScaledVector(v, k);
+const tr = K.tr, R_RIM = K.R, R_TIRE = R_RIM + tr * 0.85, AY = R_RIM + tr * 1.75;
+const RA = V(0, AY), FA = V(K.wb, AY), BB = V(K.cs, AY - K.drop);
+const uS = V(-Math.cos(K.sa * D), Math.sin(K.sa * D));      // up the seat tube
+const uH = V(-Math.cos(K.ha * D), Math.sin(K.ha * D));      // up the steering axis
+const nH = V(Math.sin(K.ha * D), Math.cos(K.ha * D));       // forward, square to the steering axis
+const CROWN = add2(add2(FA, nH, -4.5), uH, K.fork);
+const HTb = add2(CROWN, uH, 1.2), HTt = add2(HTb, uH, K.ht), STEER = add2(HTt, uH, 3.4);
+const ST = add2(BB, uS, K.st);
+const SADDLE = add2(BB, uS, K.sh).add(V(0, 2));
+const W = K.barW || 30, WT = tr + 2.4;                        // half bar width, half fork width
+const BAR = K.bar === "drop" ? add2(STEER, V(Math.cos(-6 * D), Math.sin(-6 * D)), 10) : K.bar === "swept" ? add2(STEER, V(2, 9)) : add2(STEER, V(Math.cos(8 * D), Math.sin(8 * D)), 6);
+const barId = HAS.has("manillar_r") ? "manillar_r" : HAS.has("manillar_p") ? "manillar_p" : "manillar";
+HOME.target.set(K.wb / 2, AY + 14, 0);
+HOME.pos.copy(HOME.target).add(V(88, 48, 212).multiplyScalar(Math.max(1, (K.wb + 25) / 130)));
+camera.position.copy(HOME.pos); controls.target.copy(HOME.target); controls.update();
+PAL.light.frame = K.frame[0]; PAL.dark.frame = K.frame[1];
+
+// frame
+{
+  const g = part("cuadro", V(0, 0, 0));
+  const m = mat("frame", { rough: 0.45, metal: 0.25 });
+  rod(g, add2(ST, uS, 1.5), BB, 1.55, m);                        // seat tube
+  rod(g, add2(ST, uS, -1.2), add2(HTt, uH, -1.4), 1.45, m);       // top tube
+  rod(g, BB, add2(HTb, uH, 1.6), 1.9, m);                         // down tube
+  rod(g, add2(HTb, uH, -0.8), add2(HTt, uH, 0.8), 2.1, m);        // head tube
+  disc(g, BB, 2.35, 7.2, m);                                      // bottom-bracket shell
+  const ssTop = add2(ST, uS, -3);
+  for (const s of [-1, 1]) {
+    rod(g, V(BB.x - 1, BB.y, 2.6 * s), V(RA.x + 1.2, RA.y, (WT + 1.2) * s), 0.95, m);
+    rod(g, V(ssTop.x + 0.4, ssTop.y, 1.6 * s), V(RA.x + 1.2, RA.y + 1, (WT + 1.2) * s), 0.8, m);
+    if (!K.track) box(g, V(RA.x + 0.6, RA.y, (WT + 1.4) * s), 3.2, 3.8, 0.6, m);
+  }
+}
+// horizontal dropouts and chain tugs (single speed, fixed)
+if (K.track) {
+  const g = part("tensores", V(-16, -4, 0));
+  for (const s of [-1, 1]) {
+    box(g, V(RA.x - 1.5, RA.y, (WT + 1.4) * s), 9, 2.4, 0.6, mat("frame", { rough: 0.45, metal: 0.25 }));
+    box(g, V(RA.x - 5.2, RA.y, (WT + 2.2) * s), 2.2, 1.2, 1.2, mat("metal", { metal: 0.6 }));
+    rod(g, V(RA.x - 5.2, RA.y, (WT + 2.2) * s), V(RA.x, RA.y, (WT + 2.2) * s), 0.25, mat("metal", { metal: 0.6 }));
+  }
+}
+// fork: rigid, or suspension (stanchions and lowers)
+{
+  const id = HAS.has("horquilla_s") ? "horquilla_s" : "horquilla";
+  const g = part(id, V(15, -2, 0));
+  const m = mat("frame", { rough: 0.45, metal: 0.25 });
+  rod(g, CROWN, STEER, 1.35, mat("metal"));
+  box(g, CROWN, 4.2, 2.4, WT * 2 + 2, K.susp ? mat("dark") : m, { rz: -(90 - K.ha) * D });
+  for (const s of [-1, 1]) {
+    const top = V(CROWN.x, CROWN.y - 1, WT * s), bot = V(FA.x, FA.y, (WT + 0.4) * s);
+    if (K.susp) {
+      const mid = lerp(top, bot, 0.42);
+      rod(g, top, lerp(top, bot, 0.6), 1.25, mat("metal", { metal: 0.7, rough: 0.25 }));
+      rod(g, mid, bot, 1.75, mat("dark", { metal: 0.3 }));
+      ring(g, mid, 1.75, 0.35, mat("dark"), { rs: 6, ts: 24 }).quaternion.setFromUnitVectors(V(0, 0, 1), bot.clone().sub(top).normalize());
+    } else rod(g, top, bot, 1.05, m, { r2: 1.25 });
+  }
+  if (K.susp) { const a = lerp(V(CROWN.x, CROWN.y - 1), V(FA.x, FA.y), 0.5); rod(g, V(a.x + 1.8, a.y, -WT), V(a.x + 1.8, a.y + 2, 0), 0.9, mat("dark")); rod(g, V(a.x + 1.8, a.y + 2, 0), V(a.x + 1.8, a.y, WT), 0.9, mat("dark")); }
+}
+// headset
+{
+  const m = mat("dark", { metal: 0.5, rough: 0.35 });
+  rod(part("direccion", V(3, 9, 0)), add2(HTt, uH, 0.6), add2(HTt, uH, 1.8), 2.6, m);
+  rod(part("direccion", V(7, -7, 0)), add2(HTb, uH, -1.8), add2(HTb, uH, -0.6), 2.6, m);
+}
+// stem
+{
+  const g = part("potencia", V(8, 13, 0));
+  const m = mat("dark", { metal: 0.4, rough: 0.4 });
+  rod(g, add2(STEER, uH, -3.2), add2(STEER, uH, 0.6), 1.9, m);
+  rod(g, add2(STEER, uH, -1), BAR, 1.5, m);
+  disc(g, BAR, 2.0, 5, m);
+}
+// handlebar (flat / riser, swept-back city bar, or drop bar with tape) and the controls on it
+const LEV = [];      // brake-lever points, left (front brake) and right (rear brake)
+{
+  const g = part(barId, V(10, 21, 0));
+  const bm = mat("metal", { metal: 0.6, rough: 0.3 });
+  if (K.bar === "drop") {
+    const fl = K.flare || 0;
+    rod(g, V(BAR.x, BAR.y, -W), V(BAR.x, BAR.y, W), 1.05, bm);
+    const tape = HAS.has("cinta_m") ? part("cinta_m", V(10, 21, 0)) : g;
+    for (const s of [-1, 1]) {
+      const pts = [V(BAR.x, BAR.y, W * s), V(BAR.x + 5, BAR.y - 0.4, (W + 0.4 + fl * 0.2) * s), V(BAR.x + 8.2, BAR.y - 5, (W + 0.9 + fl * 0.5) * s), V(BAR.x + 6.2, BAR.y - 11, (W + 1.4 + fl) * s), V(BAR.x - 1.5, BAR.y - 12.2, (W + 1.5 + fl) * s)];
+      cable(g, pts, 1.05, bm);
+      cable(tape, pts.slice(1), 1.35, mat("saddle", { rough: 0.9 }));
+      // integrated levers (brake + shift)
+      const lv = part(HAS.has("mandos_r") ? "mandos_r" : "manetas", V(14, 24, 6 * s));
+      box(lv, V(BAR.x + 6.6, BAR.y + 0.4, (W + 0.6 + fl * 0.3) * s), 4.2, 3.2, 2.4, mat("dark"), { rz: -0.35 });
+      rod(lv, V(BAR.x + 8.4, BAR.y - 0.8, (W + 0.7 + fl * 0.3) * s), V(BAR.x + 8.6, BAR.y - 9.5, (W + 1.1 + fl * 0.6) * s), 0.5, mat("metal", { metal: 0.6 }));
+      LEV.push(V(BAR.x + 6.6, BAR.y - 1.5, (W + 0.6) * s));
+    }
+  } else {
+    const ends = [];
+    for (const s of [-1, 1]) {
+      let pts;
+      if (K.bar === "swept") pts = [V(BAR.x, BAR.y, 0), V(BAR.x - 0.5, BAR.y + 0.5, 11 * s), V(BAR.x - 8, BAR.y + 1.6, 22 * s), V(BAR.x - 17, BAR.y + 1.8, 25.5 * s)];
+      else pts = [V(BAR.x, BAR.y, 0), V(BAR.x, BAR.y + (K.barW > 34 ? 1.6 : 0), 9 * s), V(BAR.x - 0.8, BAR.y + (K.barW > 34 ? 2.2 : 0), W * s)];
+      cable(g, pts, 1.05, bm);
+      const e = pts[pts.length - 1], back = pts[pts.length - 2];
+      const dir = e.clone().sub(back).normalize();
+      rod(g, add2(e, dir, -8), add2(e, dir, 0.6), 1.6, mat("rubber"));
+      ends.push({ e, dir, s });
+    }
+    for (const { e, dir, s } of ends) {
+      if (K.brakes[s < 0 ? 0 : 1] || HAS.has("manetas") && s < 0) {
+        const lv = part("manetas", V(13, 25, 6 * s));
+        const c = add2(e, dir, -10.5);
+        disc(lv, c, 1.6, 2.2, mat("dark", { metal: 0.3 })).quaternion.setFromUnitVectors(UP, dir);
+        box(lv, V(c.x + 3.6, c.y - 0.6, c.z + 2 * s), 7.5, 1.1, 3.2, mat("metal", { metal: 0.6, rough: 0.3 }), { ry: 0.25 * s });
+        LEV.push(V(c.x + 1, c.y - 1, c.z));
+      } else LEV.push(null);
+      if (HAS.has("mandos")) { const sh = part("mandos", V(12, 21, 10 * s)); const c = add2(e, dir, -13); box(sh, V(c.x - 1.2, c.y - 2.2, c.z), 3.2, 2.6, 3.4, mat("dark")); }
+    }
+  }
+}
+
+// ---------------------------------------------------------------- wheels
+function wheel(A, front) {
+  const k = front ? 1 : -1, zs = front ? 1 : -1;
+  const off = (dz, dx = 0, dy = 0) => V(34 * k + dx, dy, dz * zs);
+  ring(part("cubierta", off(22), A), A, R_TIRE, tr, mat("rubber", { rough: 0.9 }), { rs: 14, ts: 140, sz: 1.05 });
+  if (HAS.has("camara")) ring(part("camara", off(13), A), A, R_TIRE - 0.3, tr * 0.66, mat("tube", { rough: 0.8 }), { rs: 10, ts: 120, edges: false });
+  if (HAS.has("sellante")) {
+    const g = part("sellante", off(13), A);
+    ring(g, A, R_RIM + 0.9, 0.5, mat("lamp", { rough: 0.5 }), { rs: 6, ts: 120, edges: false, sz: Math.max(1, tr * 0.9) });
+  }
+  const valve = part("valvula", off(13, 0, -6), A);
+  rod(valve, V(A.x, A.y - (R_RIM - 2.8)), V(A.x, A.y - (R_TIRE - 0.6)), HAS.has("valvula") && /Presta/.test(compById.valvula.name) ? 0.3 : 0.42, mat("metal", { metal: 0.7, rough: 0.3 }));
+  disc(valve, V(A.x, A.y - (R_RIM - 3.2)), 0.75, 0.6, mat("dark"), {}).rotation.x = 0;
+  if (HAS.has("cinta")) ring(part("cinta", off(5), A), A, R_RIM - 0.9, 0.45, mat("tape"), { rs: 6, ts: 120, edges: false });
+  ring(part("llanta", off(0), A), A, R_RIM, 1.25, mat("metal", { metal: 0.65, rough: 0.28 }), { rs: 10, ts: 140, sz: Math.max(1.35, tr * 0.7) });
+  const sp = part("radios", off(-6), A);
+  const pos = [];
+  for (let i = 0; i < 32; i++) {
+    const a = (i / 32) * Math.PI * 2, s = i % 2 ? 1 : -1, cross = (i % 4 < 2 ? 1 : -1) * 0.55;
+    const h = V(A.x + Math.cos(a + cross) * 2.4, A.y + Math.sin(a + cross) * 2.4, 2.9 * s);
+    const r = V(A.x + Math.cos(a) * (R_RIM - 1.2), A.y + Math.sin(a) * (R_RIM - 1.2), 0.25 * s);
+    pos.push(h.x, h.y, h.z, r.x, r.y, r.z);
+  }
+  const sg = new THREE.BufferGeometry(); sg.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
+  const smat = new THREE.LineBasicMaterial({ color: 0x8b9097 }); smat.userData.role = "spoke";
+  const lines = new THREE.LineSegments(sg, smat); lines.userData.cid = "radios"; sp.userData.host.add(lines); allMeshes.push(lines); mats.push(smat);
+  const hub = part("bujes", off(-13), A);
+  const hm = mat("metal", { metal: 0.6, rough: 0.3 });
+  rod(hub, V(A.x, A.y, -4), V(A.x, A.y, 4), 1.4, hm);
+  for (const s of [-1, 1]) disc(hub, V(A.x, A.y, 2.9 * s), 2.8, 0.5, hm);
+  if (HAS.has("eje")) {
+    const g = part("eje", off(-20));
+    rod(g, V(A.x, A.y, -(WT + 2.4)), V(A.x, A.y, WT + 2.4), 0.75, mat("dark", { metal: 0.4 }));
+    box(g, V(A.x + 2.4, A.y - 0.6, -(WT + 2.8)), 5.5, 1.1, 1.1, mat("dark"), { rz: -0.3 });
+  } else {
+    rod(hub, V(A.x, A.y, -(WT + 1.6)), V(A.x, A.y, WT + 1.6), 0.45, mat("dark"));
+    const qr = part(HAS.has("cierre") ? "cierre" : "bujes", off(-20));
+    if (K.track) for (const s of [-1, 1]) disc(qr, V(A.x, A.y, (WT + 2.2) * s), 1.2, 1.1, mat("dark"), { seg: 6 });
+    else { box(qr, V(A.x + 2.6, A.y - 1.6, -(WT + 2.6) * zs), 6.5, 1.0, 1.0, mat("metal", { metal: 0.6 }), { rz: front ? -0.5 : 0.5 }); disc(qr, V(A.x, A.y, (WT + 2.2) * zs), 1.1, 1.2, mat("dark")); }
+  }
+  // disc rotor on the left
+  if (K.brakes[front ? 0 : 1] === "disc") {
+    const g = part("discos", off(-28), A);
+    const r = front ? 8 : 7.2;
+    const sh = new THREE.Shape(); sh.absarc(0, 0, r, 0, Math.PI * 2, false);
+    const hole = new THREE.Path(); hole.absarc(0, 0, r - 1.7, 0, Math.PI * 2, true); sh.holes.push(hole);
+    const m = add(g, new THREE.ExtrudeGeometry(sh, { depth: 0.18, bevelEnabled: false, curveSegments: 48 }), mat("metal", { metal: 0.8, rough: 0.25 }), { edges: false });
+    m.position.set(A.x, A.y, -(WT - 0.6));
+    for (let i = 0; i < 6; i++) { const a = (i / 6) * Math.PI * 2; rod(g, V(A.x + Math.cos(a) * 1.6, A.y + Math.sin(a) * 1.6, -(WT - 0.5)), V(A.x + Math.cos(a + 0.4) * (r - 1.5), A.y + Math.sin(a + 0.4) * (r - 1.5), -(WT - 0.5)), 0.35, mat("metal", { metal: 0.8 })); }
+  }
+}
+wheel(FA, true);
+wheel(RA, false);
+
+// ---------------------------------------------------------------- rear sprockets
+const COG = K.cogs;
+const cogId = HAS.has("pinon_fijo") ? "pinon_fijo" : HAS.has("pinon_libre") ? "pinon_libre" : "pinones";
+{
+  const g = part(cogId, V(-30, 0, 16), RA);
+  const m = mat("metal", { metal: 0.7, rough: 0.3 });
+  COG.forEach((r, i) => sprocket(g, V(RA.x, RA.y, 3.6 + i * 0.42), r, Math.round(r * 4.9), 0.22, m));
+  disc(g, V(RA.x, RA.y, 3.6 + COG.length * 0.21), 1.9, Math.max(1.2, COG.length * 0.42), mat("dark"));
+  if (K.fixed) ring(g, V(RA.x, RA.y, 2.8), 2.1, 0.45, mat("dark", { metal: 0.5 }), { rs: 6, ts: 32 });   // reverse-threaded lockring
+}
+// ---------------------------------------------------------------- drivetrain at the bottom bracket
+const RINGS = K.rings;
+{
+  const g = part("pedalier", V(0, -13, 0));
+  rod(g, V(BB.x, BB.y, -7.6), V(BB.x, BB.y, 7.6), 0.85, mat("metal", { metal: 0.6, rough: 0.35 }));
+  for (const s of [-1, 1]) disc(g, V(BB.x, BB.y, 3.9 * s), 2.6, 0.7, mat("dark"));
+}
+const crankParts = [];
+{
+  const g = part("platos", V(0, 0, 13), BB);
+  const m = mat("metal", { metal: 0.65, rough: 0.3 });
+  RINGS.forEach((r, i) => sprocket(g, V(BB.x, BB.y, 6.4 - i * 0.6), r, Math.round(r * 3.9), 0.26, m));
+  const sr = Math.min(...RINGS) - 1.4;
+  for (let i = 0; i < 4; i++) { const a = (i / 4) * Math.PI * 2 + 0.3; rod(g, V(BB.x, BB.y, 6.2), V(BB.x + Math.cos(a) * sr, BB.y + Math.sin(a) * sr, 6.2), 0.55, mat("dark")); }
+  crankParts.push(g);
+}
+const CRANK = 17;
+const pedalBodies = [];
+for (const s of [1, -1]) {
+  const g = part("bielas", V(0, 0, 22 * s), BB);
+  const end = V(BB.x, BB.y - CRANK * s, 7.8 * s);
+  rod(g, V(BB.x, BB.y, 7.8 * s), end, 0.95, mat("metal", { metal: 0.55, rough: 0.35 }), { r2: 0.7 });
+  crankParts.push(g);
+  const p = part("pedales", V(0, 0, 33 * s), BB);
+  const pivot = new THREE.Group(); pivot.position.copy(end); p.userData.host.add(pivot);
+  const body = new THREE.Group(); pivot.add(body); pedalBodies.push(pivot);
+  rod({ userData: { host: body, cid: "pedales" } }, V(0, 0, 0), V(0, 0, 4.5 * s), 0.45, mat("metal"));
+  box({ userData: { host: body, cid: "pedales" } }, V(0, 0, 8 * s), 9, 1.5, 6.2, mat("dark"));
+  crankParts.push(p);
+}
+
+// chain: round the chainring, the cog and (with a derailleur) its two pulleys
+const CZ = 5.6, Rr = RINGS[0], Rc = COG[Math.floor(COG.length / 2)];
+const RP = 1.7;
+const PU = V(RA.x + 1.6, RA.y - (Math.max(...COG) * 0.55 + 4.5), CZ), PL = add2(PU, V(K.rdLong ? 2.6 : 2.4, K.rdLong ? -9.5 : -6.8));
+function arc(c, r, a0, a1, n) { const out = []; for (let i = 0; i <= n; i++) { const a = a0 + ((a1 - a0) * i) / n; out.push(V(c.x + Math.cos(a) * r, c.y + Math.sin(a) * r, CZ)); } return out; }
+const chainPts = K.rd
+  ? [...arc(BB, Rr, -90 * D, 90 * D, 18), ...arc(RA, Rc, 90 * D, 250 * D, 14), ...arc(PU, RP, 160 * D, -20 * D, 8), ...arc(PL, RP, 160 * D, 300 * D, 8)]
+  : [...arc(BB, Rr, -90 * D, 90 * D, 18), ...arc(RA, Rc, 90 * D, 270 * D, 14)];
+const chainCurve = new THREE.CatmullRomCurve3(chainPts, true, "centripetal");
+const LINK = 1.27, NL = Math.round(chainCurve.getLength() / LINK);
+const chainGroup = part("cadena", V(0, -9, 10));
+const chain = new THREE.InstancedMesh(new THREE.BoxGeometry(LINK * 0.92, 0.62, 1.15), mat("dark", { metal: 0.6, rough: 0.35 }), NL); chain.userData.cid = "cadena";
+chainGroup.userData.host.add(chain); allMeshes.push(chain);
+const dummy = new THREE.Object3D();
+function layChain(phase) {
+  for (let i = 0; i < NL; i++) {
+    const u = (((i + phase) / NL) % 1 + 1) % 1;
+    const p = chainCurve.getPointAt(u), t = chainCurve.getTangentAt(u);
+    dummy.position.copy(p); dummy.rotation.set(0, 0, Math.atan2(t.y, t.x)); dummy.updateMatrix();
+    chain.setMatrixAt(i, dummy.matrix);
+  }
+  chain.instanceMatrix.needsUpdate = true;
+}
+layChain(0);
+if (HAS.has("cambio_t")) {
+  const g = part("cambio_t", V(-14, -12, 15));
+  box(g, V(RA.x + 0.8, RA.y - 3.6, 7.6), 2.6, 6.5, 2.2, mat("dark", { metal: 0.3 }), { rz: 0.25 });
+  for (const z of [CZ - 1.3, CZ + 1.3]) box(g, lerp(PU, PL, 0.5).setZ(z), 3.4, PU.distanceTo(PL) + 3.6, 0.3, mat("metal"), { rz: Math.atan2(PL.x - PU.x, PU.y - PL.y) });
+  for (const p of [PU, PL]) disc(g, p, RP - 0.2, 0.9, mat("pad"), { seg: 18 });
+}
+if (HAS.has("cambio_d")) {
+  const g = part("cambio_d", V(0, 8, 16));
+  const at = add2(BB, uS, RINGS[0] + 2.5);
+  ring(g, V(at.x, at.y, 0), 1.9, 0.45, mat("dark"), { rs: 8, ts: 24 }).rotation.x = Math.PI / 2;
+  box(g, V(at.x + 2.6, BB.y + RINGS[0] + 1.6, CZ + 0.4), 7, 2.4, 2.6, mat("metal", { metal: 0.6 }), { rz: -0.15 });
+}
+// chain guard over the chainring and the top run
+if (HAS.has("guardacadena")) {
+  const g = part("guardacadena", V(0, 10, 18));
+  const sh = new THREE.Shape(); sh.absarc(0, 0, Rr + 2.4, -0.15, Math.PI * 0.62, false); sh.absarc(0, 0, Rr - 1.2, Math.PI * 0.62, -0.15, true);
+  const m = add(g, new THREE.ExtrudeGeometry(sh, { depth: 0.35, bevelEnabled: false, curveSegments: 24 }), mat("frame", { rough: 0.5 }));
+  m.position.set(BB.x, BB.y, CZ + 1.6);
+  const a = V(BB.x - 6, BB.y + Rr + 1.4), b = V(RA.x + Rc + 3, RA.y + Rc + 1.2);
+  box(g, lerp(a, b, 0.5).setZ(CZ + 1.6), a.distanceTo(b), 3, 0.35, mat("frame", { rough: 0.5 }), { rz: Math.atan2(b.y - a.y, b.x - a.x) });
+}
+
+// ---------------------------------------------------------------- brakes
+const BP = [null, null];   // where each brake cable / hose ends (front, rear)
+function vbrake(A, dir, front) {
+  const k = front ? 1 : -1, n = dir.clone().normalize();
+  const at = (r) => V(A.x + n.x * r, A.y + n.y * r);
+  const rz = Math.atan2(n.y, n.x) - Math.PI / 2;
+  for (const s of [-1, 1]) {
+    box(part("frenos", V(30 * k, 12, 11 * s)), at(R_RIM + 2.4).setZ((WT - 0.4) * s), 1.4, 10, 1.1, mat("metal", { metal: 0.6 }), { rz });
+    box(part("zapatas", V(30 * k, 12, 18 * s)), at(R_RIM - 0.2).setZ((tr * 0.7 + 0.9) * s), 1.4, 4.4, 1.2, mat("pad", { rough: 0.9 }), { rz: rz + Math.PI / 2 });
+  }
+  return at(R_RIM + 7.2);
+}
+function caliper(A, M, front) {
+  const k = front ? 1 : -1;
+  const n = M.clone().sub(A).normalize();
+  const pad = (s) => V(A.x + n.x * (R_RIM - 0.3), A.y + n.y * (R_RIM - 0.3), (tr * 0.7 + 1.0) * s);
+  const g = part("pinzas", V(30 * k, 14, 0));
+  box(g, M, 2.4, 2.2, 3.2, mat("metal", { metal: 0.6 }));
+  for (const s of [-1, 1]) {
+    const top = V(M.x, M.y + 0.3, 1.2 * s), side = add2(V(M.x, M.y, (tr + 1.6) * s), n, -1.2);
+    rod(g, top, side, 0.55, mat("metal", { metal: 0.6 }));
+    rod(g, side, pad(s).add(V(0, 0, 0.6 * s)), 0.55, mat("metal", { metal: 0.6 }));
+    box(part("zapatas", V(30 * k, 14, 16 * s)), pad(s), 1.4, 4.2, 1.1, mat("pad", { rough: 0.9 }), { rz: Math.atan2(n.y, n.x) });
+  }
+  return V(M.x, M.y + 1.6);
+}
+function discBrake(A, ang, front) {
+  const k = front ? 1 : -1;
+  const r = (front ? 8 : 7.2) - 0.8;
+  const c = V(A.x + Math.cos(ang) * r, A.y + Math.sin(ang) * r, -(WT - 0.5));
+  const g = part("pinzas_d", V(28 * k, 6, -16));
+  box(g, c, 4.6, 2.6, 3.6, mat("dark", { metal: 0.4 }), { rz: ang + Math.PI / 2 });
+  const p = part("pastillas", V(28 * k, 6, -26));
+  for (const s of [-1, 1]) box(p, V(c.x, c.y, c.z + 0.55 * s), 3.2, 1.6, 0.4, mat("pad", { rough: 0.9 }), { rz: ang + Math.PI / 2 });
+  return c;
+}
+[0, 1].forEach((i) => {
+  const t = K.brakes[i]; if (!t) return;
+  const front = i === 0, A = front ? FA : RA;
+  if (t === "v") BP[i] = vbrake(A, front ? CROWN.clone().sub(FA) : add2(ST, uS, -3).sub(RA), front);
+  else if (t === "caliper") BP[i] = caliper(A, front ? add2(CROWN, uH, -0.6) : add2(RA, add2(ST, uS, -3).sub(RA).normalize(), R_TIRE + tr + 2.6), front);
+  else if (t === "disc") BP[i] = discBrake(A, front ? 200 * D : 35 * D, front);
+});
+// cables (rim brakes), hoses (disc brakes) and the gear cable
+{
+  const hyd = HAS.has("latiguillos");
+  const g = part(hyd ? "latiguillos" : HAS.has("cables") ? "cables" : "manetas", V(6, 6, -14));
+  const m = mat(hyd ? "dark" : "cable", { rough: 0.7 });
+  if (BP[0] && LEV[0]) cable(g, [LEV[0], V(LEV[0].x + 2, LEV[0].y - 8, LEV[0].z * 0.6), add2(BP[0], uH, 12).setZ(BP[0].z * 0.5 - 1), BP[0]], 0.32, m);
+  if (BP[1] && LEV[1]) {
+    const via = hyd ? [lerp(HTb, BB, 0.15).setZ(-2.2), lerp(HTb, BB, 0.85).setZ(-2.4), V(BB.x - 8, BB.y - 0.5, -3.4), V(RA.x + 12, RA.y + 1, -(WT + 0.4))] : [V(HTt.x - 6, HTt.y + 0.6, 1.9), add2(ST, uS, -1.2).add(V(5, 0, 1.9)), add2(ST, uS, -5).setZ(2)];
+    cable(g, [LEV[1], V(LEV[1].x - 4, LEV[1].y - 6, LEV[1].z * 0.5), ...via, BP[1]], 0.32, m);
+  }
+  if (HAS.has("mandos") && HAS.has("cambio_t")) {
+    const s = part("mandos", V(10, 6, 16));
+    cable(s, [V(BAR.x - 1.2, BAR.y - 3, 17), V(BAR.x - 6, BAR.y - 12, 6), add2(HTb, uH, -2).setZ(2.2), lerp(HTb, BB, 0.85).setZ(2.2), V(BB.x - 6, BB.y - 2.2, 3.4), V(RA.x + 12, RA.y + 1.2, 5.6), V(RA.x + 1.5, RA.y - 2.5, 7.6)], 0.28, mat("cable", { rough: 0.7 }));
+  }
+}
+// seat post and saddle (wider and padded on the city bike)
+{
+  rod(part("tija", V(0, 15, 0)), add2(ST, uS, -4), add2(SADDLE, uS, -2.2), 1.15, mat("metal", { metal: 0.6, rough: 0.3 }));
+  const s = part("sillin", V(-2, 28, 0));
+  const k = K.saddle || 1;
+  const shp = new THREE.Shape();
+  shp.moveTo(-12, 0); shp.bezierCurveTo(-12, 8.5 * k, -4, 8.5 * k, 2, 3.6); shp.lineTo(13, 2.0); shp.bezierCurveTo(15, 1.4, 15, -1.4, 13, -2.0); shp.lineTo(2, -3.6); shp.bezierCurveTo(-4, -8.5 * k, -12, -8.5 * k, -12, 0);
+  const sm = add(s, new THREE.ExtrudeGeometry(shp, { depth: 2.2 * k, bevelEnabled: true, bevelThickness: 0.9, bevelSize: 0.9, bevelSegments: 3, curveSegments: 18 }), mat("saddle", { rough: 0.8 }));
+  sm.rotation.x = Math.PI / 2; sm.position.set(SADDLE.x, SADDLE.y + 1.6 + 2.2 * (k - 1), 0);
+  box(s, V(SADDLE.x + 0.5, SADDLE.y - 0.6, 0), 12, 1.0, 3.0, mat("dark"));
+}
+// accessories
+if (HAS.has("luces")) {
+  disc(part("luces", V(10, 10, 0)), add2(CROWN, nH, 3).add(V(0, 2, 0)), 1.9, 4.2, mat("lamp", { rough: 0.3 })).rotation.set(0, Math.PI / 2, 0);
+  box(part("luces", V(-10, 6, 0)), add2(SADDLE, uS, -9).add(V(-2.6, 0, 0)), 0.8, 3.2, 4.6, mat("red", { rough: 0.4 }));
+}
+if (HAS.has("guardabarros")) {
+  const fm = mat("dark", { rough: 0.5 });
+  for (const [A, a0, len, front] of [[FA, 25, 175, true], [RA, 10, 190, false]]) {
+    const g = part("guardabarros", V(front ? 22 : -22, 14, 0));
+    const m = add(g, new THREE.TorusGeometry(R_TIRE + tr + 1.2, 0.35, 6, 72, len * D), fm, { edges: false });
+    m.position.copy(A); m.rotation.z = a0 * D; m.scale.z = (tr + 1.4) / 0.35;
+    const endA = (a0 + len) * D;
+    for (const s of [-1, 1]) rod(g, V(A.x, A.y, (WT + 0.6) * s), V(A.x + Math.cos(endA - 0.5) * (R_TIRE + tr + 1.2), A.y + Math.sin(endA - 0.5) * (R_TIRE + tr + 1.2), (tr + 1.2) * s), 0.22, mat("metal"));
+  }
+}
+if (HAS.has("portaequipaje")) {
+  const g = part("portaequipaje", V(-18, 22, 0));
+  const m = mat("metal", { metal: 0.6, rough: 0.35 });
+  const y = RA.y + R_TIRE + tr + 4.5, x0 = RA.x - 13, x1 = add2(ST, uS, -6).x - 3;
+  for (const s of [-1, 1]) {
+    rod(g, V(x0, y, 7 * s), V(x1, y, 7 * s), 0.45, m);
+    rod(g, V(x0 + 2, y, 7 * s), V(RA.x + 0.4, RA.y + 1, (WT + 1.4) * s), 0.4, m);
+    rod(g, V(x1, y, 7 * s), add2(ST, uS, -6).setZ(1.6 * s), 0.35, m);
+  }
+  for (const x of [x0, (x0 + x1) / 2, x1]) rod(g, V(x, y, -7), V(x, y, 7), 0.4, m);
+}
+if (HAS.has("pata")) rod(part("pata", V(0, -10, -12)), V(BB.x - 7, BB.y - 0.5, -3.2), V(BB.x - 16, 0.6, -11), 0.75, mat("dark", { metal: 0.4 }));
+
+// ---------------------------------------------------------------- exploded view
+let ex = 0, exTarget = 0;
+function placeParts() {
+  const e = ex * ex * (3 - 2 * ex);
+  for (const list of Object.values(parts)) for (const g of list) g.position.copy(g.userData.off).multiplyScalar(e);
+}
+// anchors (for numbers and focus): centre of each component's bounding box
+const tmpBox = new THREE.Box3();
+function anchorOf(cid) {
+  tmpBox.makeEmpty();
+  const list = parts[cid] || [];
+  if (list[0]) tmpBox.expandByObject(list[0]); // the first piece (front wheel, right side…) so the number sits on a real part
+  return tmpBox.isEmpty() ? null : tmpBox.getCenter(new THREE.Vector3());
+}
+
+// ---------------------------------------------------------------- highlight
+let hover = null, focus = null, focusSet = new Set(), fault = null;
+function paint() {
+  const accent = new THREE.Color(PAL[theme].accent);
+  for (const m of allMeshes) {
+    const cid = m.userData.cid;
+    const isHi = cid === hover || cid === focus;
+    const dim = (focus || focusSet.size) && !isHi && !focusSet.has(cid);
+    const list = Array.isArray(m.material) ? m.material : [m.material];
+    for (const mm of list) {
+      if (mm.emissive) { mm.emissive.copy(isHi ? accent : focusSet.has(cid) ? accent.clone().multiplyScalar(0.35) : new THREE.Color(0)); mm.emissiveIntensity = isHi ? 0.55 : 1; }
+      if (mm.isLineBasicMaterial && !m.userData.edge) mm.color.set(isHi ? PAL[theme].accent : theme === "dark" ? 0xb7bcc3 : 0x8b9097);
+      if (mm.transparent !== !!dim) { mm.transparent = !!dim; mm.needsUpdate = true; }
+      mm.opacity = dim ? 0.13 : 1; mm.depthWrite = !dim;
+    }
+    m.children.forEach((c) => { if (c.userData.edge) c.visible = !dim; });
+  }
+}
+function applyTheme() {
+  theme = root.getAttribute("data-theme") === "dark" ? "dark" : "light";
+  for (const m of mats) { const r = m.userData.role; if (r && PAL[theme][r] !== undefined && m.color) m.color.set(PAL[theme][r]); }
+  edgeMat.color.set(PAL[theme].edge); edgeMat.opacity = theme === "dark" ? 0.55 : 0.35;
+  hemi.groundColor.set(theme === "dark" ? 0x30343a : 0x8a8f96);
+  paint(); render();
+}
+new MutationObserver(applyTheme).observe(root, { attributes: true, attributeFilter: ["data-theme"] });
+
+// ---------------------------------------------------------------- numbers over the figure, and the detail box
+const plate = stage.closest(".iso-plate");
+const slot = document.createElement("div"); slot.className = "cp-slot";
+slot.textContent = "Pasa el cursor sobre una pieza, o activa «Mostrar números en la figura», para ver aquí su nombre y para qué sirve.";
+const tip = document.createElement("div"); tip.className = "cp-tip"; tip.hidden = true; tip.setAttribute("role", "status");
+plate.appendChild(slot); plate.appendChild(tip);
+const pins = COMP.map((c, i) => { const b = document.createElement("button"); b.type = "button"; b.className = "bk3-pin"; b.dataset.cp = c.id; b.textContent = i + 1; b.setAttribute("aria-label", c.name); pinsBox.appendChild(b); return b; });
+const toggle = document.querySelector(".cp-toggle");
+let showNums = false;
+toggle.addEventListener("click", () => { showNums = !showNums; toggle.setAttribute("aria-pressed", showNums ? "true" : "false"); stage.toggleAttribute("data-nums", showNums); render(); });
+const v3 = new THREE.Vector3();
+function placePins() {
+  const w = canvas.clientWidth, h = canvas.clientHeight;
+  for (const b of pins) {
+    const a = anchorOf(b.dataset.cp);
+    const on = showNums || b.dataset.cp === hover || b.dataset.cp === focus;
+    if (!a || !on) { b.hidden = true; continue; }
+    v3.copy(a).project(camera);
+    b.hidden = v3.z > 1;
+    b.style.left = ((v3.x + 1) / 2) * w + "px"; b.style.top = ((1 - v3.y) / 2) * h + "px";
+    b.toggleAttribute("data-on", b.dataset.cp === hover || b.dataset.cp === focus);
+  }
+}
+const chips = [...document.querySelectorAll(".cp-chips button")];
+let hideT = 0;
+function showTip(cid) {
+  const c = compById[cid];
+  if (!c) { tip.hidden = true; return; }
+  tip.innerHTML = '<strong><span class="cp-tn">' + c.n + "</span>" + c.name + "</strong>" + c.desc;
+  tip.hidden = false;
+}
+function setHover(cid) {
+  clearTimeout(hideT);
+  if (hover === cid) return;
+  hover = cid; showTip(cid || focus);
+  chips.forEach((b) => b.setAttribute("aria-pressed", b.dataset.cp === (cid || focus) ? "true" : "false"));
+  paint(); render();
+}
+const hoverOff = () => { clearTimeout(hideT); hideT = setTimeout(() => setHover(null), 200); };
+chips.forEach((b) => {
+  b.addEventListener("pointerenter", () => setHover(b.dataset.cp));
+  b.addEventListener("pointerleave", hoverOff);
+  b.addEventListener("focus", () => setHover(b.dataset.cp));
+  b.addEventListener("blur", hoverOff);
+  b.addEventListener("click", () => setFocus(focus === b.dataset.cp ? null : b.dataset.cp, true));
+});
+pins.forEach((b) => {
+  b.addEventListener("pointerenter", () => setHover(b.dataset.cp));
+  b.addEventListener("pointerleave", hoverOff);
+  b.addEventListener("click", () => setFocus(focus === b.dataset.cp ? null : b.dataset.cp, true));
+});
+tip.addEventListener("pointerenter", () => clearTimeout(hideT));
+tip.addEventListener("pointerleave", hoverOff);
+
+// focus: the selected component lights up, the rest fades, and the camera turns to it
+let camGoal = null;
+function setFocus(cid, fly) {
+  focus = cid || null;
+  showTip(hover || focus);
+  if (!hover) chips.forEach((b) => b.setAttribute("aria-pressed", b.dataset.cp === focus ? "true" : "false"));
+  if (fly) { const a = focus ? anchorOf(focus) : null; camGoal = a ? a : HOME.target.clone(); }
+  paint(); updateReadout(); render();
+}
+
+// picking in the 3D view
+const ray = new THREE.Raycaster(); ray.params.Line.threshold = 0.6;
+const ndc = new THREE.Vector2();
+function pick(e) {
+  const r = canvas.getBoundingClientRect();
+  ndc.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
+  ray.setFromCamera(ndc, camera);
+  const hits = ray.intersectObjects(allMeshes, false).filter((h) => !(h.object.material.opacity < 0.5));
+  return hits.length ? hits[0].object.userData.cid : null;
+}
+let downAt = null;
+canvas.addEventListener("pointerdown", (e) => { downAt = [e.clientX, e.clientY]; });
+canvas.addEventListener("pointermove", (e) => { if (e.buttons) return; const cid = pick(e); canvas.style.cursor = cid ? "pointer" : "grab"; if (cid) setHover(cid); else if (hover) hoverOff(); });
+canvas.addEventListener("pointerleave", hoverOff);
+canvas.addEventListener("pointerup", (e) => {
+  if (!downAt || Math.hypot(e.clientX - downAt[0], e.clientY - downAt[1]) > 5) return;
+  const cid = pick(e);
+  if (cid) { setFocus(focus === cid ? null : cid, false); if (e.pointerType !== "mouse") setHover(cid); }
+  else { setFocus(null, false); if (e.pointerType !== "mouse") setHover(null); }
+});
+canvas.addEventListener("dblclick", () => { camGoal = HOME.target.clone(); camera.position.copy(HOME.pos).sub(HOME.target).multiplyScalar(fitK * (1 + 0.62 * ex)).add(HOME.target); setFocus(null, false); });
+
+// ---------------------------------------------------------------- view buttons and pedalling
+const vbtns = [...document.querySelectorAll(".vw-btn[data-ex]")];
+const slider = document.querySelector(".bk3-ex");
+function setEx(v, from) {
+  exTarget = v;
+  if (from !== "slider" && slider) slider.value = Math.round(v * 100);
+  vbtns.forEach((b) => b.setAttribute("aria-pressed", (+b.dataset.ex === 1) === (v > 0.5) ? "true" : "false"));
+  updateReadout(); run();
+}
+vbtns.forEach((b) => b.addEventListener("click", () => setEx(+b.dataset.ex)));
+if (slider) slider.addEventListener("input", () => setEx(slider.value / 100, "slider"));
+const pedalBtn = document.querySelector(".bk3-pedal");
+let pedalling = false, crank = 0, wheelA = 0, chainPhase = 0;
+function setPedal(on) { pedalling = on; pedalBtn.setAttribute("aria-pressed", on ? "true" : "false"); pedalBtn.textContent = on ? "Detener" : "Pedalear"; updateReadout(); run(); }
+pedalBtn.addEventListener("click", () => setPedal(!pedalling));
+stage.addEventListener("keydown", (e) => { if (e.key === " ") { e.preventDefault(); setPedal(!pedalling); } });
+function updateReadout() {
+  const f = focus ? compById[focus].name.split(" / ")[0].toLowerCase() : null;
+  readout.textContent = (exTarget > 0.5 ? "despiece" : "armada") + " · " + (pedalling ? "pedaleando, 60 rpm" : "detenida") + (f ? " · " + f : "");
+}
+
+// ---------------------------------------------------------------- render loop
+let frame = 0, last = 0;
+function render() { renderer.render(scene, camera); placePins(); }
+let fitK = 1;
+function resize() {
+  const w = stage.clientWidth, h = Math.max(240, stage.clientHeight);
+  renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
+  // narrow screens: step back so the whole bicycle fits
+  const k = Math.max(1, 1.55 / camera.aspect);
+  if (k !== fitK) { camera.position.sub(controls.target).multiplyScalar(k / fitK).add(controls.target); fitK = k; controls.update(); }
+  render();
+}
+new ResizeObserver(resize).observe(stage);
+function tick(t) {
+  frame = 0;
+  const dt = last ? Math.min(0.05, (t - last) / 1000) : 1 / 60; last = t;
+  let busy = false;
+  const ex0 = ex;
+  if (Math.abs(ex - exTarget) > 0.001) { ex += (exTarget - ex) * (1 - Math.exp(-dt / (still.matches ? 0.01 : 0.18))); placeParts(); busy = true; } else if (ex !== exTarget) { ex = exTarget; placeParts(); }
+  if (ex !== ex0) { const k = (1 + 0.62 * ex) / (1 + 0.62 * ex0); camera.position.sub(controls.target).multiplyScalar(k).add(controls.target); }
+  if (camGoal) { controls.target.lerp(camGoal, 1 - Math.exp(-dt / 0.2)); if (controls.target.distanceTo(camGoal) < 0.05) camGoal = null; busy = true; }
+  if (pedalling) {
+    const w = (still.matches ? 0.25 : 1) * 2 * Math.PI; // 60 rpm
+    crank -= w * dt;
+    const ratio = Rr / Rc;
+    wheelA -= w * ratio * dt;
+    chainPhase += (w * Rr * dt) / LINK;
+    for (const g of crankParts) if (g.userData.pivot) g.userData.pivot.rotation.z = crank;
+    for (const p of pedalBodies) p.rotation.z = -crank;
+    for (const cid of ["cubierta", "camara", "sellante", "valvula", "cinta", "llanta", "radios", "bujes", "discos", "pinones", "pinon_fijo", "pinon_libre"]) for (const g of parts[cid] || []) if (g.userData.pivot) g.userData.pivot.rotation.z = wheelA;
+    layChain(chainPhase % NL);
+    busy = true;
+  }
+  if (focus || focusSet.size) { const s = 1 + 0.12 * Math.sin(t / 260); markEl.style.setProperty("--pulse", s.toFixed(3)); busy = busy || !still.matches; }
+  if (controls.update()) busy = true;
+  render();
+  if (busy || dragging) run();
+}
+let dragging = false;
+controls.addEventListener("start", () => { dragging = true; run(); });
+controls.addEventListener("end", () => { dragging = false; });
+controls.addEventListener("change", () => run());
+function run() { if (!frame) { last = 0; frame = requestAnimationFrame(tick); } }
+
+// fault mark (a pulsing ring on the part the guide is pointing at)
+const markEl = document.createElement("div"); markEl.className = "bk3-mark"; markEl.hidden = true; pinsBox.appendChild(markEl);
+const _placePins = placePins;
+placePins = function () {
+  _placePins();
+  const a = focus ? anchorOf(focus) : null;
+  if (!a || !fault) { markEl.hidden = true; return; }
+  v3.copy(a).project(camera); markEl.hidden = false;
+  markEl.style.left = ((v3.x + 1) / 2) * canvas.clientWidth + "px"; markEl.style.top = ((1 - v3.y) / 2) * canvas.clientHeight + "px";
+};
+
+// ---------------------------------------------------------------- the guide: faults, steps, pre-ride check
+const esc = (t) => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+const card = document.querySelector(".bk-card");
+const faultBtns = [...document.querySelectorAll(".bk button[data-fault]")];
+let steps = [], cur = -1;
+const HIDDEN = new Set(["camara", "sellante", "cinta", "valvula", "pedalier", "bujes", "direccion"]);
+function cardFor(f) {
+  if (!f) {
+    card.innerHTML = '<div class="bk-card-head"><h3>¿Qué le pasa a tu bicicleta?</h3><span class="bk-ref">Guía paso a paso</span></div>'
+      + '<p class="bk3-intro">Elige arriba el síntoma que notas. La guía te lleva paso a paso: primero el diagnóstico y luego la reparación. En cada paso la figura resalta la pieza y gira hacia ella.</p>'
+      + '<p class="bk3-intro">Si no sabes por dónde empezar, haz la <b>revisión antes de cada salida</b>, más abajo.</p>';
+    return;
+  }
+  steps = [...f.diag.map(([t, p]) => ({ t, p, ph: "d" })), ...f.repair.map(([t, p]) => ({ t, p, ph: "r" }))];
+  const li = (s, i) => '<li><button type="button" class="bk3-step" data-i="' + i + '"><span class="bk3-n">' + (s.ph === "d" ? i + 1 : i - f.diag.length + 1) + '</span><span class="bk3-t">' + esc(s.t) + '<em>' + esc(compById[s.p] ? compById[s.p].name : "") + "</em></span></button></li>";
+  card.innerHTML = '<div class="bk-card-head"><h3>' + esc(f.name) + '</h3><span class="bk-ref">' + esc(f.ref) + "</span></div><dl>"
+    + '<div><dt>Síntoma</dt><dd>' + esc(f.sintoma) + "</dd></div>"
+    + '<div><dt>Causa probable</dt><dd>' + esc(f.causa) + "</dd></div>"
+    + '<div class="bk-wide"><dt>1 · Diagnóstico paso a paso</dt><dd><ol class="bk3-steps">' + steps.filter((s) => s.ph === "d").map((s) => li(s, steps.indexOf(s))).join("") + "</ol></dd></div>"
+    + '<div class="bk-wide"><dt>2 · Reparación paso a paso</dt><dd><ol class="bk3-steps">' + steps.filter((s) => s.ph === "r").map((s) => li(s, steps.indexOf(s))).join("") + "</ol></dd></div>"
+    + '<div class="bk-wide"><dt>Herramientas</dt><dd><div class="bk3-tools">' + f.tools.map((t) => "<span>" + esc(t) + "</span>").join("") + "</div></dd></div>"
+    + "</dl>"
+    + '<div class="bk3-nav"><button type="button" class="bk3-prev">← Anterior</button><span class="bk3-prog" aria-live="polite"></span><button type="button" class="bk3-next">Siguiente paso →</button></div>';
+  card.querySelectorAll(".bk3-step").forEach((b) => b.addEventListener("click", () => goStep(+b.dataset.i)));
+  card.querySelector(".bk3-prev").addEventListener("click", () => goStep(Math.max(0, Math.min(cur, steps.length) - 1)));
+  card.querySelector(".bk3-next").addEventListener("click", () => goStep(cur >= steps.length ? 0 : cur + 1));
+}
+function goStep(i) {
+  cur = i;
+  const doneAll = i >= steps.length;
+  card.querySelectorAll(".bk3-step").forEach((b) => { const k = +b.dataset.i; b.setAttribute("aria-current", k === i ? "step" : "false"); b.classList.toggle("done", i >= 0 && k < i); });
+  const prog = card.querySelector(".bk3-prog"), next = card.querySelector(".bk3-next"), prev = card.querySelector(".bk3-prev");
+  if (prog) {
+    const s = steps[i];
+    prog.textContent = i < 0 ? "Pulsa «Empezar» o elige un paso" : doneAll ? "Guía terminada: prueba la bici antes de rodar" : (s.ph === "d" ? "Diagnóstico" : "Reparación") + " · paso " + (i + 1) + " de " + steps.length;
+    next.textContent = i < 0 ? "Empezar →" : doneAll ? "Volver a empezar" : i === steps.length - 1 ? "Terminar ✓" : "Siguiente paso →";
+    prev.disabled = i <= 0;
+  }
+  const f = FAULTS.find((x) => x.id === fault);
+  const p = i >= 0 && !doneAll ? steps[i].p : f ? f.part : null;
+  setFocus(p, true);
+  if (i >= 0 && !doneAll) { const b = card.querySelector('.bk3-step[data-i="' + i + '"]'); if (b && b.scrollIntoView) b.scrollIntoView({ block: "nearest", behavior: still.matches ? "auto" : "smooth" }); }
+}
+function chooseFault(id, fromHash) {
+  const f = FAULTS.find((x) => x.id === id) || null;
+  fault = f ? f.id : null;
+  faultBtns.forEach((b) => b.setAttribute("aria-pressed", (b.dataset.fault || null) === fault ? "true" : "false"));
+  focusSet = new Set(f ? [...f.diag, ...f.repair].map((s) => s[1]) : []);
+  cardFor(f); stage.toggleAttribute("data-fault", !!f);
+  closeMethod();
+  // faults whose parts are hidden inside (cámara, bujes, pedalier…) open the exploded view; the rest show it assembled
+  setEx(f && [f.part, ...f.diag.map((s) => s[1]), ...f.repair.map((s) => s[1])].some((p) => HIDDEN.has(p)) ? 1 : 0);
+  if (f) goStep(-1); else setFocus(null, true);
+  if (!fromHash) try { history.replaceState(null, "", f ? "#" + f.id : location.pathname + location.search); } catch (e) {}
+}
+faultBtns.forEach((b) => b.addEventListener("click", () => chooseFault(b.dataset.fault || null)));
+// pre-ride check: each step opens its detail right below it
+const mBtns = [...document.querySelectorAll(".bk-mt[data-m]")];
+let mOpen = -1;
+function closeMethod() { mOpen = -1; mBtns.forEach((b) => { b.setAttribute("aria-pressed", "false"); b.nextElementSibling.hidden = true; }); }
+mBtns.forEach((b) => b.addEventListener("click", () => {
+  const i = +b.dataset.m, was = mOpen === i;
+  closeMethod();
+  if (was) { setFocus(null, true); return; }
+  mOpen = i; b.setAttribute("aria-pressed", "true"); b.nextElementSibling.hidden = false;
+  if (fault) { fault = null; faultBtns.forEach((x) => x.setAttribute("aria-pressed", x.dataset.fault ? "false" : "true")); focusSet = new Set(); cardFor(null); stage.removeAttribute("data-fault"); }
+  setEx(HIDDEN.has(METHOD[i][1]) ? 1 : 0);
+  setFocus(METHOD[i][1], true);
+}));
+document.querySelectorAll(".bk3-go").forEach((a) => a.addEventListener("click", (e) => { e.preventDefault(); chooseFault(a.dataset.fault); document.querySelector(".bk-card").scrollIntoView({ block: "start", behavior: still.matches ? "auto" : "smooth" }); }));
+
+// ---------------------------------------------------------------- start
+applyTheme(); placeParts(); resize();
+const fromHash = FAULTS.find((f) => f.id === (location.hash || "").slice(1));
+chooseFault(fromHash ? fromHash.id : null, true);
+updateReadout();
+stage.setAttribute("data-ready", "");
+window.__bike = { setEx, setPedal, chooseFault, goStep, setFocus, camera, controls, render };
+
+(() => {
+  const tabs = [...document.querySelectorAll(".sd-tab")];
+  const side = document.querySelector(".kt-side");
+  function sel(t) { tabs.forEach((x) => { const on = x === t; x.setAttribute("aria-selected", on ? "true" : "false"); x.tabIndex = on ? 0 : -1; document.getElementById(x.getAttribute("aria-controls")).hidden = !on; }); if (side) side.scrollTop = 0; }
+  tabs.forEach((t, i) => { t.tabIndex = t.getAttribute("aria-selected") === "true" ? 0 : -1; t.addEventListener("click", () => sel(t)); t.addEventListener("keydown", (e) => { if (e.key === "ArrowRight" || e.key === "ArrowLeft") { const n = tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length]; sel(n); n.focus(); e.preventDefault(); } }); });
+  // on narrow screens the figure stays pinned at the top: its legend and caption move down with the rest of the text
+  const leg = document.querySelector(".kt-figwrap .iso-legend"), info = document.querySelector(".kt-info");
+  if (leg && info) {
+    const home = leg.parentNode, next = leg.nextSibling, mq = matchMedia("(max-width:980px)");
+    const place = () => { if (mq.matches) { if (leg.parentNode !== info) info.prepend(leg); } else if (leg.parentNode !== home) home.insertBefore(leg, next); };
+    place(); mq.addEventListener("change", place);
+  }
+  // choosing a fault brings its card into view
+  document.querySelectorAll(".bk button[data-fault]").forEach((b) => b.addEventListener("click", () => { const t = document.getElementById("tab-fallas"); if (t && t.getAttribute("aria-selected") !== "true") sel(t); }));
+})();
+</script>
+
+</body>
+</html>
