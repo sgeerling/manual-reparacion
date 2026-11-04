@@ -409,7 +409,7 @@ camera.position.copy(HOME.pos);
 const controls = new OrbitControls(camera, canvas);
 controls.target.copy(HOME.target);
 controls.enableDamping = true; controls.dampingFactor = 0.09;
-controls.minDistance = 40; controls.maxDistance = 520; controls.enablePan = true; controls.zoomToCursor = true;
+controls.minDistance = 40; controls.maxDistance = 520; controls.enablePan = true; controls.zoomToCursor = false;
 controls.update();
 const hemi = new THREE.HemisphereLight(0xffffff, 0x8a8f96, 1.15);
 scene.add(hemi);
@@ -972,6 +972,10 @@ canvas.addEventListener("pointerup", (e) => {
 });
 function homeView() { camGoal = HOME.target.clone(); camera.position.copy(HOME.pos).sub(HOME.target).multiplyScalar(fitK * (1 + 0.62 * ex)).add(HOME.target); setFocus(null, false); run(); }
 canvas.addEventListener("dblclick", homeView);
+// zoom toward the cursor only for the mouse wheel: OrbitControls r160 measures a two-finger pinch in page
+// coordinates, so on a scrolled page the pinch would zoom toward the wrong spot; touch keeps the plain dolly
+stage.addEventListener("pointerdown", (e) => { controls.zoomToCursor = e.pointerType === "mouse"; }, true);
+stage.addEventListener("wheel", () => { controls.zoomToCursor = true; }, { capture: true, passive: true });
 // zoom buttons (pinch and wheel zoom come from OrbitControls)
 const zmBar = document.createElement("div"); zmBar.className = "zm"; zmBar.setAttribute("role", "group"); zmBar.setAttribute("aria-label", "Zoom de la figura");
 zmBar.innerHTML = '<button type="button" data-z="in" aria-label="Acercar" title="Acercar">+</button><button type="button" data-z="out" aria-label="Alejar" title="Alejar">−</button><button type="button" data-z="0" aria-label="Volver a la vista inicial" title="Vista inicial">⤢</button>';
