@@ -900,7 +900,6 @@ function goStep(i) {
   }
   const f = FAULTS.find((x) => x.id === fault);
   const p = i >= 0 && !doneAll ? steps[i].p : f ? f.part : null;
-  if (HIDDEN.has(p) && exTarget < 0.5) setEx(1);
   setFocus(p, true);
   if (i >= 0 && !doneAll) { const b = card.querySelector('.bk3-step[data-i="' + i + '"]'); if (b && b.scrollIntoView) b.scrollIntoView({ block: "nearest", behavior: still.matches ? "auto" : "smooth" }); }
 }
@@ -911,6 +910,8 @@ function chooseFault(id, fromHash) {
   focusSet = new Set(f ? [...f.diag, ...f.repair].map((s) => s[1]) : []);
   cardFor(f); stage.toggleAttribute("data-fault", !!f);
   closeMethod();
+  // faults whose parts are hidden inside (cámara, bujes, pedalier…) open the exploded view; the rest show it assembled
+  setEx(f && [f.part, ...f.diag.map((s) => s[1]), ...f.repair.map((s) => s[1])].some((p) => HIDDEN.has(p)) ? 1 : 0);
   if (f) goStep(-1); else setFocus(null, true);
   if (!fromHash) try { history.replaceState(null, "", f ? "#" + f.id : location.pathname + location.search); } catch (e) {}
 }
@@ -925,7 +926,7 @@ mBtns.forEach((b) => b.addEventListener("click", () => {
   if (was) { setFocus(null, true); return; }
   mOpen = i; b.setAttribute("aria-pressed", "true"); b.nextElementSibling.hidden = false;
   if (fault) { fault = null; faultBtns.forEach((x) => x.setAttribute("aria-pressed", x.dataset.fault ? "false" : "true")); focusSet = new Set(); cardFor(null); stage.removeAttribute("data-fault"); }
-  if (HIDDEN.has(METHOD[i][1]) && exTarget < 0.5) setEx(1);
+  setEx(HIDDEN.has(METHOD[i][1]) ? 1 : 0);
   setFocus(METHOD[i][1], true);
 }));
 document.querySelectorAll(".bk3-go").forEach((a) => a.addEventListener("click", (e) => { e.preventDefault(); chooseFault(a.dataset.fault); document.querySelector(".bk-card").scrollIntoView({ block: "start", behavior: still.matches ? "auto" : "smooth" }); }));
