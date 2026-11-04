@@ -369,6 +369,18 @@ body{background:var(--page);font:14px/1.6 ui-sans-serif,system-ui,-apple-system,
 .kt-figwrap .iso-plate:has(.cp-tip:not([hidden])) .cp-slot{display:none}
 }
 @media (max-width:420px) and (orientation:portrait){.kt-figwrap .vw-lab{display:none}}
+/* figure menu button (phone, portrait) */
+.vm-btn{position:absolute;z-index:6;top:5px;left:6px;display:inline-flex;align-items:center;gap:6px;height:30px;max-width:calc(100% - 60px);padding:0 10px;font:500 12px/1 var(--anatomy-mono);color:var(--anatomy-card);background:var(--anatomy-strong);border:1px solid var(--anatomy-strong);border-radius:999px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.vm-btn .vm-tx{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vm-btn .vm-ic{font-size:13px}.vm-btn .vm-ca{font-size:10px;transition:transform .15s}
+.vm-btn[aria-expanded="true"] .vm-ca{transform:rotate(180deg)}
+.vm-btn:focus-visible{outline:2px solid var(--anatomy-red);outline-offset:2px}
+.vm-panel{position:absolute;z-index:7;top:40px;left:6px;right:6px;display:grid;gap:10px;padding:10px;background:var(--anatomy-card);border:1px solid var(--anatomy-lo);border-radius:10px;box-shadow:0 10px 28px rgba(0,0,0,.22)}
+.vm-panel[hidden]{display:none}
+.vm-panel .vw-bar,.vm-panel .bk3-types,.kt-figwrap .vm-panel .bk3-bar{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0;overflow:visible}
+.vm-panel .vw-lab{display:block;flex:0 0 100%;margin:0 0 2px}
+.vm-panel .vw-btn,.vm-panel .bk3-types a{flex:none;box-sizing:border-box;height:32px;padding:0 12px;display:inline-flex;align-items:center;white-space:nowrap}
+@media (max-width:980px) and (orientation:portrait){.kt-figwrap .iso-plate-corner[data-corner="fig"]{display:none}.kt-figwrap .vm-panel .vw-lab{display:block}}
 /* dark theme: lifted greys so the drawing, its edges and the text keep their contrast */
 .iso.iso[data-theme="dark"]{
   --anatomy-page:#15171a;--anatomy-card:#1c1f23;--anatomy-text:#d2d4d8;--anatomy-strong:#f6f7f8;--anatomy-muted:#a3a7ad;
@@ -1555,6 +1567,38 @@ function schSwitches() {
   }
   // choosing a fault brings its card into view
   document.querySelectorAll(".bk button[data-fault]").forEach((b) => b.addEventListener("click", () => { const t = document.getElementById("tab-fallas"); if (t && t.getAttribute("aria-selected") !== "true") sel(t); }));
+})();
+// phone (portrait): the view bars above the figure fold into a menu button in the figure's top-left corner
+(() => {
+  const wrap = document.querySelector(".kt-figwrap"), plate = wrap && wrap.querySelector(".iso-plate");
+  if (!plate) return;
+  const bars = [...wrap.children].filter((e) => e.matches(".vw-bar, .bk3-types"));
+  if (!bars.length) return;
+  const homes = bars.map((b) => [b.parentNode, b.nextSibling]);
+  const btn = document.createElement("button"); btn.type = "button"; btn.className = "vm-btn"; btn.setAttribute("aria-expanded", "false"); btn.setAttribute("aria-haspopup", "true");
+  const panel = document.createElement("div"); panel.className = "vm-panel"; panel.id = "vm-panel"; panel.hidden = true; panel.setAttribute("role", "group"); panel.setAttribute("aria-label", "Opciones de la figura");
+  btn.setAttribute("aria-controls", panel.id);
+  const mq = matchMedia("(max-width:980px) and (orientation:portrait)");
+  function label() {
+    const cur = [...wrap.querySelectorAll('.bk3-types [aria-current="page"], .vw-btn[aria-pressed="true"][data-view], .vw-btn[aria-pressed="true"][data-ex]')].map((e) => e.textContent.trim());
+    btn.innerHTML = '<span class="vm-ic" aria-hidden="true">☰</span><span class="vm-tx">' + (cur.join(" · ") || "Vista") + '</span><span class="vm-ca" aria-hidden="true">▾</span>';
+    btn.setAttribute("aria-label", "Opciones de la figura: " + (cur.join(", ") || "vista"));
+  }
+  function open(on) { panel.hidden = !on; btn.setAttribute("aria-expanded", on ? "true" : "false"); }
+  function place() {
+    if (mq.matches) { if (btn.parentNode !== plate) { plate.append(btn, panel); bars.forEach((b) => panel.appendChild(b)); } }
+    else if (btn.parentNode) { bars.forEach((b, i) => homes[i][0].insertBefore(b, homes[i][1])); btn.remove(); panel.remove(); open(false); }
+    label();
+  }
+  btn.addEventListener("click", (e) => { e.stopPropagation(); open(panel.hidden); });
+  panel.addEventListener("click", (e) => { e.stopPropagation(); setTimeout(label, 0); if (e.target.closest(".vw-btn, a")) setTimeout(() => open(false), 120); });
+  panel.addEventListener("input", () => setTimeout(label, 0));
+  ["pointerdown", "keydown"].forEach((t) => panel.addEventListener(t, (e) => { if (e.key === "Escape") { open(false); btn.focus(); } e.stopPropagation(); }));
+  // a tap outside closes the menu and does nothing else
+  document.addEventListener("click", (e) => { if (!panel.hidden && !e.target.closest(".vm-panel, .vm-btn")) { open(false); e.preventDefault(); e.stopPropagation(); } }, true);
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !panel.hidden) { open(false); btn.focus(); } });
+  new MutationObserver(label).observe(wrap, { subtree: true, attributes: true, attributeFilter: ["aria-pressed"] });
+  place(); mq.addEventListener("change", place);
 })();
 </script>
 
