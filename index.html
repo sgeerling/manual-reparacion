@@ -116,7 +116,7 @@ footer p{margin:0 0 6px;max-width:90ch}
   document.addEventListener("touchend", (e) => { if (!e.touches.length) pinching = false; }, { passive: true });
   // ctrl/trackpad wheel zoom: one event per burst
   let wt = 0;
-  document.addEventListener("wheel", (e) => { if ((e.ctrlKey || e.altKey || e.target.closest(".bk3-stage")) && e.target.closest(".iso-stage, .bk3-stage") && Date.now() - wt > 3000) posthog.capture("zoom_used", { method: "wheel" }); if (e.target.closest(".iso-stage, .bk3-stage")) wt = Date.now(); }, { passive: true });
+  document.addEventListener("wheel", (e) => { if (e.target.closest(".iso-stage, .bk3-stage") && Date.now() - wt > 3000) posthog.capture("zoom_used", { method: "wheel" }); if (e.target.closest(".iso-stage, .bk3-stage")) wt = Date.now(); }, { passive: true });
   // figure jump selector
   document.addEventListener("change", (e) => { if (e.target.matches(".mr-nav select")) posthog.capture("figure_jump", { to: e.target.value }); }, true);
 })();
