@@ -399,6 +399,8 @@ body{background:var(--page);font:14px/1.6 ui-sans-serif,system-ui,-apple-system,
 .bk3-fallback{position:absolute;inset:auto 0 45% 0;margin:0;text-align:center;color:var(--anatomy-muted);font-size:13px}
 .bk3-stage[data-ready] .bk3-fallback{display:none}
 .bk3-pins{position:absolute;inset:0;pointer-events:none}
+@keyframes bk3pulse{0%,100%{transform:scale(.9)}50%{transform:scale(1.12)}}
+@media (prefers-reduced-motion:reduce){.bk3-mark{animation:none}}
 /* detail view of one assembly */
 .bk3-dt{position:absolute;inset:0;z-index:30;display:flex;flex-direction:column;background:var(--anatomy-card);border:1px solid var(--anatomy-lo);border-radius:6px;overflow:hidden;cursor:default}
 .bk3-dt[hidden]{display:none}
@@ -414,7 +416,7 @@ body{background:var(--page);font:14px/1.6 ui-sans-serif,system-ui,-apple-system,
 .bk3-dt-meas circle{fill:var(--anatomy-red)}.bk3-dt-meas circle.ring{fill:none;stroke:var(--anatomy-red);stroke-width:1.5;stroke-dasharray:3 2}
 .bk3-dt-meas text{font:600 11px/1 var(--anatomy-mono);fill:var(--anatomy-red);paint-order:stroke;stroke:var(--anatomy-card);stroke-width:3px}
 .bk3-dt-pins{position:absolute;inset:0;pointer-events:none}
-.bk3-dt-pin{position:absolute;transform:translate(-50%,-50%);pointer-events:auto;min-width:20px;height:20px;padding:0 4px;border-radius:10px;font:600 10.5px/20px var(--anatomy-mono);text-align:center;color:var(--anatomy-card);background:var(--anatomy-strong);border:1.5px solid var(--anatomy-card);cursor:pointer;opacity:.9}
+.bk3-dt-pin{position:absolute;left:0;top:0;will-change:transform;pointer-events:auto;min-width:20px;height:20px;padding:0 4px;border-radius:10px;font:600 10.5px/20px var(--anatomy-mono);text-align:center;color:var(--anatomy-card);background:var(--anatomy-strong);border:1.5px solid var(--anatomy-card);cursor:pointer;opacity:.9}
 .bk3-dt-pin[aria-current]{background:var(--anatomy-red);opacity:1;z-index:2}.bk3-dt-pin.dim{opacity:.35}
 .bk3-dt-bar{flex:none;display:flex;align-items:center;gap:10px;padding:6px 10px;border-top:1px solid var(--anatomy-lo);font:500 11px/1.2 var(--anatomy-mono);color:var(--anatomy-text)}
 .bk3-dt-exl{display:flex;align-items:center;gap:8px;flex:1;min-width:0}.bk3-dt-exl input{flex:1;min-width:60px;max-width:220px;accent-color:var(--anatomy-red)}
@@ -437,7 +439,7 @@ body{background:var(--page);font:14px/1.6 ui-sans-serif,system-ui,-apple-system,
 .bk3-pin{position:absolute;transform:translate(-50%,-50%);pointer-events:auto;min-width:24px;height:24px;padding:0 5px;border-radius:12px;border:1.5px solid var(--anatomy-strong);background:var(--anatomy-card);color:var(--anatomy-strong);font:700 12px/1 var(--anatomy-mono);cursor:pointer;display:grid;place-items:center}
 .bk3-pin[hidden]{display:none}
 .bk3-pin[data-on]{background:var(--cp-accent);border-color:var(--cp-accent);color:var(--cp-on-accent)}
-.bk3-mark{position:absolute;width:46px;height:46px;margin:-23px 0 0 -23px;border:2.5px solid #d6336c;border-radius:50%;transform:scale(var(--pulse,1));pointer-events:none;box-shadow:0 0 0 4px color-mix(in srgb,#d6336c 18%,transparent)}
+.bk3-mark{position:absolute;width:46px;height:46px;margin:-23px 0 0 -23px;border:2.5px solid #d6336c;border-radius:50%;animation:bk3pulse 1.6s ease-in-out infinite;pointer-events:none;box-shadow:0 0 0 4px color-mix(in srgb,#d6336c 18%,transparent)}
 .bk3-mark[hidden]{display:none}
 .bk3-bar{flex-wrap:wrap;margin:0 0 18px;padding:0 0 14px;border-bottom:1px solid var(--anatomy-lo)}
 .bk3-exl{display:flex;align-items:center;margin:0 4px}
@@ -1141,6 +1143,7 @@ function resize() {
 new ResizeObserver(resize).observe(stage);
 function tick(t) {
   frame = 0;
+  if (stage.hasAttribute("data-detail")) { last = 0; return; }   // covered by the detail view: no work
   const dt = last ? Math.min(0.05, (t - last) / 1000) : 1 / 60; last = t;
   let busy = false;
   const ex0 = ex;
@@ -1159,7 +1162,6 @@ function tick(t) {
     layChain(chainPhase % NL);
     busy = true;
   }
-  if (focus || focusSet.size) { const s = 1 + 0.12 * Math.sin(t / 260); markEl.style.setProperty("--pulse", s.toFixed(3)); busy = busy || !still.matches; }
   if (controls.update()) busy = true;
   render();
   if (busy || dragging) run();
@@ -1813,7 +1815,7 @@ const DT = (() => {
   function ensure() {
     if (r3) return;
     r3 = new THREE.WebGLRenderer({ canvas: cv, antialias: true, alpha: true });
-    r3.setPixelRatio(Math.min(2, devicePixelRatio || 1));
+    r3.setPixelRatio(Math.min(1.5, devicePixelRatio || 1));
     sc = new THREE.Scene();
     sc.add(new THREE.HemisphereLight(0xffffff, 0x8a8f96, 1.2));
     const s1 = new THREE.DirectionalLight(0xffffff, 1.4); s1.position.set(40, 80, 60); sc.add(s1);
@@ -1833,7 +1835,7 @@ const DT = (() => {
     const hit = ray.intersectObjects(meshes, false).find((h) => h.object.material.opacity > 0.2);
     select(hit ? hit.object.userData.pid : null);
   }
-  function size() { const w = cv.clientWidth, h = cv.clientHeight; if (!w || !h) return; r3.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix(); }
+  function size() { const w = cv.clientWidth, h = cv.clientHeight; if (!w || !h) return; W = w; H = h; r3.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix(); }
   function place() {
     const e = ex * ex * (3 - 2 * ex);
     for (const p of built.P) p.g.position.copy(p.g.userData.dir).multiplyScalar(e);
@@ -1859,6 +1861,7 @@ const DT = (() => {
       m.children.forEach((c) => { if (c.userData.edge) c.visible = !dim; });
     }
     listEl.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", x.dataset.p === sel ? "true" : "false"));
+    pinState();
   }
   function select(id) {
     sel = id || null; paint();
@@ -1868,22 +1871,31 @@ const DT = (() => {
     kick();
   }
   const v3 = new THREE.Vector3();
+  let W = 1, H = 1, measKey = "";
   function project(pt, onId) {
     v3.copy(v(pt)); const p = onId && built.P.find((x) => x.id === onId); if (p) v3.add(p.g.position);
-    v3.project(cam); return [((v3.x + 1) / 2) * cv.clientWidth, ((1 - v3.y) / 2) * cv.clientHeight, v3.z];
+    v3.project(cam); return [((v3.x + 1) / 2) * W, ((1 - v3.y) / 2) * H, v3.z];
+  }
+  // pins: one button per part, made once; each frame only their transform changes
+  function makePins() {
+    pinsEl.innerHTML = "";
+    const bb = new THREE.Box3();
+    built.P.forEach((p, i) => {
+      bb.setFromObject(p.g); p.c0 = bb.isEmpty() ? null : bb.getCenter(new THREE.Vector3()).sub(p.g.position);
+      if (!p.c0) return;
+      const b2 = document.createElement("button"); b2.type = "button"; b2.className = "bk3-dt-pin"; b2.textContent = i + 1; b2.title = p.name;
+      b2.addEventListener("click", () => select(p.id === sel ? null : p.id)); pinsEl.appendChild(b2); p.pin = b2;
+    });
   }
   function overlays() {
-    // numbered pins at each part's centre
-    pinsEl.innerHTML = "";
-    const bb = new THREE.Box3(), c = new THREE.Vector3();
-    built.P.forEach((p, i) => {
-      bb.setFromObject(p.g); if (bb.isEmpty()) return; bb.getCenter(c); c.project(cam);
-      if (c.z > 1) return;
-      const b2 = document.createElement("button"); b2.type = "button"; b2.className = "bk3-dt-pin"; b2.textContent = i + 1; b2.title = p.name;
-      b2.style.left = ((c.x + 1) / 2) * cv.clientWidth + "px"; b2.style.top = ((1 - c.y) / 2) * cv.clientHeight + "px";
-      if (p.id === sel) b2.setAttribute("aria-current", "true"); if (sel && p.id !== sel) b2.classList.add("dim");
-      b2.addEventListener("click", () => select(p.id === sel ? null : p.id)); pinsEl.appendChild(b2);
-    });
+    const c = new THREE.Vector3();
+    for (const p of built.P) {
+      if (!p.pin) continue;
+      c.copy(p.c0).add(p.g.position).project(cam);
+      if (c.z > 1) { p.pin.style.visibility = "hidden"; continue; }
+      p.pin.style.visibility = "";
+      p.pin.style.transform = "translate(" + (((c.x + 1) / 2) * W).toFixed(1) + "px," + (((1 - c.y) / 2) * H).toFixed(1) + "px) translate(-50%,-50%)";
+    }
     // measures and arrows (only when the parts sit close to their place)
     const show = ex < 0.22;
     let h = "";
@@ -1896,8 +1908,9 @@ const DT = (() => {
       h += `<text x="${lx}" y="${ly}" text-anchor="${nx < -0.3 ? "end" : nx > 0.3 ? "start" : "middle"}">${esc(m.label)}</text>`;
     }
     for (const a of built.arrows || []) { const P2 = project(a.at, a.on); h += `<circle cx="${P2[0]}" cy="${P2[1]}" r="11" class="ring"/><text x="${P2[0] + 16}" y="${P2[1] + 4}">${esc(a.label)}</text>`; }
-    svg.innerHTML = h;
+    if (h !== measKey) { svg.innerHTML = h; measKey = h; }
   }
+  function pinState() { for (const p of built.P) if (p.pin) { p.pin.toggleAttribute("aria-current", p.id === sel); p.pin.classList.toggle("dim", !!sel && p.id !== sel); } }
   function frame(t) {
     raf = 0;
     const dt = lastT ? Math.min(0.05, (t - lastT) / 1000) : 0.016; lastT = t;
@@ -1930,12 +1943,12 @@ const DT = (() => {
     box.hidden = false; stage.setAttribute("data-detail", id);
     const want = [].concat(focusPart || []).find((id) => b.P.some((p) => p.id === id)) || null;
     if (want) { ex = exT = 0.35; exIn.value = 35; }
-    size(); fit(); select(want);
+    size(); fit(); makePins(); measKey = ""; select(want);
     box.querySelector(".bk3-dt-x").focus({ preventScroll: true });
     try { if (window.posthog) posthog.capture("detail_opened", { detail: id, part: want }); } catch (e) {}
   }
   function close() {
-    box.hidden = true; stage.removeAttribute("data-detail"); acting = false;
+    box.hidden = true; stage.removeAttribute("data-detail"); acting = false; run();
     if (returnFocus && returnFocus.focus && document.contains(returnFocus)) returnFocus.focus({ preventScroll: true });
   }
   box.querySelector(".bk3-dt-x").addEventListener("click", close);
