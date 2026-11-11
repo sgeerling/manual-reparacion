@@ -49,21 +49,33 @@ img{max-width:100%;height:auto;display:block}
 .safety{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-top:22px}
 .safety div{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--bad);border-radius:10px;padding:10px 12px;font-size:14px}
 .safety b{display:block;font:700 22px/1 ui-sans-serif,system-ui,sans-serif;color:var(--bad);margin-bottom:4px}
-/* árbol de decisión */
-.tree{margin-top:22px;overflow-x:auto}
-.tree svg{min-width:760px;width:100%;height:auto;display:block}
-.tree text{font:600 12px/1 ui-sans-serif,system-ui,sans-serif;fill:var(--ink)}
-.tree .box{fill:var(--card);stroke:var(--slate);stroke-width:1.6}
-.tree .st{fill:var(--slate)} .tree .st+text{fill:#fff}
-.tree .ln{fill:none;stroke:var(--slate);stroke-width:2}
-.tree .lnr{fill:none;stroke:var(--bad);stroke-width:2}
-.tree .small{font-size:11px;font-weight:500;fill:var(--mut)}
-.tree .halo text,.tree text.halo{paint-order:stroke;stroke:var(--page);stroke-width:5px;stroke-linejoin:round}
+/* acciones */
 .acts{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:14px}
 .act{display:flex;gap:10px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px}
 .act i{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#fff;font-style:normal;font-weight:800;font-size:16px;background:var(--c)}
 .act b{display:block;font-size:14px}.act span{font-size:12.5px;color:var(--mut);line-height:1.35;display:block}
 @media (max-width:900px){.acts{grid-template-columns:1fr 1fr}}
+.ic,.big,.mid{display:block;color:var(--ink)}
+.ic{height:78px;width:auto;margin:0 auto 6px}
+.big{width:100%;max-width:320px;height:auto}
+.mid{width:100%;height:auto}
+.ic *,.big *,.mid *{fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.big *,.mid *{stroke-width:3}
+.ic .f,.big .f,.mid .f{fill:var(--card);stroke:none}
+.ic .fa,.big .fa,.mid .fa{fill:color-mix(in srgb,var(--blue) 22%,var(--card));stroke:none}
+.ic .a,.big .a,.mid .a{stroke:var(--blue)}
+.ic .h{stroke:var(--accent);stroke-width:3}
+.ic .k{fill:currentColor}
+.ic .w{stroke:var(--card);stroke-width:6}
+.ic .t,.big .t,.mid .t{fill:currentColor;stroke:none;font:700 14px/1 ui-sans-serif,system-ui,sans-serif}
+.big .m,.mid .m{fill:#c9a227;stroke:currentColor;stroke-width:2}
+.mid .hole{fill:var(--card)}
+.big .red{stroke:#d6336c;stroke-width:5}.big .blk{stroke:currentColor;stroke-width:5}
+.big .redf{fill:#d6336c;stroke:none}.big .blkf{fill:currentColor;stroke:none}
+.big .meter{fill:#e0a100;stroke:currentColor;stroke-width:2}
+.big .lcd{fill:#c9d6b4;stroke:none}
+.big .lcdt{fill:#1c2616;stroke:none;font:700 17px/1 ui-monospace,Menlo,monospace}
+.pics .big{max-height:none}
 /* evaluación */
 .eval{display:grid;grid-template-columns:minmax(220px,300px) 1fr;gap:20px;align-items:start}
 @media (max-width:760px){.eval{grid-template-columns:1fr}}
@@ -159,11 +171,11 @@ footer{margin-top:48px;color:var(--mut);font-size:13px;border-top:1px solid var(
 <h3 style="margin:30px 0 4px;font-size:17px">El camino de la energía (Fase 3)</h3>
 <p class="mut" style="margin:0;font-size:14px">El desmontaje y el diagnóstico interno siguen el flujo lógico de la corriente.</p>
 <div class="road">
-<div><img src="img/taller/toma.webp" alt=""><b>Toma de corriente</b><span>Enchufe y cable</span></div>
-<div><img src="img/taller/mando.webp" alt=""><b>Mando y control</b><span>Interruptores mecánicos o electrónicos</span></div>
-<div><img src="img/taller/regulacion.webp" alt=""><b>Regulación y seguridad</b><span>Termostatos y fusibles térmicos</span></div>
-<div><img src="img/taller/carga.webp" alt=""><b>La carga principal</b><span>Resistencias o motores</span></div>
-<div><img src="img/taller/cierre.webp" alt=""><b>Cierre del circuito</b><span>Retorno por el neutro</span></div>
+<div><svg class="ic" viewBox="0 0 96 80" aria-hidden="true"><rect x="6" y="10" width="40" height="52" rx="8" class="f"/><rect x="6" y="10" width="40" height="52" rx="8"/><circle cx="19" cy="30" r="3.2"/><circle cx="33" cy="30" r="3.2"/><circle cx="26" cy="44" r="3.2" class="k"/><path d="M58 22h14a6 6 0 0 1 6 6v10a6 6 0 0 1-6 6H58z" class="fa"/><path d="M58 22h14a6 6 0 0 1 6 6v10a6 6 0 0 1-6 6H58z"/><path d="M50 28h8M50 38h8"/><path d="M78 33c8 0 10 6 6 14s-10 14 0 22" class="a"/></svg><b>Toma de corriente</b><span>Enchufe y cable</span></div>
+<div><svg class="ic" viewBox="0 0 96 80" aria-hidden="true"><rect x="22" y="22" width="52" height="40" rx="6" class="f"/><rect x="22" y="22" width="52" height="40" rx="6"/><path d="M30 46l36-14v14l-36 8z" class="fa"/><path d="M30 46l36-14v14l-36 8z"/><text x="38" y="58" class="t">0</text><text x="58" y="42" class="t">I</text><path d="M34 62v12M62 62v12M30 74h8M58 74h8" class="a"/></svg><b>Mando y control</b><span>Interruptores mecánicos o electrónicos</span></div>
+<div><svg class="ic" viewBox="0 0 96 80" aria-hidden="true"><path d="M8 40c0-6 6-8 12-8h40c6 0 12 2 12 8s-6 8-12 8H20c-6 0-12-2-12-8z" class="f"/><path d="M8 40c0-6 6-8 12-8h40c6 0 12 2 12 8s-6 8-12 8H20c-6 0-12-2-12-8z"/><circle cx="14" cy="40" r="3"/><circle cx="66" cy="40" r="3"/><ellipse cx="40" cy="30" rx="18" ry="6" class="fa"/><ellipse cx="40" cy="30" rx="18" ry="6"/><path d="M26 24h28" class="a"/><path d="M58 64h8M88 64h-8"/><rect x="66" y="58" width="14" height="12" rx="5" class="fa"/><rect x="66" y="58" width="14" height="12" rx="5"/><path d="M71 64h4" class="a"/></svg><b>Regulación y seguridad</b><span>Termostatos y fusibles térmicos</span></div>
+<div><svg class="ic" viewBox="0 0 96 80" aria-hidden="true"><path d="M6 52h8c4 0 4-24 8-24s4 24 8 24 4-24 8-24 4 24 8 24 4-24 8-24 4 24 8 24h6" class="h"/><path d="M14 12c-3 4 3 6 0 10M26 12c-3 4 3 6 0 10M38 12c-3 4 3 6 0 10" class="a"/><g transform="translate(76 26)"><circle r="10" class="fa"/><path d="M0-15v6M0 9v6M-15 0h6M9 0h6M-10.6-10.6l4.2 4.2M6.4 6.4l4.2 4.2M10.6-10.6l-4.2 4.2M-6.4 6.4l-4.2 4.2"/><circle r="10"/><circle r="3.5"/></g></svg><b>La carga principal</b><span>Resistencias o motores</span></div>
+<div><svg class="ic" viewBox="0 0 96 80" aria-hidden="true"><rect x="12" y="14" width="72" height="52" rx="6"/><rect x="4" y="30" width="16" height="20" rx="3" class="fa"/><rect x="4" y="30" width="16" height="20" rx="3"/><path d="M8 36v8M16 36v8"/><circle cx="84" cy="40" r="9" class="f"/><circle cx="84" cy="40" r="9"/><path d="M78 34l12 12M90 34l-12 12"/><path d="M40 14h14" class="w"/><path d="M42 14l10-7"/><path d="M60 66H34" class="a"/><path d="M40 60l-6 6 6 6" class="a"/></svg><b>Cierre del circuito</b><span>Retorno por el neutro</span></div>
 </div>
 
 <h3 style="margin:30px 0 4px;font-size:17px">Protocolo de seguridad: 6 pasos</h3>
@@ -176,44 +188,7 @@ footer{margin-top:48px;color:var(--mut);font-size:13px;border-top:1px solid var(
 <div><b>6</b>Multímetro sólo en continuidad u ohmios, con el aparato desenchufado.</div>
 </div>
 
-<h3 style="margin:30px 0 4px;font-size:17px">Matriz de diagnóstico progresivo</h3>
-<div class="tree" role="img" aria-label="Árbol de decisión: del síntoma a la inspección visual, la prueba de aislamiento y bucle, y el camino de la energía con la acción para cada componente.">
-<svg viewBox="0 0 920 450" xmlns="http://www.w3.org/2000/svg">
-<defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#3d4b5c"/></marker><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#d03b2f"/></marker></defs>
-<rect class="st" x="380" y="8" width="140" height="30" rx="7"/><text x="450" y="28" text-anchor="middle" style="fill:#fff">Síntoma detectado</text>
-<path class="ln" d="M450 38V60" marker-end="url(#ar)"/>
-<rect class="box" x="370" y="62" width="160" height="36" rx="7"/><text x="450" y="78" text-anchor="middle">Inspección visual</text><text class="small" x="450" y="92" text-anchor="middle">Fase 1</text>
-<path class="lnr" d="M370 80H232" marker-end="url(#arr)"/><rect x="62" y="64" width="168" height="32" rx="7" fill="none" stroke="#d03b2f" stroke-width="1.6"/><text x="146" y="85" text-anchor="middle">Daño severo → NO REPARAR</text>
-<path class="ln" d="M450 98V136" marker-end="url(#ar)"/>
-<rect class="box" x="355" y="138" width="190" height="36" rx="7"/><text x="450" y="154" text-anchor="middle">Prueba de aislamiento y bucle</text><text class="small" x="450" y="168" text-anchor="middle">Fase 2</text>
-<path class="lnr" d="M355 156H232" marker-end="url(#arr)"/><rect x="62" y="140" width="168" height="32" rx="7" fill="none" stroke="#d03b2f" stroke-width="1.6"/><text x="146" y="161" text-anchor="middle">Fuga a masa → NO REPARAR</text>
-<path class="ln" d="M545 156H660" marker-end="url(#ar)"/><rect class="box" x="662" y="140" width="176" height="32" rx="7"/><text x="750" y="161" text-anchor="middle">Bucle abierto → Fase 3</text>
-<path class="ln" d="M450 174V200M80 214V200H820V214M255 200V214M450 200V214M630 200V214"/>
-<text class="small halo" x="450" y="194" text-anchor="middle">Camino de la energía (Fase 3)</text>
-<g>
-<rect class="box" x="30" y="216" width="100" height="30" rx="7"/><text x="80" y="236" text-anchor="middle">Cable</text>
-<rect class="box" x="205" y="216" width="100" height="30" rx="7"/><text x="255" y="236" text-anchor="middle">Interruptor</text>
-<rect class="box" x="400" y="216" width="100" height="30" rx="7"/><text x="450" y="236" text-anchor="middle">Termostato</text>
-<rect class="box" x="580" y="216" width="100" height="30" rx="7"/><text x="630" y="236" text-anchor="middle">Fusible</text>
-<rect class="box" x="760" y="216" width="120" height="30" rx="7"/><text x="820" y="236" text-anchor="middle">Carga</text>
-</g>
-<path class="ln" d="M80 246V290M230 246V262H190V290M280 246V262H320V290M450 246V290M630 246V290M800 246V262H770V290M840 246V262H860V290"/>
-<g class="small halo">
-<text x="80" y="284" text-anchor="middle">roto</text><text x="190" y="284" text-anchor="middle">sucio</text><text x="320" y="284" text-anchor="middle">roto</text><text x="450" y="284" text-anchor="middle">desajustado</text><text x="630" y="284" text-anchor="middle">∞ abierto</text><text x="770" y="284" text-anchor="middle">duda</text><text x="866" y="284" text-anchor="middle">quemada</text>
-</g>
-<g>
-<circle cx="80" cy="318" r="24" fill="#1f9d55"/><text x="80" y="324" text-anchor="middle" style="fill:#fff;font-size:18px">⟳</text><text x="80" y="362" text-anchor="middle">REEMPLAZAR</text>
-<circle cx="190" cy="318" r="24" fill="#9b4fb8"/><text x="190" y="324" text-anchor="middle" style="fill:#fff;font-size:17px">✦</text><text x="190" y="362" text-anchor="middle">LIMPIAR</text>
-<circle cx="320" cy="318" r="24" fill="#1f9d55"/><text x="320" y="324" text-anchor="middle" style="fill:#fff;font-size:18px">⟳</text><text x="320" y="362" text-anchor="middle">REEMPLAZAR</text>
-<circle cx="450" cy="318" r="24" fill="#1d4ed8"/><text x="450" y="324" text-anchor="middle" style="fill:#fff;font-size:17px">🔧</text><text x="450" y="362" text-anchor="middle">REPARAR</text>
-<circle cx="630" cy="318" r="24" fill="#1f9d55"/><text x="630" y="324" text-anchor="middle" style="fill:#fff;font-size:18px">⟳</text><text x="630" y="362" text-anchor="middle">REEMPLAZAR</text>
-<circle cx="770" cy="318" r="24" fill="#e0a100"/><text x="770" y="325" text-anchor="middle" style="fill:#fff;font-size:20px">!</text><text x="770" y="362" text-anchor="middle">PRECAUCIÓN</text>
-<circle cx="866" cy="318" r="24" fill="#d03b2f"/><text x="866" y="325" text-anchor="middle" style="fill:#fff;font-size:20px">⦸</text><text x="866" y="362" text-anchor="middle">NO REPARAR</text>
-</g>
-<text class="small" x="450" y="410" text-anchor="middle">Interruptor: si está sucio, limpiar los contactos; si está roto, reemplazar. Fusible térmico abierto: reemplazar y buscar por qué se recalentó.</text>
-<text class="small" x="450" y="430" text-anchor="middle">Carga (motor o resistencia): si hay duda, derivar con precaución; bobina o resistencia quemada en un aparato sellado: no reparar.</text>
-</svg>
-</div>
+<h3 style="margin:30px 0 4px;font-size:17px">Decisión y simbología de acción</h3>
 <div class="acts">
 <div class="act" style="--c:#1d4ed8"><i>🔧</i><div><b>Reparar</b><span>Se resuelve con herramientas básicas y repuestos genéricos.</span></div></div>
 <div class="act" style="--c:#9b4fb8"><i>✦</i><div><b>Limpiar / mantener</b><span>Suciedad, sarro o falta de lubricación.</span></div></div>
@@ -256,7 +231,18 @@ footer{margin-top:48px;color:var(--mut);font-size:13px;border-top:1px solid var(
 <section id="interruptores">
 <div class="sh"><span class="num">3</span><div><h2>Evaluación de interruptores</h2><p>Pérdida de tensión mecánica o carbón y óxido en los contactos impiden que el circuito se cierre.</p></div></div>
 <div class="eval">
-<div class="pics"><img src="img/taller/interruptor.webp" alt="Interruptor basculante con las puntas del multímetro"></div>
+<div class="pics"><svg class="big" viewBox="0 0 340 240" role="img" aria-label="Interruptor basculante con las puntas de un multímetro en sus terminales; el multímetro marca 0,0 ohmios con el interruptor en ON.">
+<rect x="70" y="40" width="130" height="96" rx="10" class="f"/><rect x="70" y="40" width="130" height="96" rx="10"/>
+<path d="M84 96l102-40v36l-102 26z" class="fa"/><path d="M84 96l102-40v36l-102 26z"/>
+<text x="168" y="80" class="t" style="font-size:20px">I</text><text x="96" y="114" class="t" style="font-size:18px">O</text>
+<text x="206" y="56" class="t" style="font-size:14px;fill:var(--ok)">ON</text>
+<rect x="96" y="136" width="14" height="34" rx="2" class="m"/><rect x="160" y="136" width="14" height="34" rx="2" class="m"/>
+
+<path d="M95 162l8 10 8-10" class="redf"/><path d="M159 162l8 10 8-10" class="blkf"/>
+<rect x="232" y="132" width="96" height="88" rx="12" class="meter"/><rect x="244" y="144" width="72" height="30" rx="5" class="lcd"/><text x="310" y="166" text-anchor="end" class="lcdt">0.0 Ω</text>
+<circle cx="280" cy="188" r="10" class="f"/><circle cx="280" cy="188" r="10"/><path d="M280 188l6-6"/>
+<circle cx="262" cy="208" r="5" style="fill:#d6336c;stroke:none"/><circle cx="298" cy="208" r="5" class="blkf"/><path d="M103 172C98 226 226 232 262 208" class="red"/><path d="M167 172C168 218 270 226 298 208" class="blk"/>
+</svg></div>
 <div class="checks">
 <div class="chk"><span class="n">1</span><b>Sentir el accionamiento</b><span>Debe hacer clic firme y quedarse en su posición. Si está flojo o vuelve solo, el resorte o la palanca fallaron.</span></div>
 <div class="chk"><span class="n">2</span><b>Medir en las dos posiciones</b><span>Desenchufado, entre los terminales del interruptor, accionándolo varias veces.</span></div>
@@ -275,7 +261,16 @@ footer{margin-top:48px;color:var(--mut);font-size:13px;border-top:1px solid var(
 <section id="termica">
 <div class="sh"><span class="num">4</span><div><h2>Regulación térmica: termostatos y fusibles térmicos</h2><p>Criterio de selección cuando hay que reemplazarlos.</p></div></div>
 <div class="therm">
-<div class="tc"><img src="img/taller/termostato.webp" alt="Termostato bimetálico"><div><h3>Termostato bimetálico</h3><span class="pill" style="--c:var(--blue)">CÍCLICO</span><span class="pill" style="--c:var(--ok)">FRÍO: 0 Ω</span><p>Debe tener continuidad a temperatura ambiente y abrirse al llegar a su temperatura de corte; al enfriar vuelve a cerrar. Si los contactos están carbonizados se pueden limpiar.</p><p><b>Reemplazo:</b> misma temperatura; si no hay la exacta, una <b>menor o igual</b>, dentro de un <b>5 %</b>. Corriente igual o mayor.</p></div></div>
+<div class="tc"><svg class="mid" viewBox="0 0 200 150" role="img" aria-label="Termostato bimetálico de disco con su brida y dos terminales">
+<path d="M14 70c0-10 10-14 22-14h128c12 0 22 4 22 14s-10 14-22 14H36c-12 0-22-4-22-14z" class="f"/><path d="M14 70c0-10 10-14 22-14h128c12 0 22 4 22 14s-10 14-22 14H36c-12 0-22-4-22-14z"/>
+<circle cx="28" cy="70" r="6"/><circle cx="172" cy="70" r="6"/>
+<ellipse cx="100" cy="58" rx="46" ry="14" class="fa"/><ellipse cx="100" cy="58" rx="46" ry="14"/>
+<path d="M66 54q34-12 68 0" class="a"/>
+<path d="M60 70v26h80V70" class="f"/><path d="M60 70v26h80V70"/>
+<rect x="74" y="96" width="12" height="40" rx="2" class="m"/><rect x="114" y="96" width="12" height="40" rx="2" class="m"/>
+<circle cx="80" cy="124" r="3" class="hole"/><circle cx="120" cy="124" r="3" class="hole"/>
+<text x="100" y="40" text-anchor="middle" class="t" style="font-size:11px">bimetal</text>
+</svg><div><h3>Termostato bimetálico</h3><span class="pill" style="--c:var(--blue)">CÍCLICO</span><span class="pill" style="--c:var(--ok)">FRÍO: 0 Ω</span><p>Debe tener continuidad a temperatura ambiente y abrirse al llegar a su temperatura de corte; al enfriar vuelve a cerrar. Si los contactos están carbonizados se pueden limpiar.</p><p><b>Reemplazo:</b> misma temperatura; si no hay la exacta, una <b>menor o igual</b>, dentro de un <b>5 %</b>. Corriente igual o mayor.</p></div></div>
 <div class="tc"><img src="img/taller/fusible-termico.webp" alt="Fusible térmico"><div><h3>Fusible térmico (termofusible)</h3><span class="pill" style="--c:var(--bad)">UN SOLO USO</span><span class="pill" style="--c:var(--ok)">SANO: 0 Ω</span><p>Si el multímetro marca resistencia infinita, está fundido. Se abrió por un sobrecalentamiento: hay que buscar la causa (termostato pegado, sarro, ventilación tapada).</p><p><b>Reemplazo:</b> idénticas especificaciones; si no hay la exacta, temperatura <b>≤ original, dentro de un 5 %</b>, y corriente <b>≥ original</b>, 250 V.</p></div></div>
 </div>
 <div class="never"><img src="img/taller/alerta.webp" alt=""><div><b>Un fusible térmico jamás se puentea.</b> Es la última protección contra incendio. Se une con casquillos de crimpar (el calor del cautín lo abre) y se repone su funda aislante.</div></div>
