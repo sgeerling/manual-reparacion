@@ -66,6 +66,88 @@ body{margin:0;color:#222}
   document.addEventListener("change", (e) => { if (e.target.matches(".mr-nav select")) posthog.capture("figure_jump", { to: e.target.value }); }, true);
 })();
 </script>
+<style>.mr-modo,.mr-mm{font:inherit;font-weight:600;color:inherit;background:transparent;border:1px solid rgba(127,127,127,.4);border-radius:6px;padding:6px 10px;cursor:pointer;text-decoration:none;white-space:nowrap}
+.mr-modo[aria-pressed="true"]{background:#1f6f43;border-color:#1f6f43;color:#fff}
+.mr-modo b{font-weight:700}
+.mr-nav .mr-pn{margin-left:0}.mr-nav .mr-mm{margin-left:auto}
+.mr-nav .mr-modo:first-of-type{margin-left:0}
+body:not(.mr-g) .mr-chk,body:not(.mr-g) .mr-wz,body:not(.mr-g) .mr-bar,body:not(.mr-g) .mr-legend,body:not(.mr-g) .mr-dot,body:not(.mr-g) .mr-sheet{display:none!important}
+body:not(.mr-g) .mr-gl{all:unset}
+.mr-g .bk-ref,.mr-g .bk-mt em,.mr-g .kt-src,.mr-g .bk-method li:has([data-test="hv"]),.mr-g .bk-tests [data-test="hv"]{display:none}
+.mr-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:.02em;flex:none}
+.mr-l1.mr-dot,.mr-dot.mr-l1{background:#2e9e5b}.mr-dot.mr-l2{background:#e0a100}.mr-dot.mr-l3{background:#d6453d}
+.mr-legend{display:flex;flex-wrap:wrap;gap:4px 14px;margin:8px 0 0;font:500 11.5px/1.3 ui-sans-serif,system-ui,sans-serif;color:var(--anatomy-text,#666)}
+.mr-legend span{display:inline-flex;align-items:center}
+.mr-chk{font:500 13px/1.35 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;border-bottom:1px solid rgba(127,127,127,.25);background:rgba(224,161,0,.1)}
+.mr-chk.mr-ok{background:rgba(46,158,91,.1)}
+.mr-chk-h{display:flex;align-items:center;gap:10px;width:100%;padding:8px max(16px,env(safe-area-inset-left,0px));font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-align:left}
+.mr-chk-h:after{content:"▾";margin-left:auto;opacity:.6}.mr-chk-h[aria-expanded="false"]:after{content:"▸"}
+.mr-chk-s{font-weight:600;opacity:.8}
+.mr-chk-h[aria-expanded="false"]+.mr-chk-b{display:none}
+.mr-chk-b{display:flex;flex-wrap:wrap;gap:6px 18px;padding:0 max(16px,env(safe-area-inset-left,0px)) 10px}
+.mr-chk-b label{display:flex;align-items:flex-start;gap:8px;cursor:pointer;min-height:28px}
+.mr-chk-b input{width:18px;height:18px;margin:1px 0 0;accent-color:#1f6f43;flex:none}
+.mr-wz{margin:0 0 16px;padding:14px;border:1px solid var(--anatomy-lo,rgba(127,127,127,.35));border-radius:10px;background:var(--anatomy-card,transparent)}
+.bk .mr-wz h2,.mr-wz h2{margin:0 0 4px!important;font:700 17px/1.25 ui-sans-serif,system-ui,sans-serif!important;color:var(--anatomy-strong,inherit)!important;letter-spacing:0!important;text-transform:none!important}
+.mr-wz-p{margin:0 0 10px;font-size:13px;color:var(--anatomy-text,#666)}
+.mr-wz-cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px}
+.mr-wz-cats button,.mr-wz-list button{font:inherit;color:inherit;text-align:left;background:var(--anatomy-page,rgba(127,127,127,.06));border:1px solid var(--anatomy-faint,rgba(127,127,127,.3));border-radius:8px;padding:10px 12px;cursor:pointer;min-height:56px}
+.mr-wz-cats button:hover,.mr-wz-list button:hover{border-color:var(--anatomy-strong,#333)}
+.mr-wz-cats b,.mr-wz-list b{display:block;font-size:14px;line-height:1.25;color:var(--anatomy-strong,inherit)}
+.mr-wz-cats span,.mr-wz-list em{display:block;margin-top:3px;font-size:12px;font-style:normal;line-height:1.35;color:var(--anatomy-text,#666)}
+.mr-wz-list{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.mr-wz-list button{display:flex;align-items:flex-start;gap:4px;width:100%}
+.mr-wz-list .mr-dot{margin-top:5px}.mr-wz-list span{flex:1}
+.mr-wz-list u{text-decoration:none;font:600 11px/1 ui-sans-serif,system-ui,sans-serif;white-space:nowrap;margin:3px 0 0 8px;opacity:.75}
+.mr-back{font:600 12px/1 ui-sans-serif,system-ui,sans-serif;color:inherit;background:none;border:0;padding:4px 0 10px;cursor:pointer;opacity:.8}
+.mr-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:14px 0 0}
+.mr-bar[hidden]{display:none}
+.mr-badge{display:inline-flex;align-items:center;font:500 12.5px/1.3 ui-sans-serif,system-ui,sans-serif;padding:6px 10px;border-radius:999px;background:rgba(127,127,127,.12);color:var(--anatomy-strong,inherit)}
+.mr-go{margin-left:auto;font:700 13.5px/1 ui-sans-serif,system-ui,sans-serif;color:#fff;background:#1f6f43;border:0;border-radius:8px;padding:11px 16px;cursor:pointer}
+.mr-go:hover{background:#185a36}
+.mr-gl{border-bottom:1.5px dotted currentColor;cursor:help}
+.mr-tip{position:fixed;z-index:200;box-sizing:border-box;padding:10px 12px;border-radius:8px;background:#1d1d1f;color:#f3f3f3;font:400 13px/1.45 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;box-shadow:0 6px 24px rgba(0,0,0,.3)}
+.mr-tip b{display:block;margin-bottom:3px;text-transform:capitalize}
+.mr-sheet{position:fixed;z-index:120;right:16px;bottom:16px;width:min(440px,calc(100vw - 32px));max-height:min(74vh,640px);display:flex;flex-direction:column;background:var(--page,#fff);color:inherit;border:1px solid rgba(127,127,127,.4);border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.28);font:400 15px/1.5 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;overflow:hidden}
+.mr-sheet[hidden]{display:none}
+.mr-sheet header{position:relative;display:flex;align-items:center;gap:10px;padding:10px 12px 12px 16px}
+.mr-k{font:700 11px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#1f6f43}
+.mr-n{margin-left:auto;font:600 12px/1 ui-monospace,monospace;opacity:.7}
+.mr-x{font:inherit;width:32px;height:32px;border-radius:8px;border:1px solid rgba(127,127,127,.4);background:transparent;color:inherit;cursor:pointer}
+.mr-prog{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(127,127,127,.2)}.mr-prog i{display:block;height:100%;background:#1f6f43;transition:width .2s}
+.mr-body{padding:14px 16px;overflow:auto;flex:1}
+.mr-body h3{margin:0 0 8px;font:700 18px/1.25 ui-sans-serif,system-ui,sans-serif}
+.mr-body p{margin:0 0 10px}
+.mr-why{font-size:14px;opacity:.9}.mr-warn{padding:10px 12px;border-radius:8px;background:rgba(214,69,61,.12);font-weight:600}
+.mr-inst{font-size:13px}.mr-pw-on{color:#d6453d;font-weight:700}.mr-pw-off{color:#1f6f43;font-weight:600}
+.mr-hint{font-size:12.5px;opacity:.7}
+.mr-verd{display:grid;gap:8px;margin:12px 0 8px}
+.mr-verd button,.mr-res button,.mr-end button{font:inherit;color:inherit;text-align:left;background:transparent;border:1.5px solid rgba(127,127,127,.4);border-radius:10px;padding:10px 12px;cursor:pointer}
+.mr-verd b{display:block;font-size:13px}.mr-verd span{display:block;font-size:14px;margin-top:2px}
+.mr-verd [data-v="ok"][aria-pressed="true"]{border-color:#2e9e5b;background:rgba(46,158,91,.12)}
+.mr-verd [data-v="bad"][aria-pressed="true"]{border-color:#d6453d;background:rgba(214,69,61,.12)}
+.mr-tools,.mr-sum{margin:0 0 10px;padding-left:20px}
+.mr-res{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:0 0 12px}
+.mr-res button{text-align:center;font-weight:600;min-height:48px}
+.mr-res [aria-pressed="true"]{border-color:#1f6f43;background:rgba(31,111,67,.14)}
+.mr-note-l{display:block;font-size:13px;font-weight:600}
+.mr-note{display:block;width:100%;box-sizing:border-box;margin-top:6px;font:inherit;font-weight:400;color:inherit;background:transparent;border:1px solid rgba(127,127,127,.4);border-radius:8px;padding:8px 10px;resize:vertical}
+.mr-end{display:flex;gap:8px;margin:12px 0 6px}.mr-end button{flex:1;text-align:center;font-weight:600}
+.mr-sheet footer{display:flex;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));border-top:1px solid rgba(127,127,127,.25)}
+.mr-prev,.mr-next{font:700 14px/1 ui-sans-serif,system-ui,sans-serif;border-radius:10px;padding:14px 14px;cursor:pointer;min-height:46px}
+.mr-prev{color:inherit;background:transparent;border:1px solid rgba(127,127,127,.4)}.mr-prev[disabled]{opacity:.35;cursor:default}
+.mr-next{flex:1;color:#fff;background:#1f6f43;border:0}
+.mr-print{display:none}
+@media (max-width:980px){
+ .mr-sheet{left:0;right:0;bottom:0;width:auto;max-height:54vh;max-height:54svh;border-radius:14px 14px 0 0;border-width:1px 0 0}
+ body.mr-sheet-on{padding-bottom:54vh}
+ .mr-modo{padding:6px 8px;font-size:12px}.mr-mm{font-size:12px;padding:6px 8px}
+ .mr-go{margin-left:0;flex:1}
+ .mr-wz-cats{grid-template-columns:1fr 1fr}
+}
+@media (prefers-color-scheme:dark){.mr-sheet{background:var(--page,#1b1b1c)}.mr-k{color:#59c98a}.mr-pw-off{color:#59c98a}}
+@media print{body>*:not(.mr-print){display:none!important}.mr-print{display:block;white-space:pre-wrap;font:14px/1.6 ui-sans-serif,system-ui,sans-serif;padding:24px;color:#000}}
+</style>
 </head>
 <body>
 <nav class="mr-nav" aria-label="Manual de reparación"><a class="mr-home" href="./">← Manual de reparación</a><label class="mr-pick"><span>Ir a</span><select onchange="location.href=this.value"><option value="bici-paseo.html">Fig 12 · Bicicleta de paseo / urbana</option><option value="bici-mtb.html">Fig 13 · Mountain bike</option><option value="bici-gravel.html" selected>Fig 14 · Bicicleta gravel</option><option value="bici-ruta.html">Fig 15 · Bicicleta de ruta / pistera</option><option value="bici-fixie.html">Fig 16 · Fixie urbana</option><option value="bici-singlespeed.html">Fig 17 · Single speed</option></select></label><span class="mr-pn"><a href="bici-mtb.html" title="Anterior: Mountain bike">‹</a><a href="bici-ruta.html" title="Siguiente: Bicicleta de ruta / pistera">›</a></span></nav>
@@ -485,6 +567,7 @@ body{background:var(--page);font:14px/1.6 ui-sans-serif,system-ui,-apple-system,
 <div class="bk-head"><h2>Fallas típicas</h2><button type="button" class="bk-ok" data-fault="" aria-pressed="true">Sin falla elegida</button></div>
 <div class="bk-chips" role="group" aria-label="Elegir un síntoma"><button type="button" data-fault="tubeless" aria-pressed="false">La rueda sin cámara pierde aire</button><button type="button" data-fault="frenos_d" aria-pressed="false">Los frenos de disco frenan poco o chillan</button><button type="button" data-fault="roce_d" aria-pressed="false">El disco roza la pinza</button><button type="button" data-fault="descentrada" aria-pressed="false">La rueda está descentrada (oscila)</button><button type="button" data-fault="chirria" aria-pressed="false">La cadena chirría o pedalear cuesta</button><button type="button" data-fault="suelta" aria-pressed="false">La cadena se sale</button><button type="button" data-fault="gastada" aria-pressed="false">La cadena salta o patina con fuerza</button><button type="button" data-fault="cambio" aria-pressed="false">Los cambios no entran o hacen ruido</button><button type="button" data-fault="delantero" aria-pressed="false">El cambio delantero roza o no sube</button><button type="button" data-fault="direccion" aria-pressed="false">Juego o golpeteo en la dirección</button><button type="button" data-fault="buje_c" aria-pressed="false">La rueda tiene juego hacia los lados</button><button type="button" data-fault="pedalier" aria-pressed="false">Crujidos o juego en pedales y bielas</button><button type="button" data-fault="engrase" aria-pressed="false">Óxido y ruidos por falta de engrase</button><button type="button" data-fault="tija" aria-pressed="false">La tija se desliza o el sillín se mueve</button><button type="button" data-fault="cuadro" aria-pressed="false">Grietas, golpes o dirección imprecisa</button><button type="button" data-fault="posicion" aria-pressed="false">Molestias en rodillas, espalda o muñecas</button></div>
 <div class="kt-fault-card bk-card" aria-live="polite"></div>
+<script type="application/json" id="mr-data">{"kind":"bici","faults":[{"id":"tubeless","hash":"tubeless","name":"La rueda sin cámara pierde aire","queja":"La rueda tubeless se desinfla o sale líquido blanco por un agujero o por el borde del neumático.","causa":"Un pinchazo más grande de lo que el sellante alcanza a tapar, sellante seco o la cinta de llanta mal sellada.","diag":["Gira la rueda y busca burbujas o restos de sellante en el neumático: marcan el agujero.","Mira el borde del neumático y la válvula: si pierde por ahí, la cinta o la válvula no sellan.","Agita la rueda junto al oído: si no se escucha líquido, el sellante se secó."],"repair":["Pinchazo pequeño: gira la rueda con el agujero hacia abajo para que el sellante lo tape, e infla.","Si no sella, coloca una cámara de repuesto en ruta. Los parches solo sirven en neumáticos UST o con forro de butilo (PT).","Para reponer sellante: desmonta un borde del neumático o saca el obús (gusanillo) de la válvula e inyecta la cantidad que indica la etiqueta del neumático.","Si el borde no asienta, mójalo con agua jabonosa, infla hasta la presión máxima de la etiqueta y gira y voltea la rueda para repartir el sellante.","Espera a que selle (de inmediato a algunos días) y luego deja la presión de uso."],"tools":["Sellante","Jeringa o inyector","Llave de obús","Bomba de pie o compresor","Cámara de repuesto"]},{"id":"frenos_d","hash":"frenos_d","name":"Los frenos de disco frenan poco o chillan","queja":"Hay que apretar mucho la manilla, los frenos chillan o la manilla se siente esponjosa.","causa":"Pastillas gastadas, cristalizadas o contaminadas con aceite o grasa, o tornillos de la pinza o del disco flojos; si la manilla es esponjosa, aire en el circuito o líquido viejo.","diag":["Mira las pastillas por la ranura de la pinza: deben tener al menos 1,5 mm de material cada una (DK).","Si chillan, cuesta frenar y el disco se ve oscuro o manchado, las pastillas están contaminadas: busca la fuga o el lubricante que las alcanzó.","Aprieta la manilla varias veces: si se siente blanda o esponjosa y llega al manubrio, hay aire en el circuito.","Revisa los tornillos de la pinza y los del disco: si están flojos, el freno vibra y chilla.","Busca gotas de líquido en las uniones de la manguera, la manilla y la pinza."],"repair":["Saca la rueda y quita el pasador o clip que sujeta las pastillas; fíjate en cómo van el resorte y las pastillas.","Saca las pastillas y empuja los pistones hacia dentro con una herramienta plana que no raye (por ejemplo, una palanca de neumático).","Coloca las pastillas nuevas con su resorte en la misma posición y vuelve a poner el pasador.","Si el disco está manchado, límpialo con alcohol isopropílico y un paño limpio; lija suavemente las pastillas contaminadas o cámbialas.","Monta la rueda y bombea la manilla hasta que las pastillas toquen el disco. Con la rueda fuera, no aprietes la manilla.","Asienta las pastillas nuevas: en un lugar seguro, rueda a velocidad moderada y frena con firmeza hasta casi detenerte. Repite unas diez veces.","Aprieta los tornillos de la pinza y del disco al par que indica el fabricante.","Si la manilla sigue esponjosa, purga el freno con el kit y el líquido de la marca (aceite mineral o DOT, nunca se mezclan), siguiendo su manual; si no tienes el kit, en el taller."],"tools":["Llaves Allen o Torx","Palanca de neumático o separador de pistones","Pastillas nuevas del modelo de tu freno","Alcohol isopropílico y paño limpio"]},{"id":"roce_d","hash":"roce_d","name":"El disco roza la pinza","queja":"Se oye un roce metálico al girar la rueda.","causa":"La rueda no quedó bien asentada, la pinza está descentrada respecto del disco o el disco está doblado.","diag":["Afloja el eje o el cierre, empuja la bici hacia el suelo para asentar la rueda y vuelve a apretar.","Levanta la bici, gira la rueda y mira con una luz detrás de la pinza el espacio entre pastillas y disco.","Mira si el disco está doblado y si sus tornillos o la maza tienen juego."],"repair":["Afloja los dos tornillos que fijan la pinza para que se mueva libre.","Aprieta la manilla para centrar la pinza sobre el disco y, sin soltarla, aprieta los tornillos.","Suelta y gira la rueda; si ya no roza, aprieta los tornillos a 6–8 Nm.","Si sigue rozando, afloja un tornillo y empuja la pinza hacia el lado del roce hasta ver espacio a ambos lados; aprieta.","Un disco muy doblado se endereza con una herramienta especial o se cambia."],"tools":["Llaves Allen o Torx","Llave de torque","Una luz para mirar a contraluz"]},{"id":"descentrada","hash":"descentrada","name":"La rueda está descentrada (oscila)","queja":"La llanta se mueve hacia los lados al girar y roza con las zapatas en un punto.","causa":"Rayos flojos o con tensiones desiguales, o un golpe. Cada rayo tira de la llanta hacia su lado: si uno pierde tensión, la llanta se va hacia el lado contrario.","diag":["Levanta la rueda y hazla girar; mira la distancia entre la llanta y la zapata, o tensa el freno hasta que roce y escucha dónde.","Aprieta los rayos por parejas con los dedos: los flojos ceden más que el resto.","Busca rayos rotos y cabecillas dañadas."],"repair":["Usa una llave de rayos de la medida exacta de la cabecilla, sin juego.","Donde la llanta se desvía hacia un lado, aprieta el rayo cercano del lado contrario o afloja el de ese lado, de a un cuarto de vuelta.","Cuidado con el sentido: mirado desde la llanta, el rayo se aprieta girando en sentido antihorario.","Asegúrate de girar la cabecilla y no de retorcer el rayo.","Repite girando la rueda hasta que no roce. Si hay un golpe grande o rayos rotos, llévala al taller."],"tools":["Llave de rayos de la medida exacta"]},{"id":"chirria","hash":"chirria","name":"La cadena chirría o pedalear cuesta","queja":"Se oye un chirrido al pedalear y los pedales giran duros.","causa":"Cadena seca, sucia u oxidada. El polvo se pega al aceite sobrante y la desgasta junto con platos y piñones.","diag":["Gira los pedales hacia atrás y escucha. Mira si los eslabones están secos, oxidados o con barro.","Comprueba que todos los eslabones se doblen libres al pasar por las roldanas del cambio."],"repair":["Limpia la cadena con desengrasante. Si está muy sucia, ábrela por el eslabón especial, déjala un par de horas en parafina, cepíllala y sécala.","Limpia también piñones y platos, sin mojar las mazas ni el eje de centro.","Lubrica con aceite de cadena poco denso: una gota por dentro de cada unión mientras giras los pedales hacia atrás.","Quita el aceite sobrante con un trapo: el sobrante junta polvo.","No uses aceite de motor (es muy denso) ni aceites tipo «3 en 1» o WD-40 en la cadena."],"tools":["Desengrasante o parafina","Cepillo","Trapo","Aceite de cadena"]},{"id":"suelta","hash":"suelta","name":"La cadena se sale","queja":"La cadena se cae del plato o de los piñones al pedalear o al cambiar.","causa":"Cadena destensada (en bicis sin cambio), topes de los cambios desajustados o guardacadena doblado.","diag":["Sin cambio trasero: levanta la cadena con un destornillador a mitad del tramo. Si sube más de 2 cm está suelta; el juego correcto es de unos 13 mm.","Con cambio: fíjate si se sale por fuera del piñón pequeño o por dentro del grande. Eso lo corrigen los tornillos de tope del cambio trasero.","Si se sale en los platos, revisa los topes del cambio delantero.","Si hay guardacadena, mira que no esté doblado y rozando la cadena."],"repair":["Sin cambio: afloja las tuercas de la rueda trasera, tira de ella hacia atrás hasta tensar la cadena, sin pasarte, y apriétalas con seguridad.","Con cambio, rueda en el aire y cadena en el piñón pequeño: ajusta el tornillo de tope superior hasta que la roldana quede bajo ese piñón.","En el piñón grande, ajusta el tornillo de tope inferior del mismo modo.","Si la roldana superior toca los piñones, aprieta el tornillo que apoya contra el cuadro.","Prueba todas las marchas girando los pedales a mano."],"tools":["Llave fija","Destornillador"]},{"id":"gastada","hash":"gastada","name":"La cadena salta o patina con fuerza","queja":"Al pedalear fuerte, la cadena salta sobre los dientes o los pedales se van de golpe.","causa":"Cadena estirada por el uso o con un eslabón rígido; piñones y platos gastados.","diag":["Con la cadena sobre el plato, tira de un eslabón hacia afuera: si se separa y deja ver los dientes, está gastada.","Mide el estiramiento con un comprobador de desgaste de cadena: si sus pines entran del todo en los eslabones, la cadena está gastada. Sin comprobador, mide 24 pasadores (12 eslabones): una cadena nueva mide 30,5 cm; con más de 30,8 cm hay que cambiarla.","Mira los dientes de piñones y platos: si están afilados o mordidos, también están gastados."],"repair":["Abre la cadena por el eslabón rápido o con un cortacadenas. Si tiene pasador maestro, usa siempre ese.","Para el largo: pasa la cadena nueva por el plato grande y el piñón grande, sin pasarla por el cambio, y agrega dos eslabones. Luego pásala por el cambio y únela.","Comprueba que en plato pequeño y piñón pequeño la cadena no roce consigo misma en la jaula del cambio; si queda colgando, sobra un par de eslabones.","Al cambiar la cadena, cambia también los piñones y el plato más usado.","Compra una cadena compatible con las velocidades de tu bici (8, 9…)."],"tools":["Tronchacadenas","Eslabón rápido","Extractor de piñones y látigo (si se cambian los piñones)"]},{"id":"cambio","hash":"cambio","name":"Los cambios no entran o hacen ruido","queja":"La cadena no sube o no baja de piñón, o hace ruido rozando el piñón vecino.","causa":"Cable destensado o estirado (lo más común), suciedad en las roldanas o patilla del cambio doblada.","diag":["Pon el segundo piñón más pequeño y mira si la cadena queda centrada o roza con el siguiente.","Revisa el cable y la funda: sin óxido ni hilos rotos.","Mira desde atrás si el cambio cuelga vertical, con las roldanas alineadas bajo los piñones. Si la patilla está doblada, hay que enderezarla con su herramienta o cambiarla.","Mira los dientes de las roldanas: si están puntiagudos o la roldana tiene juego, cámbialas."],"repair":["En el segundo piñón, gira el tensor del cable, en el cambio o en el mando, tensando hasta que la cadena roce con el tercer piñón.","Luego afloja un poco el tensor, hasta que deje de sonar.","Prueba todas las marchas pedaleando suave y repite si hace falta.","Si el cable está muy suelto: con la cadena en el piñón pequeño, afloja el tornillo prisionero, tensa el cable con la mano y vuelve a apretar.","Limpia las roldanas y engrasa los ejes de pivote del cambio."],"tools":["Ninguna para el tensor","Llave Allen de 5 mm para el prisionero"]},{"id":"delantero","hash":"delantero","name":"El cambio delantero roza o no sube","queja":"La cadena roza la caja del desviador o no pasa al plato grande.","causa":"Desviador torcido o a mala altura, cable flojo o topes desajustados.","diag":["Mira desde arriba: la caja del desviador debe quedar paralela al plato grande.","Mira la altura: la caja va cerca del plato grande, pero sin tocarlo.","Revisa el cable y que vaya bien por sus guías."],"repair":["Afloja el tornillo de la abrazadera, corrige el ángulo y la altura, y apriétalo.","Con plato pequeño y piñón grande, ajusta el tornillo de tope interior hasta que la caja casi toque la cadena, sin rozarla.","Tensa el cable y aprieta el prisionero. Con plato grande y piñón pequeño, ajusta el tope exterior.","Con plato y piñón medianos, centra la caja con el tensor del cable."],"tools":["Destornillador","Llave Allen"]},{"id":"direccion","hash":"direccion","name":"Juego o golpeteo en la dirección","queja":"Al frenar adelante se nota un golpeteo, o el manubrio gira duro.","causa":"Dirección floja (con juego) o demasiado apretada.","diag":["Aprieta el freno delantero y mueve la bici adelante y atrás: si notas un golpeteo en la dirección, tiene juego.","Gira el manubrio a ambos lados: debe moverse suave, sin puntos duros."],"repair":["Dirección ahead: afloja los tornillos de la tee y aprieta poco a poco el tornillo de la tapa superior hasta quitar el juego, sin endurecerla.","Alinea el manubrio con la rueda y vuelve a apretar los tornillos de la tee.","Dirección de rosca: afloja la contratuerca, ajusta la tuerca inferior hasta quitar el juego y bloquéala con la contratuerca, con dos llaves planas de 32, 36 o 40 mm.","Comprueba de nuevo frenando adelante y girando el manubrio."],"tools":["Llaves Allen (ahead)","Dos llaves planas de 32, 36 o 40 mm (rosca)"]},{"id":"buje_c","hash":"buje_c","name":"La rueda tiene juego hacia los lados","queja":"La rueda se mueve de lado a lado con el eje apretado, o gira áspera y con ruido.","causa":"Eje pasante flojo o rodamientos de cartucho gastados. Estos rodamientos van sellados: no se ajustan, se cambian.","diag":["Comprueba primero que el eje pasante esté apretado y su palanca cerrada.","Sujeta la bici y mueve la llanta hacia los lados: no debe tener juego.","Hazla girar despacio: debe girar libre, sin puntos ásperos ni ruido."],"repair":["Aprieta el eje pasante al par que trae grabado y cierra la palanca.","Si el juego sigue, saca la rueda y las tapas de la maza (a mano o con llave Allen) y gira cada rodamiento con el dedo.","Un rodamiento áspero o con juego se cambia: se saca y se mete a presión con extractor y prensa, apoyando solo en su anillo exterior. Sin esas herramientas, en el taller.","Al lavar la bici, no apuntes el agua a presión a las mazas."],"tools":["Llave Allen","Extractor y prensa de rodamientos (o taller)"]},{"id":"pedalier","hash":"pedalier","name":"Crujidos o juego en pedales y bielas","queja":"Un crujido en cada pedalada, o los pedales se mueven hacia los lados.","causa":"Pedal o biela flojos, o eje de centro gastado.","diag":["Toma una biela y muévela hacia los lados: si hay juego, puede ser la biela o el eje.","Revisa que los pedales estén apretados y giren libres.","Aprieta el tornillo de la biela. Si el juego sigue, es el eje de centro."],"repair":["Aprieta los pedales: el derecho se aprieta en sentido horario; el izquierdo tiene rosca inversa y se aprieta en sentido antihorario.","Aprieta el tornillo de cada biela (Allen de 8 mm o llave de dado de 14 mm).","El eje de centro y las bielas se desmontan con extractor y herramientas específicas: si no las tienes, mejor en el taller.","Pon unas gotas de aceite en el agujero de los pedales y del eje de centro, si lo tienen."],"tools":["Llave de pedales","Llave Allen de 8 mm o de tubo de 14 mm","Extractor de bielas (taller)"]},{"id":"engrase","hash":"engrase","name":"Óxido y ruidos por falta de engrase","queja":"Piezas con moho, frenos que se sienten tiesos, ruedas o pedales que rechinan.","causa":"El agua oxida el metal donde no hay aceite. Pero el exceso de aceite también daña: junta polvo.","diag":["Busca moho (color de óxido) en la cadena y en los pivotes de los frenos.","Gira ruedas y pedales: si rechinan, revisa sus agujeros de engrase."],"repair":["Mazas: si tienen un clip de resorte, gíralo, pon dos o tres gotas en el agujero y vuelve a cerrarlo.","Cadena: una gota por unión mientras giras los pedales, y quita el sobrante.","Dirección, pedales y eje de centro: unas gotas donde giran o en sus agujeros de engrase.","Con uso diario, engrasa cadena y cojinetes cada dos semanas. Seca la bici si se moja."],"tools":["Aceite para bicicletas poco denso","Trapo"]},{"id":"tija","hash":"tija","name":"La tija se desliza o el sillín se mueve","queja":"El sillín baja poco a poco mientras pedaleas, gira hacia un lado o se inclina, o cruje al sentarte.","causa":"Abrazadera de la tija floja o sucia, tija de un diámetro menor al del tubo, o carro del sillín flojo o mal colocado sobre los rieles.","diag":["Marca la altura de la tija con cinta y anda un rato: si la marca baja, la tija se desliza.","Mira el sillín desde atrás y desde un lado: debe quedar recto y horizontal.","Revisa el diámetro grabado en la tija y compáralo con el del tubo del sillín: deben ser iguales.","Mira que las mordazas del carro abracen bien los dos rieles del sillín."],"repair":["Afloja la abrazadera y saca la tija. Limpia la tija y el interior del tubo del sillín.","Engrasa la tija si es metálica en un cuadro metálico; si una de las dos piezas es de carbono, usa pasta de montaje para carbono, no grasa.","Vuelve a meterla sin pasar su marca de inserción mínima y aprieta la abrazadera al par que trae grabado.","Si la tija es más delgada que el tubo, cámbiala por una del diámetro correcto: no la suplas con cinta.","Coloca las mordazas del carro en su lugar alrededor de los rieles, deja el sillín horizontal y aprieta su tornillo."],"tools":["Llaves Allen","Trapo y desengrasante","Grasa o pasta de carbono","Cinta para marcar"]},{"id":"cuadro","hash":"cuadro","name":"Grietas, golpes o dirección imprecisa","queja":"La dirección se siente retrasada o imprecisa, ves pintura agrietada o abombada, o el cuadro o la horquilla se ven torcidos tras un golpe.","causa":"Manubrio torcido o desalineado, dirección floja o gastada, o cuadro u horquilla doblados o agrietados.","diag":["Mira el manubrio desde arriba: la tee debe quedar alineada con la rueda y el manubrio a 90° de ella.","Revisa la dirección: frena adelante y mueve la bici; no debe haber golpeteo (ver «Juego o golpeteo en la dirección»).","Limpia el cuadro y mira con buena luz las uniones de los tubos, la zona de la dirección y del eje de centro: busca grietas, pintura abombada o arrugada.","Mira la horquilla de frente y de lado: las dos patas deben ser iguales y rectas. En carbono, busca zonas blandas o astilladas."],"repair":["Si el manubrio solo está girado, afloja la tee, alinéalo con la rueda y aprieta. Si está doblado, cámbialo.","Si la dirección tiene juego, ajústala; si gira a saltos, sus rodamientos están gastados y hay que cambiarlos.","Un cuadro u horquilla con grietas o doblados no se usan: un cuadro de acero lo puede reparar un taller de cuadros; los de aluminio o carbono se cambian."],"tools":["Llaves Allen","Trapo y desengrasante","Buena luz"]},{"id":"posicion","hash":"posicion","name":"Molestias en rodillas, espalda o muñecas","queja":"Duelen las rodillas o la espalda al pedalear, o se cansan las muñecas.","causa":"Sillín a mala altura o en mal avance, manubrio muy bajo o manillas mal inclinadas.","diag":["Sentado, con el talón sobre el pedal en su punto más bajo, la pierna debe quedar estirada.","Al pedalear normal, la pierna nunca debe llegar a estirarse del todo.","Apoya el codo en la punta del sillín: los dedos deben tocar el centro del manubrio.","El manubrio debe quedar más o menos a la altura del sillín.","El sillín debe quedar horizontal: inclinarlo más de unos 2° hace resbalar o carga las muñecas.","Al agarrar las manillas, la muñeca debe quedar recta."],"repair":["Afloja la abrazadera de la tija, sube o baja el sillín y apriétala firme. Nunca subas la tija por encima de su marca de inserción mínima (MIN o STOP); si no tiene marca, deja al menos 5 cm dentro del cuadro.","Marca la altura en la tija para poder volver a ella.","Para el avance y el ángulo, afloja el tornillo del carro del sillín, deslízalo o inclínalo y vuelve a apretar.","Inclina las manillas para que la muñeca quede en línea con el brazo.","Quien está aprendiendo: sillín más bajo, para apoyar los dos pies en el suelo."],"tools":["Llave Allen","Llave fija"]}]}</script>
 <div class="bk-method"><h3>Revisión antes de cada salida</h3><ol><li><button type="button" class="bk-mt" data-m="0" aria-pressed="false"><b>Ruedas infladas y sin nada clavado</b><span>Aprieta cada rueda con el pulgar y gírala mirando el neumático.</span><em>Neumático / cubierta / goma</em></button><div class="bk-mt-detail" hidden><span class="bk-r-line"><b>Cómo revisar:</b> Aprieta cada rueda con el pulgar y gírala mirando el neumático.</span><span class="bk-r-line"><b>Está bien si:</b> Firme, a la presión del flanco del neumático, sin piedras, clavos ni cortes. Manda el rango marcado en el flanco; como referencia, 80–100 psi (5,5–7 bar) en ruta, 40–65 psi en paseo y 25–35 psi (1,7–2,4 bar) en montaña.</span></div></li><li><button type="button" class="bk-mt" data-m="1" aria-pressed="false"><b>Ejes bien apretados</b><span>Revisa que los ejes pasantes estén apretados.</span><em>Ejes pasantes / eje pasante / thru axle</em></button><div class="bk-mt-detail" hidden><span class="bk-r-line"><b>Cómo revisar:</b> Revisa que los ejes pasantes estén apretados.</span><span class="bk-r-line"><b>Está bien si:</b> La rueda no se mueve de lado.</span><span class="bk-r-line"><b>Si no:</b> <a href="#roce_d" class="bk3-go" data-fault="roce_d">El disco roza la pinza →</a></span></div></li><li><button type="button" class="bk-mt" data-m="2" aria-pressed="false"><b>Los dos frenos funcionan</b><span>Aprieta cada manilla y empuja la bici.</span><em>Mandos integrados / manillas de cambio y freno / STI</em></button><div class="bk-mt-detail" hidden><span class="bk-r-line"><b>Cómo revisar:</b> Aprieta cada manilla y empuja la bici.</span><span class="bk-r-line"><b>Está bien si:</b> La rueda se bloquea antes de que la manilla toque el manubrio. Al frenar, usa los dos frenos, primero un poco el trasero (L5).</span></div></li><li><button type="button" class="bk-mt" data-m="3" aria-pressed="false"><b>Pastillas con material</b><span>Mira las pastillas por la ranura de la pinza.</span><em>Pastillas de freno de disco</em></button><div class="bk-mt-detail" hidden><span class="bk-r-line"><b>Cómo revisar:</b> Mira las pastillas por la ranura de la pinza.</span><span class="bk-r-line"><b>Está bien si:</b> Al menos 1,5 mm de material en cada pastilla; el disco limpio y sin manchas (DK, PT).</span><span class="bk-r-line"><b>Si no:</b> <a href="#frenos_d" class="bk3-go" data-fault="frenos_d">Los frenos de disco frenan poco o chillan →</a></span></div></li><li><button type="button" class="bk-mt" data-m="4" aria-pressed="false"><b>Cadena limpia, engrasada y tensa</b><span>Mírala y levántala a mitad del tramo con un destornillador.</span><em>Cadena</em></button><div class="bk-mt-detail" hidden><span class="bk-r-line"><b>Cómo revisar:</b> Mírala y levántala a mitad del tramo con un destornillador.</span><span class="bk-r-line"><b>Está bien si:</b> Sin óxido ni barro; sube menos de 2 cm (juego de unos 13 mm).</span><span class="bk-r-line"><b>Si no:</b> <a href="#chirria" class="bk3-go" data-fault="chirria">La cadena chirría o pedalear cuesta →</a></span></div></li><li><button type="button" class="bk-mt" data-m="5" aria-pressed="false"><b>Dirección sin juego</b><span>Frena adelante y mueve la bici adelante y atrás; gira el manubrio.</span><em>Juego de dirección / caja de dirección</em></button><div class="bk-mt-detail" hidden><span class="bk-r-line"><b>Cómo revisar:</b> Frena adelante y mueve la bici adelante y atrás; gira el manubrio.</span><span class="bk-r-line"><b>Está bien si:</b> Sin golpeteo y con giro suave.</span><span class="bk-r-line"><b>Si no:</b> <a href="#direccion" class="bk3-go" data-fault="direccion">Juego o golpeteo en la dirección →</a></span></div></li><li><button type="button" class="bk-mt" data-m="6" aria-pressed="false"><b>Todo apretado</b><span>Prueba sillín, manubrio, tee, bielas y pedales.</span><em>Tee / potencia / stem</em></button><div class="bk-mt-detail" hidden><span class="bk-r-line"><b>Cómo revisar:</b> Prueba sillín, manubrio, tee, bielas y pedales.</span><span class="bk-r-line"><b>Está bien si:</b> Nada se mueve. Repásalo sobre todo tras las primeras salidas (CM §4).</span><span class="bk-r-line"><b>Si no:</b> <a href="#pedalier" class="bk3-go" data-fault="pedalier">Crujidos o juego en pedales y bielas →</a></span></div></li><li><button type="button" class="bk-mt" data-m="7" aria-pressed="false"><b>Sin ruidos extraños</b><span>Pedalea unos metros y escucha.</span><em>Eje de centro / motor / pedalier</em></button><div class="bk-mt-detail" hidden><span class="bk-r-line"><b>Cómo revisar:</b> Pedalea unos metros y escucha.</span><span class="bk-r-line"><b>Está bien si:</b> Ningún roce, crujido ni golpeteo: si lo hay, algo está flojo o desajustado (L5).</span></div></li></ol></div>
 </section></aside></div></main>
 </div>
@@ -2107,5 +2190,266 @@ window.__bike = { setEx, setPedal, chooseFault, goStep, setFocus, camera, contro
 })();
 </script>
 
+<script>/* Vista guiada: capa para quien recién empieza a reparar. Se monta sobre la página clásica y se puede apagar
+   desde la barra superior («Vista guiada / clásica»); apagada, la página queda igual que antes. */
+(function () {
+  "use strict";
+  var LS = { get: function (k, d) { try { var v = localStorage.getItem(k); return v === null ? d : v; } catch (e) { return d; } }, set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+  var SS = { get: function (k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }, set: function (k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} } };
+  var cap = function (ev, p) { try { if (window.posthog) window.posthog.capture(ev, p || {}); } catch (e) {} };
+  var esc = function (t) { return String(t == null ? "" : t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); };
+  var el = function (tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+  var dataEl = document.getElementById("mr-data"), bk = document.querySelector(".bk"), nav = document.querySelector(".mr-nav");
+  if (!dataEl || !bk || !nav) return;
+  var D; try { D = JSON.parse(dataEl.textContent); } catch (e) { return; }
+  var BICI = D.kind === "bici", PAGE = (location.pathname.split("/").pop() || "").replace(".html", "");
+  var APARATO = (document.title.split("·")[0] || "").trim();
+  var faults = D.faults.filter(function (f) { return f.id !== "ok"; });
+  var tests = {}; (D.tests || []).forEach(function (t) { tests[t.id] = t; });
+
+  // ---------------------------------------------------------------- modo (guiada / clásica)
+  var on = LS.get("mr-modo", "guiada") !== "clasica";
+  var tg = el("button", "mr-modo"); tg.type = "button";
+  var paint = function () { document.body.classList.toggle("mr-g", on); tg.setAttribute("aria-pressed", on ? "true" : "false"); tg.innerHTML = on ? "Vista guiada <b>✓</b>" : "Vista clásica"; tg.title = on ? "Cambiar a la vista clásica (todo el detalle técnico, como antes)" : "Cambiar a la vista guiada para principiantes"; };
+  tg.addEventListener("click", function () { on = !on; LS.set("mr-modo", on ? "guiada" : "clasica"); cap("guide_mode_changed", { mode: on ? "guiada" : "clasica" }); paint(); if (!on) closeSheet(); });
+  var pn = nav.querySelector(".mr-pn"); nav.insertBefore(tg, pn);
+  var mm = el("a", "mr-mm", "Multímetro"); mm.href = "multimetro.html"; mm.title = "Cómo usar el multímetro"; if (!BICI) nav.insertBefore(mm, tg);
+
+  // ---------------------------------------------------------------- semáforo de dificultad
+  // 1 = verde (sin abrir o mantención), 2 = amarillo (abrir, medir o ajustar), 3 = rojo (con monitor)
+  var LV = { 1: ["Fácil", "se resuelve sin abrir el aparato, o es mantención", "mr-l1"], 2: ["Intermedia", "hay que abrir y medir, siempre desenchufado", "mr-l2"], 3: ["Con monitor", "hay riesgo eléctrico o piezas delicadas: hazla con un monitor del Reparatón", "mr-l3"] };
+  if (BICI) { LV[1][1] = "ajuste o mantención con herramientas básicas"; LV[2][1] = "hay que desarmar algo y ajustarlo con cuidado"; LV[3][1] = "afecta a tu seguridad o pide herramientas especiales: hazla con un monitor o en taller"; }
+  var OVER = { "tostadora:nolatch": 2, "tostadora:slow": 2, "cafetera:overflow": 1, "aspiradora:brushes": 2, "aspiradora:fast": 2, "secador:intermit": 2 };
+  var MOTOR = /^(batidora|batidora5|licuadora|aspiradora)$/.test(PAGE), CALOR = !MOTOR && PAGE !== "secador";
+  function level(f) {
+    if (OVER[PAGE + ":" + f.id]) return OVER[PAGE + ":" + f.id];
+    var n = (f.name + " " + f.queja).toLowerCase(), a = (f.accion || "").toLowerCase();
+    if (BICI) {
+      if (/grieta|cuadro|hunde|rebota|descentrada|hacia los lados/.test(n)) return 3;
+      if (/desinfla|chirría|óxido|tija|sillín|molestias|sin cámara/.test(n)) return 1;
+      return 2;
+    }
+    if (/da corriente|corriente|masa|tierra|hormigue|automático/.test(n) || /no usarla|no usarlo/.test(a)) return 3;
+    if (/inducido|resistencia quemada|resistencia cortada|rebobin/.test(n + " " + f.causa.toLowerCase()) && /cambiar|reponer/.test(a)) return 3;
+    if (!/cambiar (el|la|los|las|ambas) (cable|termostato|fusible|interruptor|motor|solenoide|selector|engranaje|ventilador|resorte|inducido|escobillas|pestillo|conjunto)|reponer|desarmar|contactos|escobillas|colector|cojinetes|engrasar|enderezar|soldar|ajustar el tornillo|terminal/.test(a) && /filtro|vaciar|migas|sarro|vinagre|desatasc|rejilla|mantención|lavar/.test(a)) return 1;
+    return 2;
+  }
+  faults.forEach(function (f) { f.lv = level(f); });
+  var byId = {}; faults.forEach(function (f) { byId[f.id] = f; });
+  var chipOf = function (id) { return bk.querySelector('.bk-chips [data-fault="' + id + '"]'); };
+  faults.forEach(function (f) { var c = chipOf(f.id); if (c) { var d = el("i", "mr-dot " + LV[f.lv][2]); d.setAttribute("aria-hidden", "true"); c.insertBefore(d, c.firstChild); c.setAttribute("data-lv", f.lv); c.title = LV[f.lv][0] + ": " + LV[f.lv][1]; } });
+  var legend = el("p", "mr-legend", '<span><i class="mr-dot mr-l1"></i>Fácil</span><span><i class="mr-dot mr-l2"></i>Intermedia</span><span><i class="mr-dot mr-l3"></i>Con monitor</span>');
+  var chips = bk.querySelector(".bk-chips"); chips.parentNode.insertBefore(legend, chips.nextSibling);
+
+  // ---------------------------------------------------------------- antes de empezar
+  var CHK = BICI
+    ? [["firme", "Bici firme: en un soporte o boca abajo sobre un paño"], ["limpia", "Zona de trabajo limpia y con buena luz"], ["foto", "Foto antes de desarmar, para volver a armar igual"], ["orden", "Piezas y tornillos en orden, en un pocillo"]]
+    : [["desenchufado", "Desenchufado de la pared (no basta con apagarlo)"], ["frio", "Frío: espera unos minutos si se usó recién"], ["foto", "Foto antes de desarmar, para volver a armar igual"], ["orden", "Tornillos en orden, en un pocillo o sobre cinta"]];
+  var chk = el("section", "mr-chk"); chk.setAttribute("aria-label", "Antes de empezar");
+  var st = {}; try { st = JSON.parse(SS.get("mr-chk-" + PAGE) || "{}"); } catch (e) {}
+  chk.innerHTML = '<button type="button" class="mr-chk-h" aria-expanded="true"><b>Antes de empezar</b><span class="mr-chk-s"></span></button><div class="mr-chk-b">' + CHK.map(function (c) { return '<label><input type="checkbox" data-k="' + c[0] + '"' + (st[c[0]] ? " checked" : "") + "><span>" + esc(c[1]) + "</span></label>"; }).join("") + "</div>";
+  nav.parentNode.insertBefore(chk, nav.nextSibling);
+  var chkH = chk.querySelector(".mr-chk-h");
+  function chkPaint(auto) { var n = 0; CHK.forEach(function (c) { if (st[c[0]]) n++; }); var all = n === CHK.length; chk.querySelector(".mr-chk-s").textContent = all ? "✓ Listo" : n + " de " + CHK.length; chk.classList.toggle("mr-ok", all); if (auto && all) chkH.setAttribute("aria-expanded", "false"); }
+  chk.addEventListener("change", function (e) { var k = e.target.getAttribute("data-k"); if (!k) return; st[k] = e.target.checked; SS.set("mr-chk-" + PAGE, JSON.stringify(st)); chkPaint(true); });
+  chkH.addEventListener("click", function () { chkH.setAttribute("aria-expanded", chkH.getAttribute("aria-expanded") === "true" ? "false" : "true"); });
+  chkPaint(false); if (chk.classList.contains("mr-ok") || (window.matchMedia && matchMedia("(max-width:980px)").matches)) chkH.setAttribute("aria-expanded", "false");
+
+  // ---------------------------------------------------------------- empezar por el síntoma
+  var CATS = BICI ? [
+    ["rueda", "Rueda o neumático", "Se desinfla, está chueca o tiene juego", /rueda|desinfl|pinch|descentr|aire|cámara/],
+    ["frenos", "Frenos", "Frenan poco, rozan o chillan", /fren|disco roza/],
+    ["cadena", "Cadena y cambios", "La cadena se sale, salta o los cambios no entran", /cadena|cambio|piñón|pedal|biela/],
+    ["direccion", "Dirección, cuadro o suspensión", "Golpeteo, juego, grietas o la horquilla se hunde", /dirección|horquilla|cuadro|grieta/],
+    ["postura", "Sillín y postura", "El sillín se mueve o te duele algo al pedalear", /sillín|tija|molestia|rodilla/],
+    ["ruidos", "Ruidos y mantención", "Chirridos, crujidos, óxido", /ruido|cruj|óxido|engrase|chirr/],
+  ] : [
+    ["nada", "No enciende o no hace nada", "Lo enchufas y no responde", /no enciende|no funciona|no arranca|no hace nada|no responde|total falta|no gira/],
+    ["frio", "Enciende, pero no calienta", "Prende la luz o suena, pero queda frío o tibio", /no calienta|falta de calor|sin tostar|insuficiente|poco calor|no sube|no mantiene|no se mantiene|tarda/],
+    ["quema", "Calienta de más o no corta", "Quema, se recalienta o no se apaga solo", /quema|recalient|excesiv|demasiado caliente|no corta|no se apaga|no se detiene|no expulsa|no deja de/],
+    ["motor", "Gira mal o perdió fuerza", "Va lento, sólo anda en una velocidad o aspira poco", /lent|potencia insuf|velocidad|sólo en|solo en|aspira|fuerza|demasiado rápido|paletas no giran|cuchillas/],
+    ["ruido", "Ruido, vibración o falla mecánica", "Suena raro, vibra, o algo no traba, no cierra o no sube", /ruido|vibra|golpe|suelt|flojo|traba|no cierra|no se queda|bisagra|carrete|lanza|el carro|palanca baja/],
+    ["agua", "Pierde agua, vapor o polvo", "Gotea, rebalsa, mancha o se le escapa el polvo", /agua|gote|vapor|pérdida|fuga|rebalsa|se sale|polvo|mancha/],
+    ["corriente", "Da corriente o salta el automático", "Hormiguea al tocarlo, saca chispas o corta la luz", /corriente|masa|tierra|automático|chispa|hormigue/],
+    ["ratos", "Funciona a ratos", "Se corta y vuelve, o prende y apaga", /a ratos|intermit|se para|se corta|se apaga sola|enciende y apaga|interfiere/],
+  ];
+  if (!BICI) CATS = CATS.filter(function (c) { return !((MOTOR && (c[0] === "frio" || c[0] === "quema" || c[0] === "agua") && PAGE !== "aspiradora") || (MOTOR && PAGE === "aspiradora" && (c[0] === "frio" || c[0] === "quema")) || (CALOR && c[0] === "motor")); });
+  faults.forEach(function (f) { var t = (f.name + " " + f.queja).toLowerCase(); f.cats = CATS.filter(function (c) { return c[3].test(t); }).map(function (c) { return c[0]; }); if (!f.cats.length) f.cats = ["otras"]; });
+  if (faults.some(function (f) { return f.cats[0] === "otras"; })) CATS.push(["otras", "Otra cosa", "Ninguna de las anteriores", /^$/]);
+  var wz = el("section", "mr-wz"); wz.setAttribute("aria-label", "Empezar por el síntoma");
+  bk.insertBefore(wz, bk.firstChild);
+  function wzHome() {
+    wz.innerHTML = '<h2>¿Qué le pasa?</h2><p class="mr-wz-p">Elige lo que más se parezca. Te mostramos las fallas probables, de la más fácil a la más difícil.</p><div class="mr-wz-cats">' + CATS.filter(function (c) { return faults.some(function (f) { return f.cats.indexOf(c[0]) >= 0; }); }).map(function (c) { return '<button type="button" data-cat="' + c[0] + '"><b>' + esc(c[1]) + "</b><span>" + esc(c[2]) + "</span></button>"; }).join("") + "</div>";
+  }
+  function wzCat(id) {
+    var c = CATS.filter(function (x) { return x[0] === id; })[0]; if (!c) return wzHome();
+    var list = faults.filter(function (f) { return f.cats.indexOf(id) >= 0; }).sort(function (a, b) { return a.lv - b.lv; });
+    wz.innerHTML = '<button type="button" class="mr-back" data-back="1">← Otro síntoma</button><h2>' + esc(c[1]) + '</h2><p class="mr-wz-p">Parte por la primera: es la más simple de comprobar.</p><ol class="mr-wz-list">' + list.map(function (f) { return '<li><button type="button" data-pick="' + esc(f.id) + '"><i class="mr-dot ' + LV[f.lv][2] + '" aria-hidden="true"></i><span><b>' + esc(f.name) + "</b><em>" + esc(f.queja) + '</em></span><u>' + LV[f.lv][0] + "</u></button></li>"; }).join("") + "</ol>";
+    cap("symptom_selected", { category: id, page: PAGE });
+  }
+  wz.addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    if (b.dataset.cat) wzCat(b.dataset.cat); else if (b.dataset.back) wzHome();
+    else if (b.dataset.pick) { pick(b.dataset.pick); openSheet(b.dataset.pick); }
+  });
+  wzHome();
+  function pick(id) { var c = chipOf(id); if (c && c.getAttribute("aria-pressed") !== "true") c.click(); }
+
+  // ---------------------------------------------------------------- glosario
+  var GL = BICI ? {
+    "maza": "El centro de la rueda: lleva el eje y los rodamientos, y de ella salen los rayos. También se le dice buje.",
+    "tee": "La pieza que une el manubrio con la horquilla. También se llama potencia o stem.",
+    "eje de centro": "El eje donde giran las bielas, dentro del cuadro. También le dicen motor o pedalier.",
+    "tija": "El tubo que sostiene el sillín y entra en el cuadro.",
+    "zapatas": "Los bloques de goma que aprietan la llanta para frenar.",
+    "pastillas": "Las placas que aprietan el disco para frenar.",
+    "llanta": "El aro metálico de la rueda, donde va montado el neumático.",
+    "cabecilla": "La tuerquita que une cada rayo con la llanta; al girarla se tensa o se suelta el rayo.",
+    "descarrilador": "El mecanismo que pasa la cadena de un plato a otro (cambio delantero).",
+    "cassette": "El grupo de piñones de la rueda trasera.",
+    "tensor": "Pieza con rosca que estira o suelta un cable girándola con los dedos.",
+    "punteras": "Las ranuras del cuadro y la horquilla donde encaja el eje de la rueda.",
+    "sellante": "Líquido que va dentro del neumático sin cámara y tapa solo los pinchazos chicos.",
+    "juego": "Holgura: cuando una pieza se mueve o golpetea donde debería estar firme.",
+  } : {
+    "continuidad": "Que la corriente puede pasar de un punto a otro. Se mide con el multímetro en Ω o en el modo de pito: si pita o marca cerca de 0, hay continuidad.",
+    "bimetal": "Lámina de dos metales que se curva al calentarse y así abre o cierra un contacto. Es el corazón de los termostatos.",
+    "bimetálico": "Hecho con una lámina de dos metales que se curva al calentarse y abre o cierra un contacto.",
+    "bimetálica": "Lámina de dos metales que se curva al calentarse y abre o cierra un contacto.",
+    "termostato": "Interruptor que se abre solo al llegar a cierta temperatura y vuelve a cerrar al enfriarse.",
+    "termofusible": "Fusible de temperatura: se corta para siempre si el aparato se recalienta. No se repara, se cambia por uno igual.",
+    "fusible térmico": "Fusible de temperatura: se corta para siempre si el aparato se recalienta. No se repara, se cambia por uno igual.",
+    "resistencia": "El alambre o tubo que se calienta cuando pasa corriente. También es lo que mide el multímetro en ohmios (Ω).",
+    "inducido": "La parte del motor que gira, con sus bobinas de alambre de cobre.",
+    "colector": "El anillo de láminas de cobre del motor sobre el que rozan las escobillas (carbones).",
+    "escobillas": "Los carbones: dos barritas de grafito que llevan la corriente a la parte del motor que gira. Se gastan con el uso.",
+    "delgas": "Cada una de las láminas de cobre del colector del motor.",
+    "devanado de campo": "Las bobinas fijas del motor, que crean el campo magnético.",
+    "masa": "Falla en que una parte con corriente toca el metal que uno puede tocar. Es peligrosa: puede dar la corriente.",
+    "tierra": "El tercer cable (verde o verde-amarillo): desvía la corriente de una falla para que salte el diferencial y no pase por ti.",
+    "diferencial": "El protector del tablero que corta la luz cuando detecta una fuga de corriente.",
+    "automático": "El interruptor del tablero que corta la luz cuando hay un cortocircuito o demasiado consumo.",
+    "solenoide": "Bobina que funciona como electroimán: al recibir corriente, atrae una pieza de fierro.",
+    "neón": "Lucecita testigo anaranjada que indica que llega corriente.",
+    "infinito": "El multímetro no detecta paso de corriente: muestra «OL» o «1». Significa circuito abierto.",
+    "termopar": "Sonda de temperatura que se conecta al multímetro.",
+    "wattímetro": "Medidor de consumo: se pone entre el enchufe y el aparato y muestra cuántos watts gasta.",
+    "tacómetro": "Instrumento que mide a cuántas vueltas por minuto gira un eje.",
+    "sarro": "La costra blanca que deja el agua dura al hervir. Aísla y tapa conductos.",
+    "diodo": "Componente que deja pasar la corriente en un solo sentido.",
+  };
+  var glKeys = Object.keys(GL).sort(function (a, b) { return b.length - a.length; });
+  var glRe = new RegExp("(^|[^a-záéíóúñ])(" + glKeys.map(function (k) { return k.replace(/ /g, "\\s"); }).join("|") + ")(?![a-záéíóúñ])", "i");
+  function gloss(root) {
+    if (!on || !root) return;
+    var seen = {}, w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null), nodes = [], n;
+    while ((n = w.nextNode())) { var p = n.parentNode; if (p && !p.closest(".mr-gl,button.bk3-step em,h3,script,style")) nodes.push(n); }
+    nodes.forEach(function (node) {
+      var m = glRe.exec(node.nodeValue); if (!m) return; var key = m[2].toLowerCase().replace(/\s/g, " "); if (seen[key]) return; seen[key] = 1;
+      var at = m.index + m[1].length, r = node.splitText(at); r.splitText(m[2].length);
+      var s = el("span", "mr-gl"); s.tabIndex = 0; s.setAttribute("role", "button"); s.setAttribute("data-gl", key); s.textContent = r.nodeValue; r.parentNode.replaceChild(s, r);
+    });
+  }
+  var tip = el("div", "mr-tip"); tip.hidden = true; tip.setAttribute("role", "tooltip"); document.body.appendChild(tip);
+  function showTip(s) { var k = s.getAttribute("data-gl"); tip.innerHTML = "<b>" + esc(k) + "</b>" + esc(GL[k] || ""); tip.hidden = false; var r = s.getBoundingClientRect(), w = Math.min(320, innerWidth - 24); tip.style.width = w + "px"; var x = Math.max(12, Math.min(innerWidth - w - 12, r.left + r.width / 2 - w / 2)); tip.style.left = x + "px"; var h = tip.offsetHeight; tip.style.top = (r.top - h - 8 > 8 ? r.top - h - 8 : r.bottom + 8) + "px"; cap("glossary_opened", { term: k }); }
+  document.addEventListener("click", function (e) { var s = e.target.closest && e.target.closest(".mr-gl"); if (s) { e.stopPropagation(); e.preventDefault(); showTip(s); } else tip.hidden = true; }, true);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") tip.hidden = true; else if ((e.key === "Enter" || e.key === " ") && document.activeElement && document.activeElement.classList.contains("mr-gl")) { e.preventDefault(); showTip(document.activeElement); } });
+  addEventListener("scroll", function () { tip.hidden = true; }, true);
+
+  // ---------------------------------------------------------------- tarjeta: insignia y botón «Guíame»
+  var card = bk.querySelector(".bk-card"), cur = null;
+  function current() { var b = bk.querySelector('.bk-chips [data-fault][aria-pressed="true"]'); return b ? b.dataset.fault : null; }
+  var bar = el("div", "mr-bar"); card.parentNode.insertBefore(bar, card);
+  function decorate() {
+    var id = current(); cur = id; var f = byId[id];
+    bar.hidden = !f;
+    if (f) bar.innerHTML = '<span class="mr-badge ' + LV[f.lv][2] + '"><i class="mr-dot ' + LV[f.lv][2] + '" aria-hidden="true"></i><b>' + LV[f.lv][0] + "</b> · " + esc(LV[f.lv][1]) + '</span><button type="button" class="mr-go">▶ Guíame paso a paso</button>';
+    gloss(card);
+  }
+  bar.addEventListener("click", function (e) { if (e.target.closest(".mr-go") && cur) openSheet(cur); });
+  var mo = new MutationObserver(function () { if (current() !== cur) decorate(); else gloss(card); });
+  mo.observe(bk.querySelector(".bk-chips"), { attributes: true, subtree: true, attributeFilter: ["aria-pressed"] });
+  mo.observe(card, { childList: true, subtree: false });
+  bk.querySelector(".bk-head").addEventListener("click", function () { setTimeout(decorate, 0); });
+  setTimeout(decorate, 0);
+
+  // ---------------------------------------------------------------- paso a paso
+  var sheet = el("section", "mr-sheet"); sheet.hidden = true; sheet.setAttribute("aria-label", "Guía paso a paso"); document.body.appendChild(sheet);
+  var S = null;
+  function build(f) {
+    var steps = [], lv = LV[f.lv];
+    steps.push({ k: "Qué pasa", h: f.name, body: "<p>" + esc(f.queja) + '</p><p class="mr-why"><b>Causa más probable:</b> ' + esc(f.causa) + "</p>" + (f.lv === 3 ? '<p class="mr-warn">⚠️ ' + esc(lv[1].charAt(0).toUpperCase() + lv[1].slice(1)) + ".</p>" : "") });
+    if (BICI) {
+      if (f.tools.length) steps.push({ k: "Prepara", h: "Junta las herramientas", body: '<ul class="mr-tools">' + f.tools.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul>" });
+      f.diag.forEach(function (t, i) { steps.push({ k: "Diagnóstico " + (i + 1) + " de " + f.diag.length, h: "Revisa", body: "<p>" + esc(t) + "</p>", dom: i }); });
+      f.repair.forEach(function (t, i) { steps.push({ k: "Reparación " + (i + 1) + " de " + f.repair.length, h: "Repara", body: "<p>" + esc(t) + "</p>", dom: f.diag.length + i }); });
+    } else {
+      steps.push({ k: "Seguridad", h: "Desenchufa antes de tocar", body: "<p>Saca el enchufe de la pared: apagar el aparato no basta. Si se usó recién, espera a que enfríe.</p><p>Las mediciones con el multímetro en Ω se hacen <b>siempre desenchufado</b>.</p>" });
+      f.comprobar.forEach(function (t, i) { steps.push({ k: "Revisa " + (i + 1) + " de " + f.comprobar.length, h: "Revisa", body: "<p>" + esc(t) + "</p>" }); });
+      f.tests.forEach(function (id) { var t = tests[id]; if (!t || id === "hv") return; var bad = f.readings[id];
+        steps.push({ k: "Medición", h: t.name, test: id, body: '<p class="mr-inst"><b>' + esc(t.inst) + "</b> · " + (t.power === "on" ? '<span class="mr-pw-on">enchufado: cuidado</span>' : '<span class="mr-pw-off">desenchufado</span>') + "</p><p>" + esc(t.how.charAt(0).toUpperCase() + t.how.slice(1)) + '.</p><div class="mr-verd"><button type="button" data-v="ok"><b>✅ Está bien si marca</b><span>' + esc(t.normal) + "</span></button>" + (bad ? '<button type="button" data-v="bad"><b>❌ Es esta falla si marca</b><span>' + esc(bad) + "</span></button>" : "") + '</div><p class="mr-hint">Toca el resultado que obtuviste. Las puntas se muestran en la figura.</p>' });
+      });
+      steps.push({ k: "Qué hacer", h: "La reparación", body: "<p>" + esc(f.accion) + "</p>" });
+    }
+    steps.push({ k: "Cierre", h: "¿Cómo quedó?", end: true });
+    return steps;
+  }
+  function openSheet(id) {
+    var f = byId[id]; if (!f || !on) return; pick(id);
+    S = { f: f, steps: build(f), i: 0, marks: {}, t0: Date.now() };
+    sheet.hidden = false; document.body.classList.add("mr-sheet-on"); render(); cap("guide_opened", { page: PAGE, fault: id, level: f.lv });
+  }
+  function closeSheet() { if (sheet.hidden) return; sheet.hidden = true; document.body.classList.remove("mr-sheet-on"); S = null; }
+  function summary(res) {
+    var f = S.f, L = ["Reparatón · " + APARATO, "Falla: " + f.name, "Dificultad: " + LV[f.lv][0]];
+    Object.keys(S.marks).forEach(function (id) { L.push("Medición «" + tests[id].name + "»: " + (S.marks[id] === "ok" ? "normal" : "indica la falla")); });
+    if (!BICI) L.push("Qué hacer: " + f.accion); else if (f.tools.length) L.push("Herramientas: " + f.tools.join(", "));
+    if (res) L.push("Resultado: " + res); var n = sheet.querySelector(".mr-note"); if (n && n.value.trim()) L.push("Notas: " + n.value.trim());
+    L.push(location.href.split("#")[0] + "#" + f.hash); return L.join("\n");
+  }
+  function render() {
+    var s = S.steps[S.i], n = S.steps.length, body = s.body;
+    if (s.end) {
+      var m = Object.keys(S.marks);
+      body = (m.length ? '<ul class="mr-sum">' + m.map(function (id) { return "<li>" + (S.marks[id] === "ok" ? "✅" : "❌") + " " + esc(tests[id].name) + "</li>"; }).join("") + "</ul>" : "") +
+        '<div class="mr-res" role="group" aria-label="Resultado"><button type="button" data-res="Reparado">🔧 Reparado</button><button type="button" data-res="Falta un repuesto">🔁 Falta un repuesto</button><button type="button" data-res="No se pudo reparar">⛔ No se pudo</button></div>' +
+        '<label class="mr-note-l">Marca, modelo o notas (opcional)<textarea class="mr-note" rows="2" placeholder="Ej.: Thomas TH-975, se cambió el termofusible de 216 °C"></textarea></label>' +
+        '<div class="mr-end"><button type="button" data-act="share">Compartir resumen</button><button type="button" data-act="print">Imprimir</button></div><p class="mr-hint mr-saved" hidden>Guardado en tu bitácora (queda sólo en este dispositivo). La encuentras en la portada del manual.</p>';
+    }
+    sheet.innerHTML = '<header><span class="mr-k">' + esc(s.k) + '</span><span class="mr-n">' + (S.i + 1) + " / " + n + '</span><button type="button" class="mr-x" aria-label="Cerrar la guía">✕</button><div class="mr-prog"><i style="width:' + (((S.i + 1) / n) * 100).toFixed(1) + '%"></i></div></header><div class="mr-body"><h3>' + esc(s.h) + "</h3>" + body + '</div><footer><button type="button" class="mr-prev"' + (S.i ? "" : " disabled") + '>← Atrás</button><button type="button" class="mr-next">' + (s.end ? "Terminar" : S.i === n - 2 ? "Ir al cierre →" : "Listo, siguiente →") + "</button></footer>";
+    if (s.test && S.marks[s.test]) { var b = sheet.querySelector('[data-v="' + S.marks[s.test] + '"]'); if (b) b.setAttribute("aria-pressed", "true"); }
+    gloss(sheet.querySelector(".mr-body"));
+    // show the step in the figure
+    try {
+      if (s.test) { var tb = bk.querySelector('.bk-tests [data-test="' + s.test + '"]') || bk.querySelector('.bk-method [data-test="' + s.test + '"]'); if (tb && tb.getAttribute("aria-pressed") !== "true") tb.click(); }
+      else if (s.dom != null) { var sb = card.querySelectorAll(".bk3-step")[s.dom]; if (sb) sb.click(); }
+    } catch (e) {}
+    sheet.querySelector(".mr-body").scrollTop = 0;
+  }
+  function save(res) {
+    var note = (sheet.querySelector(".mr-note") || {}).value || "";
+    var log = []; try { log = JSON.parse(LS.get("mr-bitacora", "[]")); } catch (e) {}
+    var key = S.t0; log = log.filter(function (r) { return r.k !== key; });
+    log.unshift({ k: key, t: new Date().toISOString(), page: PAGE, aparato: APARATO, falla: S.f.name, hash: S.f.hash, nivel: LV[S.f.lv][0], resultado: res, notas: note.trim(), minutos: Math.max(1, Math.round((Date.now() - S.t0) / 60000)) });
+    LS.set("mr-bitacora", JSON.stringify(log.slice(0, 200))); S.res = res;
+    var sv = sheet.querySelector(".mr-saved"); if (sv) sv.hidden = false;
+    cap("guide_completed_result", { page: PAGE, fault: S.f.id, result: res, minutes: Math.round((Date.now() - S.t0) / 60000) });
+  }
+  sheet.addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b || !S) return;
+    if (b.classList.contains("mr-x")) return closeSheet();
+    if (b.classList.contains("mr-prev")) { if (S.i > 0) { S.i--; render(); } return; }
+    if (b.classList.contains("mr-next")) { if (S.steps[S.i].end) { if (!S.res) save("Sin registrar"); return closeSheet(); } S.i++; cap("guide_step", { page: PAGE, fault: S.f.id, step: S.i, of: S.steps.length }); return render(); }
+    if (b.dataset.v) { S.marks[S.steps[S.i].test] = b.dataset.v; sheet.querySelectorAll("[data-v]").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); }); cap("measurement_marked", { page: PAGE, fault: S.f.id, test: S.steps[S.i].test, verdict: b.dataset.v }); return; }
+    if (b.dataset.res) { sheet.querySelectorAll("[data-res]").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); }); return save(b.dataset.res); }
+    if (b.dataset.act === "print") { var w = el("pre", "mr-print"); w.textContent = summary(S.res); document.body.appendChild(w); window.print(); setTimeout(function () { w.remove(); }, 500); return; }
+    if (b.dataset.act === "share") { var txt = summary(S.res); if (navigator.share) navigator.share({ title: "Reparatón · " + APARATO, text: txt }).catch(function () {}); else if (navigator.clipboard) navigator.clipboard.writeText(txt).then(function () { b.textContent = "Copiado ✓"; }); cap("guide_shared", { page: PAGE, fault: S.f.id }); }
+  });
+  sheet.addEventListener("change", function (e) { if (e.target.classList.contains("mr-note") && S && S.res) save(S.res); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !sheet.hidden) closeSheet(); });
+
+  paint();
+})();
+</script>
 </body>
 </html>

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cómo usar el multímetro · Manual de reparación</title>
+<meta name="description" content="Guía interactiva del multímetro para principiantes: dónde poner el selector, qué significa cada lectura y calculadora de la resistencia esperada.">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNyIgZmlsbD0iI2MyNDEwYyIvPjxwYXRoIGQ9Ik05IDIybDYtNm0yLTJsNi02TTEyIDhsMyAzLTQgNC0zLTN6bTggMTJsMyAzLTMgMy0zLTN6IiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+">
+<style>
+:root{--page:#f2f2ef;--card:#fbfbf9;--ink:#1d1d1f;--mut:#63636a;--line:rgba(0,0,0,.16);--ok:#1f6f43;--bad:#c23b33;--warn:#b07a00;--lcd:#c9d6b4;--lcdink:#1c2616}
+@media (prefers-color-scheme:dark){:root{--page:#161617;--card:#1f1f21;--ink:#ececec;--mut:#a3a3aa;--line:rgba(255,255,255,.18);--ok:#59c98a;--bad:#ff7b72;--warn:#e6b450;--lcd:#aebd97}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);font:400 16px/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+nav{display:flex;align-items:center;gap:12px;padding:10px max(16px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--line);font-weight:600;font-size:13px}
+nav a{color:inherit;text-decoration:none}nav a:hover{text-decoration:underline}
+main{max-width:1040px;margin:0 auto;padding:24px 16px 64px}
+h1{margin:0 0 6px;font-size:clamp(24px,4vw,34px);line-height:1.15;text-wrap:balance}
+h2{margin:36px 0 10px;font-size:20px}
+.lead{margin:0 0 20px;color:var(--mut);max-width:62ch}
+.lab{display:grid;grid-template-columns:minmax(260px,340px) 1fr;gap:20px;align-items:start}
+@media (max-width:760px){.lab{grid-template-columns:1fr}}
+.meter{background:#e0a100;border-radius:22px;padding:16px;box-shadow:inset 0 0 0 3px rgba(0,0,0,.18)}
+.lcd{background:var(--lcd);color:var(--lcdink);border-radius:8px;padding:10px 14px;text-align:right;font:700 40px/1.1 ui-monospace,"SF Mono",Menlo,monospace;min-height:66px;box-shadow:inset 0 2px 6px rgba(0,0,0,.25)}
+.lcd small{display:block;font-size:12px;font-weight:600;letter-spacing:.05em;text-align:left;opacity:.75}
+.dial{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.dial button,.sc button{font:inherit;cursor:pointer;border-radius:10px;border:2px solid transparent;padding:10px;min-height:48px}
+.dial button{background:#2a2a2c;color:#f3f3f3;font-weight:700;text-align:center}
+.dial button span{display:block;font-weight:400;font-size:12px;opacity:.8}
+.dial button[aria-pressed="true"]{border-color:#fff;background:#000}
+.side h3{margin:0 0 8px;font-size:15px}
+.sc{display:grid;gap:8px}
+.sc button{background:var(--card);color:var(--ink);border:1.5px solid var(--line);text-align:left}
+.sc button[aria-pressed="true"]{border-color:var(--ink)}
+.say{margin-top:14px;padding:14px 16px;border-radius:12px;background:var(--card);border:1.5px solid var(--line)}
+.say b{display:block;font-size:17px;margin-bottom:4px}
+.say.ok{border-color:var(--ok)}.say.ok b{color:var(--ok)}
+.say.bad{border-color:var(--bad)}.say.bad b{color:var(--bad)}
+.say.warn{border-color:var(--warn)}.say.warn b{color:var(--warn)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.cards div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.cards b{display:block;margin-bottom:4px}
+.calc{display:flex;flex-wrap:wrap;gap:12px;align-items:end;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+.calc label{display:grid;gap:4px;font-size:13px;font-weight:600}
+.calc input{font:inherit;width:130px;padding:9px 10px;border-radius:8px;border:1px solid var(--line);background:transparent;color:inherit}
+.calc output{display:block;white-space:nowrap;font:700 22px/1.2 ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.calc p{flex-basis:100%;margin:0;color:var(--mut);font-size:14px}
+table{border-collapse:collapse;width:100%;font-size:14.5px}th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}th{font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--mut)}
+.tw{overflow-x:auto}
+</style>
+<script>/* PostHog: anonymous usage analytics for the repair manual (no cookies, no personal profiles). */
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+(() => {
+  const C = {"key": "phc_tbfoujkfzXCAKV8hXx7kBzVH9ri6yvcbjfqtmh3keAFc", "api_host": "https://eu.i.posthog.com", "ui_host": "https://eu.posthog.com", "branch": "test_6"};
+  if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname) || location.protocol === "file:") return; // only the published site
+  posthog.init(C.key, { api_host: C.api_host, ui_host: C.ui_host, persistence: "memory", person_profiles: "identified_only", capture_pageview: true, capture_pageleave: true, autocapture: true });
+  const page = (location.pathname.split("/").pop() || "index.html").replace(/\.html$/, "") || "index";
+  const group = page === "index" ? "menu" : page.startsWith("bici") ? "bicicleta" : "electrodomestico";
+  posthog.register({ figure: page, figure_group: group, branch: C.branch });
+  const T = (e) => (e.textContent || "").trim().replace(/\s+/g, " ").slice(0, 80);
+  const pressed = (b) => b.getAttribute("aria-pressed") === "true";
+  let curFault = null;
+  document.addEventListener("click", (ev) => {
+    const el = ev.target.closest("button, a"); if (!el) return;
+    // menu
+    if (el.id === "opt-ap") return posthog.capture("category_selected", { category: "electrodomesticos" });
+    if (el.matches("a.opt")) return posthog.capture("category_selected", { category: "bicicletas" });
+    if (el.matches(".card a, a.card")) return posthog.capture("figure_opened_from_menu", { target: (el.getAttribute("href") || "").replace(/\.html$/, "") });
+    // figure views and menu
+    if (el.matches(".vm-btn")) return posthog.capture("figure_menu_toggled", { open: el.getAttribute("aria-expanded") !== "true" });
+    if (el.matches(".vw-btn[data-view]")) return posthog.capture("view_changed", { view: el.dataset.view, label: T(el) });
+    if (el.matches(".vw-btn[data-ex]")) return posthog.capture("bike_view_changed", { view: el.dataset.ex === "1" ? "despiece" : "armada" });
+    if (el.matches(".bk3-pedal")) return setTimeout(() => posthog.capture("pedal_toggled", { on: pressed(el) }), 0);
+    if (el.matches(".bk3-types a")) return posthog.capture("bike_type_changed", { to: (el.getAttribute("href") || "").replace(/\.html$/, ""), label: T(el) });
+    if (el.closest(".zm")) return posthog.capture("zoom_used", { method: "buttons", action: el.dataset.z === "0" ? "reset" : el.dataset.z });
+    // faults, components, measurements, guide
+    if (el.matches("[data-fault]")) { curFault = el.dataset.fault || null; return posthog.capture(el.dataset.fault ? "fault_selected" : "fault_cleared", { fault: el.dataset.fault || null, label: T(el), from: el.matches(".bk3-go") ? "guide_link" : "chips" }); }
+    if (el.matches("[data-cp]")) return posthog.capture("component_selected", { component: el.dataset.cp, label: T(el).split(" / ")[0] });
+    if (el.matches("[data-test]")) return posthog.capture("measurement_selected", { test: el.dataset.test, label: T(el).split(" · ")[0], kind: el.matches(".bk-mt") ? "method_step" : "fault_test" });
+    if (el.matches(".bk-mt[data-m]")) return posthog.capture("method_step_opened", { step: el.dataset.m, label: T(el) });
+    if (el.matches(".cp-toggle")) return setTimeout(() => posthog.capture("part_numbers_toggled", { on: pressed(el) }), 0);
+    if (el.matches(".bk3-next")) { const done = /Terminar/.test(T(el)); const prog = document.querySelector(".bk3-prog"); return posthog.capture(done ? "guide_completed" : "guide_step_advanced", { fault: curFault, at: prog ? T(prog) : null }); }
+    if (el.matches(".bk3-prev")) return posthog.capture("guide_step_back", { fault: curFault });
+  }, true);
+  // pinch zoom: one event per two-finger gesture
+  let pinching = false;
+  document.addEventListener("touchstart", (e) => { if (e.touches.length === 2 && !pinching && e.target.closest(".iso-stage, .bk3-stage")) { pinching = true; posthog.capture("zoom_used", { method: "pinch" }); } }, { passive: true });
+  document.addEventListener("touchend", (e) => { if (!e.touches.length) pinching = false; }, { passive: true });
+  // ctrl/trackpad wheel zoom: one event per burst
+  let wt = 0;
+  document.addEventListener("wheel", (e) => { if (e.target.closest(".iso-stage, .bk3-stage") && Date.now() - wt > 3000) posthog.capture("zoom_used", { method: "wheel" }); if (e.target.closest(".iso-stage, .bk3-stage")) wt = Date.now(); }, { passive: true });
+  // figure jump selector
+  document.addEventListener("change", (e) => { if (e.target.matches(".mr-nav select")) posthog.capture("figure_jump", { to: e.target.value }); }, true);
+})();
+</script>
+</head>
+<body>
+<nav><a href="./#electrodomesticos">← Manual de reparación</a></nav>
+<main>
+<h1>Cómo usar el multímetro</h1>
+<p class="lead">Casi todo el diagnóstico de un electrodoméstico se hace con dos posiciones del selector. Elige una posición y una situación, y mira qué mostraría la pantalla y qué significa.</p>
+
+<div class="lab">
+<div class="meter" aria-label="Multímetro">
+<div class="lcd" aria-live="polite"><small id="unit">Ω</small><span id="val">OL</span></div>
+<div class="dial" role="group" aria-label="Selector">
+<button type="button" data-m="ohm" aria-pressed="true">Ω<span>resistencia</span></button>
+<button type="button" data-m="cont" aria-pressed="false">•))) <span>continuidad (pito)</span></button>
+<button type="button" data-m="vac" aria-pressed="false">V~<span>voltaje alterno</span></button>
+<button type="button" data-m="off" aria-pressed="false">OFF<span>apagado</span></button>
+</div>
+</div>
+<div class="side">
+<h3>¿Qué estás midiendo?</h3>
+<div class="sc" role="group" aria-label="Situación">
+<button type="button" data-s="juntas" aria-pressed="true">Las dos puntas juntas (prueba del instrumento)</button>
+<button type="button" data-s="aire" aria-pressed="false">Las puntas separadas, sin tocar nada</button>
+<button type="button" data-s="cable" aria-pressed="false">Un cable bueno, de punta a punta</button>
+<button type="button" data-s="cortado" aria-pressed="false">Un cable cortado por dentro o un fusible quemado</button>
+<button type="button" data-s="resist" aria-pressed="false">La resistencia de un hervidor de 1850 W, desenchufado</button>
+<button type="button" data-s="masa" aria-pressed="false">Entre una pata del enchufe y la carcasa metálica</button>
+<button type="button" data-s="enchufe" aria-pressed="false">Los agujeros de un enchufe de la pared</button>
+</div>
+<div class="say" id="say"><b></b><span></span></div>
+</div>
+</div>
+
+<h2>Tres errores típicos</h2>
+<div class="cards">
+<div><b>Medir ohmios con el aparato enchufado</b>En Ω y en continuidad el multímetro usa su propia pila. Si hay 220 V en el circuito, la lectura no sirve y puedes dañar el instrumento o recibir una descarga. Siempre desenchufado.</div>
+<div><b>Tocar las dos puntas con los dedos</b>Tu cuerpo también conduce un poco: al medir resistencias altas, la lectura cambia. Sujeta las puntas por el mango plástico.</div>
+<div><b>Dejar el cable rojo en el borne de amperes</b>El cable rojo va en el borne marcado «VΩ» y el negro en «COM». En el borne «10 A» el multímetro es casi un cortocircuito: nunca midas un enchufe así.</div>
+</div>
+
+<h2>¿Cuántos ohmios debería marcar?</h2>
+<p class="lead">En los aparatos de calor, la resistencia sana se calcula con la potencia de la placa: R = V² ÷ P. Si el multímetro marca algo parecido, la resistencia está bien; si marca «OL», está cortada.</p>
+<div class="calc">
+<label>Potencia de la placa (W)<input id="w" type="number" inputmode="numeric" min="1" value="1850"></label>
+<label>Voltaje (V)<input id="v" type="number" inputmode="numeric" min="1" value="220"></label>
+<div><div style="font-size:13px;font-weight:600">Debería marcar cerca de</div><output id="r">26 Ω</output></div>
+<p id="rn">Entre 23 y 29 Ω está bien: la potencia de la placa tiene una tolerancia de ±10 %. En frío puede marcar un poco menos.</p>
+</div>
+
+<h2>Lecturas de referencia</h2>
+<div class="tw"><table>
+<tr><th>Qué mides (desenchufado, en Ω)</th><th>Está bien</th><th>Está mal</th></tr>
+<tr><td>Cable de punta a punta, fusible, termofusible, interruptor cerrado</td><td>0 a 1 Ω (pita)</td><td>OL: está cortado</td></tr>
+<tr><td>Termostato en frío</td><td>0 a 1 Ω</td><td>OL: no cierra</td></tr>
+<tr><td>Resistencia de calor</td><td>el valor de la calculadora</td><td>OL: cortada · cerca de 0: en corto</td></tr>
+<tr><td>Motor (entre las patas del enchufe, encendido)</td><td>pocos ohmios a decenas</td><td>OL: carbones, cable o bobina</td></tr>
+<tr><td>Entre una pata y el metal que se toca</td><td>OL (infinito)</td><td>cualquier número: fuga peligrosa</td></tr>
+<tr><td>Entre la pata de tierra y la carcasa metálica</td><td>menos de 1 Ω</td><td>OL: tierra cortada</td></tr>
+</table></div>
+</main>
+<script>
+(function(){
+var M="ohm",S="juntas",$=function(i){return document.getElementById(i)};
+var T={ // [valor, unidad, clase, título, explicación]
+ ohm:{juntas:["0.3","Ω","ok","El instrumento funciona","Con las puntas juntas debe marcar casi cero. Ese pequeño resto es la resistencia de los propios cables."],aire:["OL","Ω","ok","Circuito abierto (infinito)","«OL» o un «1» a la izquierda significa que no pasa corriente. Es lo normal con las puntas al aire."],cable:["0.4","Ω","ok","Hay continuidad","El cable conduce de punta a punta. Dóblalo mientras mides: si la lectura salta, está cortado por dentro."],cortado:["OL","Ω","bad","Está cortado","No pasa corriente: el cable, el fusible o el termofusible hay que cambiarlo. Antes, busca por qué se quemó."],resist:["26.2","Ω","ok","Resistencia sana","1850 W a 220 V dan unos 26 Ω. Si marcara OL estaría cortada; cerca de 0, en corto."],masa:["OL","Ω","ok","Sin fuga: está bien","Entre las partes con corriente y el metal que se toca debe marcar infinito. Cualquier número es una falla a masa: no lo uses."],enchufe:["¡NO!","Ω","bad","Nunca en ohmios","En Ω no se mide nada que tenga tensión. Para un enchufe de la pared se usa V~."]},
+ cont:{juntas:["0.00","•)))","ok","Pita: el instrumento funciona","El pito avisa sin mirar la pantalla que la corriente pasa."],aire:["OL","•)))","ok","No pita","Sin camino para la corriente no hay pito."],cable:["0.00","•)))","ok","Pita: el cable está bueno","Es la forma más rápida de revisar cables, fusibles e interruptores."],cortado:["OL","•)))","bad","No pita: está cortado","Si debería conducir y no pita, ahí está la falla."],resist:["26","•)))","warn","Puede no pitar, y está bien","El pito sólo suena bajo unos 30–50 Ω. Para resistencias usa la posición Ω y compara con el valor calculado."],masa:["OL","•)))","ok","No pita: sin fuga","Si pitara, una parte con corriente toca la carcasa: es peligroso."],enchufe:["¡NO!","•)))","bad","Nunca en continuidad","Igual que en Ω: nada con tensión."]},
+ vac:{juntas:["0.0","V~","ok","Cero volts","No hay nada que medir."],aire:["0.0","V~","ok","Cero volts","Puede bailar algún número chico: es ruido."],cable:["0.0","V~","warn","Esta posición no sirve para esto","Para saber si un cable conduce se usa Ω o continuidad, con el aparato desenchufado."],cortado:["0.0","V~","warn","Esta posición no sirve para esto","Usa continuidad, desenchufado."],resist:["0.0","V~","warn","Esta posición no sirve para esto","La resistencia se mide en Ω, desenchufado."],masa:["0.0","V~","warn","Mejor en Ω, desenchufado","Con el aparato enchufado, medir tensión en la carcasa es trabajo para un monitor."],enchufe:["221","V~","warn","Hay tensión: 220 V","Es la única medición con corriente de esta guía. Puntas sólo por el mango, sin tocar el metal, y pide ayuda a un monitor si es tu primera vez."]},
+ off:{}};
+function paint(){
+ document.querySelectorAll("[data-m]").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.m===M?"true":"false")});
+ document.querySelectorAll("[data-s]").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.s===S?"true":"false")});
+ var r=M==="off"?["","","warn","Apagado","Apágalo al terminar: en Ω y continuidad la pila se gasta aunque no midas."]:T[M][S];
+ $("val").textContent=r[0]||" ";$("unit").textContent=r[1]||"OFF";var s=$("say");s.className="say "+r[2];s.querySelector("b").textContent=r[3];s.querySelector("span").textContent=r[4];
+ try{if(window.posthog)posthog.capture("multimeter_tried",{mode:M,scene:S})}catch(e){}
+}
+document.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;if(b.dataset.m){M=b.dataset.m;paint()}else if(b.dataset.s){S=b.dataset.s;paint()}});
+function calc(){var w=+$("w").value,v=+$("v").value;if(!(w>0&&v>0)){$("r").textContent="—";return}var r=v*v/w,f=function(x){return x>=100?Math.round(x):x>=10?x.toFixed(1).replace(".",","):x.toFixed(2).replace(".",",")};$("r").textContent=f(r)+" Ω";$("rn").textContent="Entre "+f(r/1.1)+" y "+f(r/0.9)+" Ω está bien: la potencia de la placa tiene una tolerancia de ±10 %. En frío puede marcar un poco menos."}
+$("w").addEventListener("input",calc);$("v").addEventListener("input",calc);paint();calc();
+})();
+</script>
+</body>
+</html>
