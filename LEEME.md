@@ -1,10 +1,6 @@
 # Manual de reparación · pequeños electrodomésticos
 
-Sitio estático (HTML, sin dependencias externas salvo las fuentes del sistema).
+Sitio estático: `index.html` (menú) y un archivo por aparato. Las miniaturas van incrustadas en `index.html`, así que no depende de la carpeta `img/`.
 
-- `index.html`: menú del manual.
-- Un archivo por aparato (`hervidor.html`, `plancha.html`, …), cada uno con una barra superior para volver al menú o pasar al siguiente.
-- `img/`: miniaturas e ícono.
-
-Para publicarlo en GitHub Pages, copia la carpeta `manual-reparacion` a la raíz del repositorio `sgeerling.github.io`.
-Quedará en https://sgeerling.github.io/manual-reparacion/
+Publicado con GitHub Pages desde el repositorio `sgeerling/manual-reparacion` (rama `main`, carpeta raíz):
+https://sgeerling.github.io/manual-reparacion/
