@@ -519,14 +519,15 @@ body{background:var(--page);font:14px/1.6 ui-sans-serif,system-ui,-apple-system,
 .kt-wrap{padding-block:14px 14px}
 .kt-main{height:var(--kt-h,calc(100vh - 28px));top:12px}
 .kt-side{max-height:var(--kt-h,calc(100vh - 28px));top:12px}
-.kt-figwrap{flex:0 0 auto;height:var(--kt-fig,58%);min-height:260px;display:flex;flex-direction:column}
+.kt-figwrap{flex:0 0 auto;height:var(--kt-fig,66%);min-height:260px;display:flex;flex-direction:column}
 .kt-figwrap .iso-figure{flex:1 1 auto;min-height:0;margin:0;display:flex;flex-direction:column}
-.kt-figwrap .iso .iso-plate,.kt-figwrap .iso-plate,.iso .kt-figwrap .iso-plate{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;padding:44px 18px 34px}
+.kt-figwrap .iso .iso-plate,.kt-figwrap .iso-plate,.iso .kt-figwrap .iso-plate{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;padding:40px 14px 28px}
 .kt-figwrap .iso-stage{flex:1 1 auto;min-height:0;position:relative;overflow:hidden}
 .kt-figwrap .iso-stage > svg,.kt-figwrap .iso-stage > canvas{position:absolute;inset:0;width:100%;height:100%;max-height:none}
 .kt-figwrap .bk3-stage{aspect-ratio:auto;height:auto}
-.kt-figwrap .cp-slot,.kt-figwrap .cp-tip{position:relative;left:auto;bottom:auto;width:auto;max-width:640px;flex:none;height:64px;margin-top:8px}
-.kt-figwrap .iso-plate:has(.cp-tip:not([hidden])) .cp-slot{display:none}
+.kt-figwrap .cp-slot{display:none}
+.kt-figwrap .cp-tip{position:absolute;z-index:5;left:18px;right:18px;bottom:30px;width:auto;max-width:640px;height:auto;min-height:0;max-height:96px;margin:0;box-shadow:0 0 0 1px var(--cp-accent),0 6px 18px rgba(0,0,0,.14)}
+.kt-figwrap .iso .iso-plate,.kt-figwrap .iso-plate,.iso .kt-figwrap .iso-plate{position:relative}
 .kt-split{flex:none;height:14px;margin:2px 0 0;display:grid;place-items:center;cursor:row-resize;touch-action:none;border-radius:6px;outline:none}
 .kt-split::before{content:"";width:56px;height:4px;border-radius:2px;background:var(--anatomy-lo);transition:background .15s,width .15s}
 .kt-split:hover::before,.kt-split:focus-visible::before,.kt-split.dragging::before{background:var(--anatomy-mid);width:84px}
@@ -1652,13 +1653,30 @@ chooseFault(fromHash ? fromHash.id : "ok", false);
   const svgs = [...st.querySelectorAll(":scope > svg")].filter((s) => s.getAttribute("viewBox"));
   if (!svgs.length) return;
   const base = svgs.map((s) => s.getAttribute("viewBox").trim().split(/[\s,]+/).map(Number));
+  // fit each drawing to what is actually drawn: the page margins of the plate are trimmed, so the appliance fills the frame
+  const fitted = svgs.map(() => false);
+  function fit() {
+    svgs.forEach((s, i) => {
+      if (fitted[i] || !(s.getBoundingClientRect().width > 0)) return;
+      const o = base[i]; s.setAttribute("viewBox", o.join(" "));
+      // the table under the appliance is mostly empty: leave it out of the measure and let the frame crop it
+      const table = [...s.children].filter((c) => { if (c.hasAttribute("transform") || c.style.display === "none") return false; try { return c.getBBox().width > o[2] * 0.78; } catch (e) { return false; } });
+      table.forEach((c) => { c.style.display = "none"; });
+      let bb; try { bb = s.getBBox(); } catch (e) { bb = null; }
+      table.forEach((c) => { c.style.display = ""; }); if (!bb) return;
+      fitted[i] = true; if (!(bb.width > 20 && bb.height > 20)) return;
+      const px = Math.max(10, bb.width * 0.07), pt = Math.max(10, bb.height * 0.12), pb = Math.max(14, bb.height * 0.1);
+      const x0 = Math.max(o[0], bb.x - px), y0 = Math.max(o[1], bb.y - pt), x1 = Math.min(o[0] + o[2], bb.x + bb.width + px), y1 = Math.min(o[1] + o[3], bb.y + bb.height + pb);
+      if (x1 - x0 > 20 && y1 - y0 > 20 && (x1 - x0) * (y1 - y0) < o[2] * o[3] * 0.94) base[i] = [x0, y0, x1 - x0, y1 - y0].map((v) => +v.toFixed(1));
+    });
+  }
   const MAX = 8; let k = 1, cx = 0.5, cy = 0.5, suppress = false;
   const bar = document.createElement("div"); bar.className = "zm"; bar.setAttribute("role", "group"); bar.setAttribute("aria-label", "Zoom de la figura");
   bar.innerHTML = '<button type="button" data-z="in" aria-label="Acercar" title="Acercar (o pellizca con dos dedos; en el computador, la rueda del mouse sobre la parte)">+</button><button type="button" data-z="out" aria-label="Alejar" title="Alejar">−</button><button type="button" data-z="0" aria-label="Ver la figura completa" title="Ver completa" hidden>⤢</button>';
   st.appendChild(bar);
   const vis = () => { const i = svgs.findIndex((s) => s.getBoundingClientRect().width > 0); return i < 0 ? 0 : i; };
   function apply() {
-    k = Math.min(MAX, Math.max(1, k)); if (k < 1.03) { k = 1; cx = cy = 0.5; }
+    fit(); k = Math.min(MAX, Math.max(1, k)); if (k < 1.03) { k = 1; cx = cy = 0.5; }
     cx = Math.min(Math.max(cx, 0.5 / k), 1 - 0.5 / k); cy = Math.min(Math.max(cy, 0.5 / k), 1 - 0.5 / k);
     svgs.forEach((s, i) => { const [x, y, w, h] = base[i]; s.setAttribute("viewBox", (k === 1 ? [x, y, w, h] : [x + cx * w - w / k / 2, y + cy * h - h / k / 2, w / k, h / k]).map((v) => +v.toFixed(2)).join(" ")); });
     st.classList.toggle("zm-on", k > 1);
@@ -1703,7 +1721,8 @@ chooseFault(fromHash ? fromHash.id : "ok", false);
   const up = () => { drag = null; }; st.addEventListener("pointerup", up); st.addEventListener("pointercancel", up);
   st.addEventListener("click", (e) => { if (suppress) { suppress = false; e.preventDefault(); e.stopImmediatePropagation(); } }, true);
   st.addEventListener("wheel", (e) => { if (e.target.closest(".zm")) return; e.preventDefault(); const dy = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? 400 : 1); zoomAt(e.clientX, e.clientY, k * Math.exp(-dy * (e.ctrlKey ? 0.01 : 0.002))); }, { passive: false });
-  document.querySelectorAll(".vw-btn[data-view]").forEach((b) => b.addEventListener("click", () => { k = 1; apply(); }));
+  document.querySelectorAll(".vw-btn[data-view]").forEach((b) => b.addEventListener("click", () => { k = 1; apply(); setTimeout(apply, 0); }));
+  apply(); addEventListener("load", apply);
   apply();
 })();
 
@@ -1751,8 +1770,8 @@ chooseFault(fromHash ? fromHash.id : "ok", false);
   const L = document.querySelector(".kt-layout"), main = document.querySelector(".kt-main"), fig = document.querySelector(".kt-figwrap"), info = document.querySelector(".kt-info");
   if (!L || !main || !fig || !info) return;
   const mq = matchMedia("(min-width:981px)");
-  const KEY = "kt-split-" + (document.querySelector(".bk3-stage") ? "bici" : "ap");
-  let frac = 0.58; try { const v = parseFloat(localStorage.getItem(KEY)); if (v >= 0.3 && v <= 0.85) frac = v; } catch (e) {}
+  const KEY = "kt-split-" + (document.querySelector(".bk3-stage") ? "bici" : "ap2");
+  let frac = 0.66; try { const v = parseFloat(localStorage.getItem(KEY)); if (v >= 0.3 && v <= 0.85) frac = v; } catch (e) {}
   const split = document.createElement("div"); split.className = "kt-split"; split.tabIndex = 0;
   split.setAttribute("role", "separator"); split.setAttribute("aria-orientation", "horizontal"); split.setAttribute("aria-label", "Ajustar el tamaño de la figura y del texto");
   split.title = "Arrastra para dar más espacio a la figura o al texto (doble clic: volver al tamaño inicial)";
@@ -1771,7 +1790,7 @@ chooseFault(fromHash ? fromHash.id : "ok", false);
   split.addEventListener("pointermove", (e) => { if (!drag) return; const h = parseFloat(L.style.getPropertyValue("--kt-h")) || innerHeight; setFrac((drag.h0 + e.clientY - drag.y) / h, false); });
   const end = () => { if (!drag) return; drag = null; split.classList.remove("dragging"); setFrac(frac, true); };
   split.addEventListener("pointerup", end); split.addEventListener("pointercancel", end);
-  split.addEventListener("dblclick", () => setFrac(0.58, true));
+  split.addEventListener("dblclick", () => setFrac(0.66, true));
   split.addEventListener("keydown", (e) => { const d = { ArrowUp: -0.04, ArrowDown: 0.04 }[e.key]; if (d) { setFrac(frac + d, true); e.preventDefault(); } else if (e.key === "Home") { setFrac(0.3, true); e.preventDefault(); } else if (e.key === "End") { setFrac(0.85, true); e.preventDefault(); } });
   addEventListener("resize", apply); mq.addEventListener("change", apply);
   apply(); requestAnimationFrame(apply);

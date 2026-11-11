@@ -1904,7 +1904,7 @@ const DT = (() => {
     sc.add(new THREE.HemisphereLight(0xffffff, 0x8a8f96, 1.5));
     const s1 = new THREE.DirectionalLight(0xffffff, 1.5); s1.position.set(40, 80, 60); sc.add(s1);
     cam = new THREE.PerspectiveCamera(32, 1.5, 0.1, 500);
-    ctl = new OrbitControls(cam, cv); ctl.enableDamping = true; ctl.dampingFactor = 0.1; ctl.addEventListener("change", kick); ctl.addEventListener("start", () => { orbiting = true; }); ctl.addEventListener("end", () => { orbiting = false; kick(); });
+    ctl = new OrbitControls(cam, cv); ctl.enableDamping = false; ctl.addEventListener("change", kick); ctl.addEventListener("start", () => { orbiting = true; }); ctl.addEventListener("end", () => { orbiting = false; kick(); });
     cv.addEventListener("pointerdown", (e) => { downAt = [e.clientX, e.clientY]; });
     cv.addEventListener("click", (e) => { if (downAt && Math.hypot(e.clientX - downAt[0], e.clientY - downAt[1]) > 5) return; pickAt(e); });
     new ResizeObserver(() => { if (!box.hidden) { size(); kick(); } }).observe(box);
