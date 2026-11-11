@@ -371,7 +371,7 @@ footer .wrap{display:flex;align-items:center;justify-content:space-between;gap:4
 .gx-b{display:grid;gap:10px;align-content:start}
 .gx-l{display:block;width:100%;text-align:left;font:inherit;color:inherit;text-decoration:none;background:transparent;border:1px solid var(--line);border-radius:10px;padding:12px 14px;cursor:pointer}
 .gx-l:hover{border-color:var(--ink)}.gx-l b{display:block}.gx-l span{display:block;font-size:13px;opacity:.8}
-.gx-t{grid-column:1/-1}.gx-solo{grid-template-columns:1fr;max-width:420px;margin-left:max(24px,calc((100% - 1148px)/2));padding:0;border:0;background:transparent}.gx-solo .gx-l{background:var(--card)}.gx-t[hidden]{display:none}
+.gx-t{grid-column:1/-1}.gx-solo{grid-template-columns:1fr;max-width:860px;margin-left:max(24px,calc((100% - 1148px)/2));padding:0;border:0;background:transparent}.gx-solo .gx-l{background:var(--card)}.gx-solo .gx-b{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}.gx-t[hidden]{display:none}
 .gx-tw{overflow-x:auto}.gx table{border-collapse:collapse;width:100%;font-size:14px}.gx th,.gx td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}.gx th{font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;opacity:.7}
 .gx-act{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:12px 0 0!important}
 .gx-act button{font:inherit;font-size:13px;font-weight:600;color:inherit;background:transparent;border:1px solid var(--line);border-radius:8px;padding:8px 12px;cursor:pointer}
@@ -381,7 +381,7 @@ footer .wrap{display:flex;align-items:center;justify-content:space-between;gap:4
   "use strict";
   var lst = document.getElementById("listado"); if (!lst) return;
   var box = document.createElement("section"); box.className = "gx gx-solo"; box.setAttribute("aria-label", "Guía del multímetro");
-  box.innerHTML = '<div class="gx-b"><a class="gx-l" href="multimetro.html"><b>Cómo usar el multímetro</b><span>Guía interactiva y calculadora de ohmios</span></a></div>';
+  box.innerHTML = '<div class="gx-b"><a class="gx-l" href="multimetro.html"><b>Cómo usar el multímetro</b><span>Guía interactiva y calculadora de ohmios</span></a><a class="gx-l" href="taller.html"><b>Guía del reparador</b><span>Fases, cables, interruptores, termostatos y fusibles, toolkit e insumos</span></a></div>';
   lst.parentNode.insertBefore(box, lst);
 })();
 </script>
